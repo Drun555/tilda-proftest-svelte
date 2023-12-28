@@ -4,7 +4,7 @@
     let left;
     let overallProgressWidth = 350;
     $: if (window.innerWidth > 1000) overallProgressWidth = 500;
-    
+
     $: left = -70 + overallProgressWidth / (100 / progress)
      
 </script>
@@ -81,6 +81,7 @@
         }
         .progressBar-radius {
             width: 500px;
+            border: 5px solid;
         }
     }
 

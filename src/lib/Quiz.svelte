@@ -10,7 +10,7 @@
     "https://static.tildacdn.com/tild6163-3363-4232-a431-306131383062/Group_1321318415.png",
     "https://static.tildacdn.com/tild6430-6435-4466-b633-323463656432/Group_1321318416.png"
   ];
-
+  
   // сразу загрузим картинки в кэш
   function preloadImages(array) {
       if (!preloadImages.list) {
@@ -61,9 +61,18 @@
       let answer = e.detail;
       currentAnswerIndex += answer.answerIndex
       console.log(`Вопрос ${currentQuestionIndex}, ответ #${currentAnswerIndex}`)
-      setTimeout(() => currentQuestionIndex++, 500);
 
-      if (currentQuestionIndex % 6 == 1) currentBackgroundIndex++;
+      // Меняем вопрос с задержкой
+      // setTimeout(() => currentQuestionIndex++, 500);
+      currentQuestionIndex++
+      // Меняем обои
+      if (currentQuestionIndex % 6 == 1) {
+        if (currentBackgroundIndex+1 < backgrounds.length)
+          currentBackgroundIndex++;
+        else currentBackgroundIndex = 0;
+      }
+
+      // прямо во время ответов считаем веса
       data.RESULT_PROFESSION.forEach(prof => {
         prof.userProggress += prof.dataCheck[currentAnswerIndex] || 0
         if (typeof prof.dataCheck[currentAnswerIndex] === 'undefined')
@@ -96,6 +105,9 @@
         professions: data.RESULT_PROFESSION
       }});
       window.dispatchEvent(evt);
+
+      document.querySelector(window.luigiQuiz.thisBlock).style.display = "none";
+      document.querySelector(window.luigiQuiz.finalBlock).style.display = "block";
     }
   })
 </script>
@@ -149,6 +161,7 @@
   @media screen and (min-width: 1200px) {
     main {
       background-size: cover;
+      padding-top: 60px;
     }
 
     .content {
@@ -157,7 +170,7 @@
 
     .currentQuestion-wrap {
       position: absolute;
-      top: 430px;
+      top: 400px;
       margin-top: 0;
     }
 

@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Montserrat', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', 'StratosSkyeng', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -9,10 +9,13 @@
   -moz-osx-font-smoothing: grayscale;
 
   --color-blue: #2A3179;
-
-  font-family: Montserrat;
+  background-color: #2e3d96;
 }
 
 body {
   margin: 0;
+}
+
+.skypro-startLuigi:hover {
+  cursor: pointer;
 }

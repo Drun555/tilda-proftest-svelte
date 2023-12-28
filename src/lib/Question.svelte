@@ -6,7 +6,7 @@
     }
 
     const answersWrapSmall = 'https://static.tildacdn.com/tild3930-6133-4166-b065-623234313863/questionWrap-small.svg';
-    const luigiSmall = 'https://static.tildacdn.com/tild3431-3933-4362-b236-373538656365/luigi.png';
+    const luigiSmall = 'https://static.tildacdn.com/tild3164-6665-4433-b738-376537303532/yful_robot_pixar_wal.png';
     const heartIcon = 'https://static.tildacdn.com/tild6166-3635-4365-a436-353566313938/Heart.png';
 
     // Короче, я не придумал как нормально красить кнопку после нажатия, поэтому сделал костыль
@@ -24,11 +24,24 @@
         lastQuestionStr = question.question;
         window.dispatchEvent(evt);
     }
-
-    let minimalHeight = 350;
-    $: if (window.innerWidth > 1000) minimalHeight = 420;
-    let answersCalculatedHeight = minimalHeight;
-    answersCalculatedHeight = (question.answers.length * 100 > minimalHeight ? question.answers.length * 100 : minimalHeight)
+    
+    // 244 - 5 cтроки текста
+    // let minimalHeight = 0;
+    // if (window.innerWidth > 900) minimalHeight = 460; else minimalHeight = 350;
+    // let answersCalculatedHeight = minimalHeight;
+    // $: answersCalculatedHeight = (question.answers.length * 100 > minimalHeight ? question.answers.length * 100 : minimalHeight)
+    let answersCalculatedHeight = 350;
+    $: setTimeout(() => {
+        if (window.innerWidth > 900) {
+            answersCalculatedHeight = 460;
+            return;
+        }
+        
+        question = question;
+        let answersHeight = 0; 
+        document.querySelectorAll('.answersWrap-svgWrap-answersWrapper-answer').forEach(a => { answersHeight += a.offsetHeight; answersHeight += 10; } )
+        answersCalculatedHeight = answersHeight;
+    }, 100)
 
     // $: try {
     //     question = question;
@@ -77,6 +90,7 @@
         width: 80%;
         padding-top: 25px;
         padding-bottom: 1em;
+        transition: 0.3s;
         z-index: 1;
     }
 
@@ -86,10 +100,11 @@
         padding: 15px;
         border-radius: 10px;
         display: flex;
+        align-items: center;
         gap: 10px;
         line-height: 20.063px;
         color: #1E2752;
-        font-weight: 500;
+        font-weight: 400;
         border: 3px solid #FFF;
         transition: 0.4s;
     }
@@ -109,14 +124,17 @@
     .answersWrap-luigiImg {
         background-repeat: no-repeat;
         width: 100%;
-        height: 290px;
-        margin-top: -35px;
+        height: 401px;
+        margin-top: -40px;
+        margin-bottom: -25px;
+        transform: translateX(-29px) scale(0.9);
     }
     .answersWrap-wrap {
         display: flex;
         flex-direction: column;
         align-items: center;
         position: relative;
+        margin-bottom: 50px;
     }
 
     .answersWrap-svgWrap {
@@ -151,10 +169,11 @@
             background-position: right;
             background-repeat: no-repeat;
             width: auto;
-            height: 700px;
-            margin-top: -59px;
-            margin-bottom: -157px;
+            height: 763px;
+            margin-top: -141px;
+            margin-bottom: -200px;
             background-size: contain;
+            transform: translateX(86px);
         }
 
         .answersWrap-svgWrap {
