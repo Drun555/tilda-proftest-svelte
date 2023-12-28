@@ -2,14 +2,11 @@
     export let progress = 0;
 
     let left;
-    let overallProgressWidth;
-
-    $: try {
-        overallProgressWidth = document.querySelector('.progressBar-wrap').scrollWidth
-    } catch {
-        overallProgressWidth =  '350';
-    }
+    let overallProgressWidth = 350;
+    $: if (window.innerWidth > 1000) overallProgressWidth = 500;
+    
     $: left = -70 + overallProgressWidth / (100 / progress)
+     
 </script>
 
 <div class="progressBar-wrap">
@@ -68,4 +65,23 @@
         font-size: 12px;
         z-index: 1;
     }
+
+    @media screen and (min-width: 1200px) {
+        .progressBar-wrap {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+        }
+        .progressBar-title {
+            font-size: 16px;
+            z-index: 1;
+        }
+        .progressBar-radius {
+            width: 500px;
+        }
+    }
+
 </style>

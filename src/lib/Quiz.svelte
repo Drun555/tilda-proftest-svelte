@@ -11,12 +11,92 @@
     "https://static.tildacdn.com/tild6430-6435-4466-b633-323463656432/Group_1321318416.png"
   ];
 
+  // сразу загрузим картинки в кэш
+  function preloadImages(array) {
+      if (!preloadImages.list) {
+          preloadImages.list = [];
+      }
+      var list = preloadImages.list;
+      for (var i = 0; i < array.length; i++) {
+          var img = new Image();
+          img.onload = function() {
+              var index = list.indexOf(this);
+              if (index !== -1) {
+                  // remove image from the array once it's loaded
+                  // for memory consumption reasons
+                  list.splice(index, 1);
+              }
+          }
+          list.push(img);
+          img.src = array[i];
+      }
+  }
+
+  preloadImages(backgrounds);
+
   let currentBackgroundIndex = 0;
   let currentQuestionIndex = 0;
+  let currentAnswerIndex = 0;
+  let complete = false;
+  const userAnswers = [];
+
+
+  // Проверка весов
+  let overallAnswers = 0;
+  data.QUESTIONS.forEach(question => {
+    overallAnswers += question.answers.length;
+  })
+  data.RESULT_PROFESSION.forEach(prof => {
+    if (prof.dataCheck.length !== overallAnswers) {
+      console.warn(`Несоответствие весов в ${prof.title}. Количество ответов всего - ${overallAnswers}, кол-во весов в dataCheck - ${prof.dataCheck.length}`)
+    }
+  })
 
   $: console.log( data.QUESTIONS[currentQuestionIndex] )
+
   window.addEventListener('answerPressed', e => {
-    currentQuestionIndex++
+    userAnswers.push( e.detail );
+    
+    if (currentQuestionIndex+1 < data.QUESTIONS.length) {
+      let answer = e.detail;
+      currentAnswerIndex += answer.answerIndex
+      console.log(`Вопрос ${currentQuestionIndex}, ответ #${currentAnswerIndex}`)
+      setTimeout(() => currentQuestionIndex++, 500);
+
+      if (currentQuestionIndex % 6 == 1) currentBackgroundIndex++;
+      data.RESULT_PROFESSION.forEach(prof => {
+        prof.userProggress += prof.dataCheck[currentAnswerIndex] || 0
+        if (typeof prof.dataCheck[currentAnswerIndex] === 'undefined')
+          console.warn(`Нет веса в ${prof.title} на ответ #${currentAnswerIndex}`)
+
+        console.log(`${prof.title}, ${prof.userProggress}`)
+      })
+      currentAnswerIndex = currentAnswerIndex - answer.answerIndex + answer.answersLength
+    }
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (currentQuestionIndex + 1 == data.QUESTIONS.length) {
+      // Если уже закончили, то шлём подальше
+      if (complete) return;
+      complete = true;
+      
+      // Посчитаем проценты
+      data.RESULT_PROFESSION.forEach(prof => {
+        prof.userProggress = Math.round(prof.userProggress * 3.05 + 20);
+        console.log(`${prof.title}, ${prof.userProggress}%`)
+      })
+
+      // Отсортируем
+      data.RESULT_PROFESSION.sort((a, b) => b.userProggress - a.userProggress);
+
+      // Отчитываемся
+      var evt = new CustomEvent("quizCompleted", { detail: {
+        answers: userAnswers,
+        professions: data.RESULT_PROFESSION
+      }});
+      window.dispatchEvent(evt);
+    }
   })
 </script>
 
@@ -37,7 +117,8 @@
 
 <style>
   main {
-    /* width: 100vw; */
+    min-height: 100vh;
+    overflow: hidden;
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
@@ -65,7 +146,23 @@
     border: 3px solid rgb(87, 105, 226);
   }
 
-  /* .answersWrap-outsideWrapper {
-    
-  } */
+  @media screen and (min-width: 1200px) {
+    main {
+      background-size: cover;
+    }
+
+    .content {
+      width: 1160px;
+    }
+
+    .currentQuestion-wrap {
+      position: absolute;
+      top: 430px;
+      margin-top: 0;
+    }
+
+    .currentQuestion-title {
+      font-size: 24px;
+    }
+  }
 </style>
