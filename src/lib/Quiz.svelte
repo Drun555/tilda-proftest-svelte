@@ -63,8 +63,8 @@
       console.log(`Вопрос ${currentQuestionIndex}, ответ #${currentAnswerIndex}`)
 
       // Меняем вопрос с задержкой
-      // setTimeout(() => currentQuestionIndex++, 500);
-      currentQuestionIndex++
+      setTimeout(() => currentQuestionIndex++, 300);
+      // currentQuestionIndex++
       // Меняем обои
       if (currentQuestionIndex % 6 == 1) {
         if (currentBackgroundIndex+1 < backgrounds.length)
@@ -144,11 +144,18 @@
 
   .content {
     width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
   }
 
   .currentQuestion-wrap {
     display: flex;
-    margin-top: 55px;
+    margin-top: 137px;
+    margin-bottom: 36px;
+    width: 100%;
+    z-index: 1;
   }
 
   .currentQuestion-title {
@@ -169,9 +176,7 @@
     }
 
     .currentQuestion-wrap {
-      position: absolute;
-      top: 400px;
-      margin-top: 0;
+      margin-top: 255px;
     }
 
     .currentQuestion-title {

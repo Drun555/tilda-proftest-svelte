@@ -31,6 +31,7 @@
         position: relative;
         align-items: center;
         justify-content: center;
+        z-index: 1;
     }
 
     .progressBar-radius {
@@ -82,6 +83,8 @@
         .progressBar-radius {
             width: 500px;
             border: 5px solid;
+            border-radius: 99px;
+            border-color: rgba(59, 75, 159, 1);
         }
     }
 

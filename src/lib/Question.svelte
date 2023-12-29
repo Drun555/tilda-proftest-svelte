@@ -36,7 +36,7 @@
             answersCalculatedHeight = 460;
             return;
         }
-        
+
         question = question;
         let answersHeight = 0; 
         document.querySelectorAll('.answersWrap-svgWrap-answersWrapper-answer').forEach(a => { answersHeight += a.offsetHeight; answersHeight += 10; } )
@@ -109,12 +109,6 @@
         transition: 0.4s;
     }
 
-    .answersWrap-svgWrap-answersWrapper-answer:hover {
-        border: 3px solid #F989FF;
-        transition: 0.4s;
-        cursor: pointer;
-    }
-
     .answersWrap-svgWrap-answersWrapper-answer-active {
         border: 3px solid #F989FF;
         transition: 0.4s;
@@ -123,23 +117,25 @@
 
     .answersWrap-luigiImg {
         background-repeat: no-repeat;
-        width: 100%;
-        height: 401px;
-        margin-top: -40px;
-        margin-bottom: -25px;
-        transform: translateX(-29px) scale(0.9);
+        width: 83%;
+        height: 297px;
+        background-size: cover;
+        position: absolute;
+        top: -12px;
     }
+
     .answersWrap-wrap {
         display: flex;
         flex-direction: column;
         align-items: center;
         position: relative;
         margin-bottom: 50px;
+        width: 100%;
     }
 
     .answersWrap-svgWrap {
         width: 92%;
-        height: 100%;
+        height: 1000px;
         display: flex;
         justify-content: center;
         position: absolute;
@@ -147,9 +143,10 @@
         background-position-x: center;
         background-color: #2e3d97;
         border: 2px solid #222d7f;
-        outline: 15px solid #232f81;
+        box-shadow: 0 0 0 15px #232f81;
         border-radius: 15px;
-        box-shadow: 2px 0px 68px #6044a3;
+        /* box-shadow: 2px 0px 66px #6044a3, 0 0 0 15px #232f81; */
+        box-shadow: 2px 0px 66px #6044a3;
         position: absolute;
     }
 
@@ -161,19 +158,22 @@
         position: absolute;
         border: 5px solid #4456da;
         border-radius: 20px;
-        outline: 9px solid #718bf9;
+        box-shadow: 0 0 0 6px #718bf9;
     }
 
     @media screen and (min-width: 1200px) {
+        .answersWrap-svgWrap-answersWrapper-answer:hover {
+            border: 3px solid #F989FF;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+        
         .answersWrap-luigiImg {
             background-position: right;
             background-repeat: no-repeat;
-            width: auto;
-            height: 763px;
-            margin-top: -141px;
-            margin-bottom: -200px;
+            width: 100%;
+            height: 594px;
             background-size: contain;
-            transform: translateX(86px);
         }
 
         .answersWrap-svgWrap {
