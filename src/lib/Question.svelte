@@ -79,23 +79,23 @@
 
     .answersWrap-svgWrap-answersWrapper-answer-icon {
         object-fit: contain;
-        padding-right: 17px;
-        padding-left: 15px;
+        padding-right: 7px;
+        /* padding-left: 15px; */
     }
 
     .answersWrap-svgWrap-answersWrapper {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        width: 80%;
-        padding-top: 25px;
+        width: 84%;
+        padding-top: 17px;
         padding-bottom: 1em;
         transition: 0.3s;
         z-index: 1;
     }
 
     .answersWrap-svgWrap-answersWrapper-answer {
-        font-size: 14px;
+        font-size: 16px;
         background-color: white;
         padding: 15px;
         border-radius: 10px;
@@ -107,6 +107,7 @@
         font-weight: 400;
         border: 3px solid #FFF;
         transition: 0.4s;
+        min-height: 80px;
     }
 
     .answersWrap-svgWrap-answersWrapper-answer-active {
@@ -186,10 +187,11 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             grid-auto-rows: max-content;
+            padding-top: 23px;
         }
 
         .answersWrap-svgWrap-answersWrapper-answer {
-            height: 111px;
+            min-height: 83px;
         }
 
         .answersWrap-svgWrap-answersWrapper-answer-icon {

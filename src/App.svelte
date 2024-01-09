@@ -8,6 +8,18 @@
     document.querySelector(window.luigiQuiz.startClass).addEventListener('click', () => {
       document.querySelector(window.luigiQuiz.thisBlock).style.display = "block";
       document.querySelector(window.luigiQuiz.startBlock).style.display = "none";
+
+      try {
+        dataLayer.push({
+          'event' : 'GTMevent',
+          'eventCategory' : 'button',
+          'eventAction' : 'click',
+          'eventLabel' : 'first_page'
+        });
+      } catch {
+        console.warn('error dataLayer')
+      }
+        
     })
   }
 

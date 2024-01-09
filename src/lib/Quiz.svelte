@@ -11,6 +11,72 @@
     "https://static.tildacdn.com/tild6430-6435-4466-b633-323463656432/Group_1321318416.png"
   ];
   
+  // это хэндлеры GTM на определённые вопросы
+  const GTM_QuestionEvents = [
+    {
+      question: "Что ты предпочитешь?",
+      dataLayer: {
+          'event' : 'GTMevent',
+          'eventCategory': 'button',
+          'eventAction': 'click',
+          'eventLabel': 'first_page'
+      }
+    },
+    {
+      question: "Что тебе больше нравилось в школе?",
+      dataLayer: {
+          'event' : 'GTMevent',
+          'eventCategory': 'answer',
+          'eventAction': 'success',
+          'eventLabel': 'first_page_question'
+      }
+    },
+    {
+      question: "В разговоре тебе интереснее:",
+      dataLayer: {
+          'event' : 'GTMevent',
+          'eventCategory': 'answer',
+          'eventAction': 'success',
+          'eventLabel': 'middle_question'
+      }
+    },
+    {
+      question: "Насколько легко ты идёшь на компромисс?",
+      dataLayer: {
+          'event' : 'GTMevent',
+          'eventCategory': 'answer',
+          'eventAction': 'success',
+          'eventLabel': '60_percent_question'
+      }
+    },
+    {
+      question: "В каком ритме тебе комфортнее работать?",
+      dataLayer: {
+          'event' : 'GTMevent',
+          'eventCategory': 'answer',
+          'eventAction': 'success',
+          'eventLabel': '70_percent_question'
+      }
+    },
+    {
+      question: "Есть ли айти-профессия, которая уже тебе приглянулась?",
+      dataLayer: {
+          'event' : 'GTMevent',
+          'eventCategory': 'answer',
+          'eventAction': 'success',
+          'eventLabel': '80_percent_question'
+      }
+    },
+    {
+      question: "Сколько ты зарабатываешь сейчас?",
+      dataLayer: {
+          'event' : 'GTMevent',
+          'eventCategory': 'answer',
+          'eventAction': 'success',
+          'eventLabel': '90_percent_question'
+      }
+    }
+  ]
   // сразу загрузим картинки в кэш
   function preloadImages(array) {
       if (!preloadImages.list) {
@@ -54,6 +120,24 @@
 
   $: console.log( data.QUESTIONS[currentQuestionIndex] )
 
+  // Проверяем, есть ли триггер на текущий вопрос - и если да, то пушим в dataLayer
+  $: currentQuestionIndex && analytics() 
+  function analytics() {
+    // в dev-режиме у нас нет dataLayer
+    if (import.meta.env.DEV) return;
+
+    for (const index in GTM_QuestionEvents) {
+      if (GTM_QuestionEvents[index].question !== data.QUESTIONS[currentQuestionIndex].question) 
+        continue;
+      
+      try {
+        dataLayer.push( GTM_QuestionEvents[index].dataLayer );
+      } catch {
+        console.warn('Ошибка dataLayer.push')
+      }
+    } 
+  }
+
   window.addEventListener('answerPressed', e => {
     userAnswers.push( e.detail );
     
@@ -90,6 +174,15 @@
       if (complete) return;
       complete = true;
       
+      // Аналитика
+      if (import.meta.env.PROD)
+        dataLayer.push({
+          'event' : 'GTMevent',
+          'eventCategory' : 'viewing',
+          'eventAction' : 'success',
+          'eventLabel' : 'contact_page'
+        });
+
       // Посчитаем проценты
       data.RESULT_PROFESSION.forEach(prof => {
         prof.userProggress = Math.round(prof.userProggress * 3.05 + 20);
@@ -152,7 +245,7 @@
 
   .currentQuestion-wrap {
     display: flex;
-    margin-top: 137px;
+    margin-top: 110px;
     margin-bottom: 36px;
     width: 100%;
     z-index: 1;
@@ -160,27 +253,35 @@
 
   .currentQuestion-title {
     background-color: white;
-    border-radius: 21px;
+    border-radius: 18px;
     padding: 16px;
-    border: 3px solid rgb(87, 105, 226);
+    border: 4px solid rgb(87, 105, 226);
+    padding-top: 13px;
+    padding-bottom: 12px;
+    padding-right: 22px;
+    color: #1e2752;
+    font-weight: 300;
+    font-size: 16px;
   }
 
   @media screen and (min-width: 1200px) {
     main {
       background-size: cover;
-      padding-top: 60px;
+      padding-top: 45px;
     }
 
     .content {
-      width: 1160px;
+      width: 1060px;
     }
 
     .currentQuestion-wrap {
-      margin-top: 255px;
+      margin-top: 140px;
+      margin-bottom: 130px;
     }
 
     .currentQuestion-title {
       font-size: 24px;
+      font-weight: 400;
     }
   }
 </style>

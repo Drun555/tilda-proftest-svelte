@@ -32,6 +32,7 @@
         align-items: center;
         justify-content: center;
         z-index: 1;
+        margin-top: 10px;
     }
 
     .progressBar-radius {
@@ -63,8 +64,9 @@
     .progressBar-title {
         color: white;
         position: absolute;
-        font-size: 12px;
+        font-size: 13px;
         z-index: 1;
+        font-weight: 400;
     }
 
     @media screen and (min-width: 1200px) {
@@ -75,13 +77,15 @@
             position: relative;
             align-items: center;
             justify-content: center;
+            margin-top: 0px;
         }
+
         .progressBar-title {
-            font-size: 16px;
+            font-size: 21px;
             z-index: 1;
         }
         .progressBar-radius {
-            width: 500px;
+            width: 575px;
             border: 5px solid;
             border-radius: 99px;
             border-color: rgba(59, 75, 159, 1);
