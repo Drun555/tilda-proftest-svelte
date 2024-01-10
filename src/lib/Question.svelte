@@ -95,7 +95,7 @@
     }
 
     .answersWrap-svgWrap-answersWrapper-answer {
-        font-size: 16px;
+        font-size: 17px;
         background-color: white;
         padding: 15px;
         border-radius: 10px;
@@ -122,7 +122,7 @@
         height: 297px;
         background-size: cover;
         position: absolute;
-        top: -12px;
+        top: 1px;
     }
 
     .answersWrap-wrap {

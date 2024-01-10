@@ -64,7 +64,7 @@
     .progressBar-title {
         color: white;
         position: absolute;
-        font-size: 13px;
+        font-size: 14px;
         z-index: 1;
         font-weight: 400;
     }

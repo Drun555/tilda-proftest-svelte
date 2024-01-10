@@ -260,8 +260,8 @@
     padding-bottom: 12px;
     padding-right: 22px;
     color: #1e2752;
-    font-weight: 300;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 17px;
   }
 
   @media screen and (min-width: 1200px) {
