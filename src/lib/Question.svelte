@@ -1,13 +1,10 @@
 <script>
+    import '../assets/styles.scss'
     export let question = {
         question: "",
         answers: [],
         progress: 0
     }
-
-    const answersWrapSmall = 'https://static.tildacdn.com/tild3930-6133-4166-b065-623234313863/questionWrap-small.svg';
-    const luigiSmall = 'https://static.tildacdn.com/tild3164-6665-4433-b738-376537303532/yful_robot_pixar_wal.png';
-    const heartIcon = 'https://static.tildacdn.com/tild6166-3635-4365-a436-353566313938/Heart.png';
 
     // Короче, я не придумал как нормально красить кнопку после нажатия, поэтому сделал костыль
     let lastAnswerStr = "";
@@ -24,41 +21,14 @@
         lastQuestionStr = question.question;
         window.dispatchEvent(evt);
     }
-    
-    // 244 - 5 cтроки текста
-    // let minimalHeight = 0;
-    // if (window.innerWidth > 900) minimalHeight = 460; else minimalHeight = 350;
-    // let answersCalculatedHeight = minimalHeight;
-    // $: answersCalculatedHeight = (question.answers.length * 100 > minimalHeight ? question.answers.length * 100 : minimalHeight)
-    let answersCalculatedHeight = 350;
-    $: setTimeout(() => {
-        if (window.innerWidth > 900) {
-            answersCalculatedHeight = 460;
-            return;
-        }
-
-        question = question;
-        let answersHeight = 0; 
-        document.querySelectorAll('.answersWrap-svgWrap-answersWrapper-answer').forEach(a => { answersHeight += a.offsetHeight; answersHeight += 10; } )
-        answersCalculatedHeight = answersHeight;
-    }, 100)
-
-    // $: try {
-    //     question = question;
-    //     let answersHeight = 0; 
-    //     document.querySelectorAll('.answersWrap-svgWrap-answersWrapper-answer').forEach(a => answersHeight += a.offsetHeight)
-    //     answersCalculatedHeight = answersHeight + 50;
-    // } catch {
-    //     answersCalculatedHeight = (question.answers.length * 100 > minimalHeight ? question.answers.length * 100 : minimalHeight)
-    // }
 </script>
 
-<div class="answersWrap-luigiImg" title="Изображение весёлого робота, Луиджи" style={`background-image: url('${luigiSmall}')`} />
+<div class="answersWrap-luigiImg" title="Изображение весёлого робота, Луиджи"  />
 <div class="answersWrap-wrap">
     
     <div class='answersWrap-svgWrap'></div>
 
-    <div class="answersWrap-svgWrap-answersWrapper" style={`height:${answersCalculatedHeight}px`}>
+    <div class="answersWrap-svgWrap-answersWrapper">
     {#each question.answers as answer, index}
         <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions-->
         <div 
@@ -66,7 +36,7 @@
             class:answersWrap-svgWrap-answersWrapper-answer-active={question.answers[index] == lastAnswerStr}
             on:click|preventDefault={()=> { reportAnswer(index) }}
             >
-            <img alt="Иконка сердечка" src={heartIcon} class="answersWrap-svgWrap-answersWrapper-answer-icon" />
+            <img alt="Иконка сердечка" class="answersWrap-svgWrap-answersWrapper-answer-icon" />
             <div class="answersWrap-svgWrap-answersWrapper-answer-text">{answer}</div>
         </div>
     {/each}

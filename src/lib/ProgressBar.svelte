@@ -1,4 +1,5 @@
 <script>
+    import '../assets/styles.scss'
     export let progress = 0;
 
     let left;
