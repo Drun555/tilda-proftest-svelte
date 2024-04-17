@@ -11,7 +11,7 @@
 }
 
 .z-skypro-proftest {
-    background-color: var(--color-white);
+    background-color: white;
     border-radius: 20px;
     padding: 18px;
     position: relative;
@@ -97,6 +97,7 @@
     margin-top: 14px;
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 .z-skypro-proftest__button {
@@ -106,8 +107,8 @@
     justify-content: center;
     align-items: center;
     border-radius: 40px;
-    background: rgba(0, 0, 0, 0.1);
-    color: rgba(0, 0, 0, 0.5);
+    background: rgba(89, 92, 122, 1);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 14px;
     line-height: 100%;
     border: none;
@@ -229,12 +230,12 @@ display: inline-block;
     border-radius: 20px;
     background: rgba(32, 34, 41, 0.6);
     padding: 16px;
-    max-width: 1160px;
+    width: 1160px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: fit-content;
+    height: 570px;
 }
 
 .z-skypro-proftest-wrapper__header {
@@ -345,12 +346,18 @@ display: inline-block;
     .z-skypro-proftest-main-wrap {
         flex: 0 0 600px;
         width: unset;
+        max-height: 100%;
+        height: 100%;
     }
 
     .z-skypro-proftest {
         padding: 40px;
         border-radius: 30px;
         flex: 1 1 0;
+        height: calc(100% - 90px);
+        max-height: calc(100% - 90px);
+        display: flex;
+        flex-direction: column;
     }
 
     .z-skypro-proftest__question {
@@ -360,6 +367,10 @@ display: inline-block;
 
     .z-skypro-proftest__answers {
         margin-top: 34px;
+        overflow-y: auto;
+        max-height: 100%;
+        overflow-x: hidden;
+        scrollbar-width: thin;
     }
 
     .z-skypro-proftest__answer {
@@ -393,6 +404,10 @@ display: inline-block;
 
     .z-skypro-proftest__buttons {
         margin-top: 20px;
+        width: -webkit-fill-available;
+        width: -moz-available;
+        padding-left: 45px;
+        padding-right: 45px;
     }
 
     .z-skypro-proftest__button {

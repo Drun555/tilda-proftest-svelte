@@ -1,30 +1,497 @@
-<head>
-  <script>
-  //   __________                _____  __                   __   
-  // \______   \_______  _____/ ____\/  |_  ____   _______/  |_ 
-  //  |     ___/\_  __ \/  _ \   __\\   __\/ __ \ /  ___/\   __\
-  //  |    |     |  | \(  <_> )  |   |  | \  ___/ \___ \  |  |  
-  //  |____|     |__|   \____/|__|   |__|  \___  >____  > |__|  
-  //                                           \/     \/        
-  //                      .__   __                              
-  //   _________  __ ____ |  |_/  |_  ____                      
-  //  /  ___/\  \/ // __ \|  |\   __\/ __ \                     
-  //  \___ \  \   /\  ___/|  |_|  | \  ___/                     
-  // /____  >  \_/  \___  >____/__|  \___  >                    
-  //      \/            \/               \/                     
-  // tilda-proftest-svelte  
-  window.proftest = {}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script>
+      
+    //  _______                       ______    __                            __                        ______  
+    // /       \                     /      \  /  |                          /  |                      /      \ 
+    // $$$$$$$  | ______    ______  /$$$$$$  |_$$ |_     ______    _______  _$$ |_          __     __ /$$$$$$  |
+    // $$ |__$$ |/      \  /      \ $$ |_ $$// $$   |   /      \  /       |/ $$   |        /  \   /  |$$ ___$$ |
+    // $$    $$//$$$$$$  |/$$$$$$  |$$   |   $$$$$$/   /$$$$$$  |/$$$$$$$/ $$$$$$/         $$  \ /$$/   /   $$< 
+    // $$$$$$$/ $$ |  $$/ $$ |  $$ |$$$$/      $$ | __ $$    $$ |$$      \   $$ | __        $$  /$$/   _$$$$$  |
+    // $$ |     $$ |      $$ \__$$ |$$ |       $$ |/  |$$$$$$$$/  $$$$$$  |  $$ |/  |        $$ $$/   /  \__$$ |
+    // $$ |     $$ |      $$    $$/ $$ |       $$  $$/ $$       |/     $$/   $$  $$/          $$$/    $$    $$/ 
+    // $$/      $$/        $$$$$$/  $$/         $$$$/   $$$$$$$/ $$$$$$$/     $$$$/            $/      $$$$$$/  
 
-  // ID этой формы T123
-  window.proftest.thisBlock = '#rec686605439'
-  
-  // ID финального блока-формы
-  const finalBlock = '#rec686440603'
-  
-  // Дальше - код от бандлера
-  </script>
-</head>
-<body>
-  <div id="app"></div>
-  <script type="module" src="/src/main.js"></script>
-</body>
+    window.proftest = {}
+
+    
+    // ID этой формы T123
+    const ZERO_BLOCK_PROFTEST = "#rec735863399";
+    const ZERO_BLOCK_RESULT = "#rec731878586";
+    const ZERO_BLOCK_INSERTBUTTON = "#rec731878580";
+    const ZERO_BLOCK_RESULT_SECOND = "#rec731878608";
+    const ZERO_BLOCK_PROGRESSBAR = "#rec731878578";
+    const ZERO_BLOCK_FINAL_TELEGRAM = "#rec731878579";
+
+    window.proftest.QUESTIONS = [
+      {
+        question: "Как предпочитаете работать?",
+        type: "horizontal-with-images",
+        answers: [
+          {
+            text: "В одиночку",
+            imageUrl: "https://static.tildacdn.com/tild3231-3236-4234-b664-623137666637/Group_1597880171.png"
+          },
+          {
+            text: "В команде",
+            imageUrl: "https://static.tildacdn.com/tild3165-3932-4532-a337-393564646162/Group_1597880102-1.png"
+          },
+          {
+            text: "Управлять другими",
+            imageUrl: "https://static.tildacdn.com/tild6138-3231-4034-b432-663465386164/Group_1597880102.png"
+          },
+        ]
+      },
+      {
+        question: "Какие предметы давались в школе?",
+        type: "horizontal-with-images",
+        answers: [
+          {
+            text: "Точные",
+            imageUrl: "https://static.tildacdn.com/tild3165-6230-4036-b139-343236616266/Group_1597880118.png"
+          },
+          {
+            text: "Гуманитарные",
+            imageUrl: "https://static.tildacdn.com/tild6665-3332-4466-b635-633462636235/Group_1597880120.png"
+          },
+          {
+            text: "Творческие",
+            imageUrl: "https://static.tildacdn.com/tild6565-6430-4165-b038-386534326263/Group_1597880124.png"
+          },
+        ]
+      },
+      {
+        question: "Как проводите свободное время?",
+        type: "horizontal-with-images",
+        answers: [
+          {
+            text: "Сижу в соцсетях",
+            imageUrl: "https://static.tildacdn.com/tild3563-3837-4939-b530-323761383334/Group_1597880168.png"
+          },
+          {
+            text: "Читаю книги",
+            imageUrl: "https://static.tildacdn.com/tild3365-6335-4736-a261-393062306334/Group_1597880167.png"
+          },
+          {
+            text: "Смотрю видео",
+            imageUrl: "https://static.tildacdn.com/tild3966-3131-4437-b132-613864383835/Group_1597880169.png"
+          },
+        ]
+      },
+      {
+        question: "Как лучше запоминаете информацию?",
+        type: "horizontal-with-images",
+        answers: [
+          {
+            text: "На слух",
+            imageUrl: "https://static.tildacdn.com/tild3938-3762-4363-b438-353730656364/Group_1597880152.png"
+          },
+          {
+            text: "Зрением",
+            imageUrl: "https://static.tildacdn.com/tild6335-3338-4331-b130-336234386235/Group_1597880153.png"
+          },
+          {
+            text: "В обсуждении",
+            imageUrl: "https://static.tildacdn.com/tild6465-3966-4639-b137-326432643439/Group_1597880154.png"
+          },
+        ]
+      },
+      {
+        question: "Я легко распутываю сложные задачи и процессы",
+        type: "emoji",
+        answers: []
+      },
+      {
+        question: "Я предпочитаю работать по инструкциям и регламентам",
+        type: "emoji",
+        answers: []
+      },
+      {
+        question: "Я усидчивый и сконцентрированный человек",
+        type: "emoji",
+        answers: []
+      },
+      {
+        question: "Я инициативный и самостоятельный сотрудник",
+        type: "emoji",
+        answers: []
+      },
+      {
+        question: "Я гибкий и сговорчивый человек",
+        type: "emoji",
+        answers: []
+      },
+      {
+        question: "Как вам проще работать",
+        type: "horizontal-with-images",
+        answers: [
+          {
+            text: "С людьми",
+            imageUrl: "https://static.tildacdn.com/tild6465-3966-4639-b137-326432643439/Group_1597880154.png"
+          },
+          {
+            text: "С цифрами",
+            imageUrl: "https://static.tildacdn.com/tild3434-6631-4939-a161-666538653166/Group_1597880156.png"
+          },
+          {
+            text: "Руками",
+            imageUrl: "https://static.tildacdn.com/tild6232-6164-4863-a139-396366666662/Group_1597880157.png"
+          },
+        ]
+      },
+      {
+        question: "Логика и последовательность — мои сильные стороны",
+        type: "emoji",
+        answers: []
+      },
+      {
+        question: "Я люблю общаться с людьми и понимаю их эмоции",
+        type: "emoji",
+        answers: []
+      },
+      {
+        question: "Я легко придумываю новые идеи или решения",
+        type: "emoji",
+        answers: []
+      },
+      {
+        question: "Предпочитаю разбираться в нескольких специальностях, а не только в своей",
+        type: "spectrum",
+        answers: []
+      },{
+        question: "Мой уровень владения компьютером ", 
+        answers: [
+          "Полный ноль",
+          "Немного умею",
+          "Уверенно пользуюсь",
+          "Каждый день работаю",
+        ]
+      },
+      {
+        question: "Я уже знаю, какую профессию хочу", 
+        answers: [
+          "Да, уже есть такая",
+          "Есть несколько",
+          "Нет",
+        ]
+      },
+      {
+        question: "Я прохожу профориентацию, чтобы", 
+        type: "classic",
+        answers: [
+          "Ищу новую профессию",
+          "Думаю о новой профессии",
+          "Без цели, не ищу профессию",
+        ]
+      },
+      {
+        question: "Мне актуально обучение новой профессии", 
+        type: "classic",
+        answers: [
+          "В ближайшее время",
+          "Не в ближайшее время",
+          "Не планирую учиться",
+        ]
+      },
+      {
+        question: "Сколько вы зарабатываете сейчас? ", 
+        type: "classic",
+        answers: [
+          "0 р.",
+          "До 30 000 р.",
+          "30 000 р. - 60 000 р.",
+          "60 000 р. - 100 000 р.",
+          "от 100 000 р."
+        ]
+      },
+      {
+        question: "Могу платить за учёбу каждый месяц", 
+        type: "classic",
+        answers: [
+          "0 р.",
+          "до 1 000 р.",
+          "1 000 р. - 3 000 р.",
+          "3 000 р. - 5 000 р.",
+          "больше 5 000 р."
+        ]
+      },
+    ];
+
+    window.proftest.RESULT_PROFESSION = [
+      {
+          title: "Аналитик",
+          dataCheck: [4,4,-1,2,0,0,0,0,2,0,0,2,0,2,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,4,4,0,2,2,0,2,2,0,0,0,0,2,2,0,2,2,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          userProggress: 0,
+          finalBlocks: [
+              "#rec731878588",
+              "#rec731878590",
+              "#rec731878593",
+              "#rec731878607",
+
+          ],
+          salary: 95000,
+          link: "https://sky.pro/courses/analytics/data_analytics",
+      },
+      {
+          title: "Разработчик",
+          dataCheck: [2,0,0,4,-1,4,0,0,2,0,0,2,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,4,4,0,4,4,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          userProggress: 0,
+          finalBlocks: [
+              "#rec731878594",
+              "#rec731878595",
+              "#rec731878596",
+              "#rec731878607",
+
+          ],
+          salary: 90000,
+          link: "https://sky.pro/courses/programming",
+      },
+      {
+          title: "Тестировщик",
+          dataCheck: [2,0,0,0,0,2,0,0,0,0,0,2,0,0,2,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,4,4,0,-1,-1,0,2,2,0,4,4,0,4,4,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          userProggress: 0,
+          finalBlocks: [
+              "#rec731878597",
+              "#rec731878598",
+              "#rec731878599",
+              "#rec731878607",
+
+          ],
+          salary: 70000,
+          link: "https://sky.pro/courses/programming/qa-engineer",
+      },
+      {
+          title: "Маркетолог",
+          dataCheck: [-1,4,4,0,2,0,0,4,0,0,0,0,2,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,2,0,2,2,0,0,0,0,0,0,2,2,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          userProggress: 0,
+          finalBlocks: [
+              "#rec731878600",
+              "#rec731878601",
+              "#rec731878602",
+              "#rec731878607",
+
+          ],
+          salary: 65000,
+          link: "https://sky.pro/courses/marketing/pim_n",
+      },
+      {
+          title: "Дизайнер",
+          dataCheck: [4,4,-1,-1,2,4,0,2,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,2,2,0,0,0,0,0,0,2,0,0,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          userProggress: 0,
+          finalBlocks: [
+              "#rec731878603",
+              "#rec731878604",
+              "#rec731878605",
+              "#rec731878607",
+
+          ],
+          salary: 80000,
+          link: "https://sky.pro/courses/design/graf-designer",
+      },
+    ];
+    
+    ////
+    // Блок логики, которую не хочется пихать в сам тест. Скрытие блоков и сбор UUID'ов.
+    ////
+    
+    document.addEventListener("DOMContentLoaded", function(event) {
+      // Как загрузится страничка - скрываем все  функциональные блоки
+      [
+        ZERO_BLOCK_RESULT,
+        ZERO_BLOCK_RESULT_SECOND,
+        ZERO_BLOCK_INSERTBUTTON,
+        ZERO_BLOCK_PROGRESSBAR,
+        ZERO_BLOCK_FINAL_TELEGRAM,
+      ].forEach(b => hide(b));
+
+      // Скрываем все финальные блоки
+      window.proftest.RESULT_PROFESSION.forEach(p => {
+        p.finalBlocks.forEach(b => hide(b))
+      })
+      
+      
+    });
+    
+    // UUID'ы
+    let UUIDs = {};
+    document.addEventListener("gotLead", (e) => {
+      UUIDs['leadUUID'] = e.detail
+      UUIDs['exponeaUUID'] = getCookie('__exponea_etc__')
+
+      function getCookie(name) {
+          const value = `; ${document.cookie}`;
+          const parts = value.split(`; ${name}=`);
+          if (parts.length === 2) return parts.pop().split(';').shift();
+      }
+    })
+
+    // У нас часто меняются инпуты. Это костыль, который не будет блокировать код, если что-то пойдет не так.
+    Document.prototype.safeQuerySelector = function(selector) {
+      if (document.querySelector(selector) !== null)
+        return document.querySelector(selector)
+      else 
+        return document.createElement('div')
+    }
+
+    ////
+    // Главные функции. Профтест отдает два ивента - answerPressed и proftestCompleted
+    ////
+
+    window.addEventListener("answerPressed", e => {
+      // метрики будем слушать тут
+    })
+    
+    window.addEventListener("proftestCompleted", e => {
+      // Убираем профтест
+      hide(ZERO_BLOCK_PROFTEST);
+      
+      let data = e.detail; 
+      // Показываем нужные финальные блоки
+      data.professions[0].finalBlocks.forEach(b => show(b))
+
+      // Показываем две формы
+      show(ZERO_BLOCK_RESULT)
+      show(ZERO_BLOCK_RESULT_SECOND)
+
+      // Дополняем инпуты форм
+      setTimeout(function () {
+        const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
+        const SECOND_FORM = ZERO_BLOCK_RESULT_SECOND.replace('rec', 'form');
+        let target_lead = true;
+        let televox_import_group_id = '9323' 
+
+        document.safeQuerySelector(`${FORM} input[name="thank-you-page"]`).value = "";
+        document.safeQuerySelector(`${FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
+        document.safeQuerySelector(`${FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
+        document.safeQuerySelector(`${FORM} input[name="target_lead"]`).value = target_lead;
+        document.safeQuerySelector(`${FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
+
+        document.safeQuerySelector(`${SECOND_FORM} input[name="thank-you-page"]`).value = "";
+        document.safeQuerySelector(`${SECOND_FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
+        document.safeQuerySelector(`${SECOND_FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
+        document.safeQuerySelector(`${SECOND_FORM} input[name="target_lead"]`).value = target_lead;
+        document.safeQuerySelector(`${SECOND_FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
+        
+        const updateFn = setInterval(function () {
+            if (
+                document.safeQuerySelector(FORM).classList.contains("js-send-form-success")
+                ||
+                document.safeQuerySelector(SECOND_FORM).classList.contains("js-send-form-success")
+            ) {
+                clearInterval(updateFn);
+                
+                let baseTgUrl = '';
+                switch (data.professions[0].title) {
+                    case "Аналитик": 
+                        baseTgUrl = 'https://salebot.site/proftest-praktikum_data-analyst_1';
+                        break;
+                    case "Разработчик": 
+                        baseTgUrl = 'https://salebot.site/proftest-praktikum_developer_1';
+                        break;
+                    case "Тестировщик": 
+                        baseTgUrl = 'https://salebot.site/proftest-praktikum_QA_1';
+                        break;
+                    case "Маркетолог": 
+                        baseTgUrl = 'https://salebot.site/proftest-praktikum_marketolog_1 ';
+                        break;
+                    case "Дизайнер": 
+                        baseTgUrl = 'https://salebot.site/proftest-praktikum_designer_1';
+                        break;
+                }
+
+                // скрываем
+                data.professions[0].finalBlocks.forEach(b => hide(b))
+                hide(ZERO_BLOCK_RESULT)
+                hide(ZERO_BLOCK_RESULT_SECOND)
+
+                // колдовство с прогресс-баром
+                show(ZERO_BLOCK_PROGRESSBAR)
+                let progressBarWidth = Math.round(document.querySelector('.proftest-zeroBlock-progressBar').computedStyleMap().get('width').value);
+                document.querySelector('.proftest-zeroBlock-progressBar').style.setProperty('max-width', `${progressBarWidth}px`, 'important');
+
+                setTimeout(() => {
+                  hide(ZERO_BLOCK_PROGRESSBAR)
+                  show(ZERO_BLOCK_FINAL_TELEGRAM)
+                  t_lazyload_update();
+
+                  try {
+                      for (const key in UUIDs) baseTgUrl = `${baseTgUrl}&${key}=${UUIDs[key]}`
+                  } catch {
+                      console.warn('Ошибка добавления UUID')
+                  }
+
+                  document.querySelector('.proftest-telegramLinkWithUUID').addEventListener('click', () => {
+                      location.href = baseTgUrl;
+                  })
+                }, 2500)
+            }
+        }, 300);
+      }, 2000);
+    })
+    
+    ////
+    // Маленькие хэлперы
+    ////
+
+    function show(id) {
+      try {
+        document.querySelector(id).style.display = 'block'
+      } catch {
+        console.warn(`не смогли показать блок ${id}`)
+      }
+    }
+    
+    function hide(id) {
+      try {
+        document.querySelector(id).style.display = 'none'
+      } catch {
+        console.warn(`не смогли скрыть блок ${id}`)
+      }
+    }
+
+    function getTextUserAnswers(userAnswers) {
+      let result = "";
+      for (const key in userAnswers) {
+        let answer = userAnswers[key]
+        result += `${answer.questionLink.question}: ${answer.questionLink.answers[ answer.answerIndex ]}\n`;
+      }
+      return result;
+    }
+
+    function getResultForAmoCrm(professions, userAnswers) {
+      let profStr = "";
+      professions.forEach((p,i) => profStr += `Топ-${i+1}: p.title (${p.userProggress}%)\n`);
+
+  return `
+  Результат:
+  ${profStr}
+
+  Ответы на вопросы:
+  ${getTextUserAnswers(userAnswers)}
+  `;
+    }
+
+    function getResultForAmoCrmOnlyProfs(professions, userAnswers) {
+      let profStr = "";
+      professions.forEach((p,i) => profStr += `Топ-${i+1}: p.title (${p.userProggress}%)\n`);
+
+  return `
+  Результат:
+  ${profStr}
+  `;
+    }
+
+    ////
+    // Дальше - код от бандлера
+    ////
+
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

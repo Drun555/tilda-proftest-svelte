@@ -7,7 +7,8 @@ export default defineConfig({
   plugins: [svelte(), viteSingleFile()],
   server: {
     hmr: {
-      clientPort: 443,
+      protocol: 'ws',
+      port: 3000
     },
     host: '0.0.0.0'
   }
