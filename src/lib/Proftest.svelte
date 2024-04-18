@@ -17,10 +17,10 @@
   ]
 
   const fourEmojis = [
+    "https://static.tildacdn.com/tild3438-6336-4061-b038-313836613539/photo.png", // Flatlined
+    "https://static.tildacdn.com/tild6635-3264-4363-a534-663966343933/photo.png", // Без лица
     "https://static.tildacdn.com/tild6166-3330-4662-b434-336561633731/photo.png", // Happy
     "https://static.tildacdn.com/tild6233-3864-4036-b136-653437383839/photo.png", // Lovely
-    "https://static.tildacdn.com/tild3438-6336-4061-b038-313836613539/photo.png", // Flatlined
-    "https://static.tildacdn.com/tild6635-3264-4363-a534-663966343933/photo.png" // Без лица
   ]
 
   const inlineEmojis = {
