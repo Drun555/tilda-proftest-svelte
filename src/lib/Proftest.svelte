@@ -845,6 +845,7 @@
     .z-proftest-header {
       padding: 0;
       padding-left: 15px;
+      height: 75px;
     }
 
     .z-proftest-header__logo {
@@ -853,6 +854,7 @@
     .z-skypro-proftest-main-wrapper {
       width: calc(100%);
       padding: 13px;
+      padding-top: 0;
     }
 
     .emoji-flex-wrapper {
