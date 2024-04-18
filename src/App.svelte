@@ -28,15 +28,20 @@
 
 <style>
   main {
-    min-height: 100vh;
+    min-height: 90vh;
     overflow: hidden;
     padding-left: 20px;
     padding-right: 20px;
     position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+
+  @media screen and (max-width: 1200px) {
+    main {
+      /* justify-content: center; */
+    }
   }
 
   :global(body) {

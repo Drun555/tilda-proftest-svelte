@@ -9,6 +9,28 @@
     "https://static.tildacdn.com/tild6635-6465-4766-a263-316539366231/Group_1321316717.svg"
   ];
   
+  const threeEmojis = [
+    "https://static.tildacdn.com/tild3439-6435-4632-b630-616661646362/photo.png", // Да
+    "https://static.tildacdn.com/tild3835-6234-4566-b536-323165663563/photo.png", // Отчасти
+    "https://static.tildacdn.com/tild6530-6533-4562-a235-623262343263/photo.png", // Нет
+    
+  ]
+
+  const fourEmojis = [
+    "https://static.tildacdn.com/tild6166-3330-4662-b434-336561633731/photo.png", // Happy
+    "https://static.tildacdn.com/tild6233-3864-4036-b136-653437383839/photo.png", // Lovely
+    "https://static.tildacdn.com/tild3438-6336-4061-b038-313836613539/photo.png", // Flatlined
+    "https://static.tildacdn.com/tild6635-3264-4363-a534-663966343933/photo.png" // Без лица
+  ]
+
+  const inlineEmojis = {
+    moneybag: "https://static.tildacdn.com/tild6661-3564-4439-b038-356366343038/money-bag_1f4b0.png", // Moneybag
+    seeding: "https://static.tildacdn.com/tild6166-3431-4262-a337-396664383062/seedling_1f331.png" // Seeding
+  }
+  preload.push(...threeEmojis)
+  preload.push(...fourEmojis)
+  preload.push(...Object.values(inlineEmojis))
+
   // сразу загрузим картинки в кэш
   function preloadImages(array) {
       if (!preloadImages.list) {
@@ -30,11 +52,28 @@
       }
   }
 
-  data.QUESTIONS.forEach(q => {
+  // Предзагружаем картинки из вопросов и подставляем img-теги вместо ::-смайликов
+  data.QUESTIONS.forEach((q, qIndex) => {
     if (q.hasOwnProperty("questionImageUrl"))
       preload.push(q.questionImageUrl)
-    if (q.type && q.type == 'horizontal-with-images')
-      q.answers.forEach(a => preload.push(a.imageUrl))
+    if (q.type && q.type == 'horizontal-with-images') {
+      q.answers.forEach((a, aIndex) => {
+        preload.push(a.imageUrl)
+
+        Object.keys(inlineEmojis).forEach(key => {
+          if ( a.text.indexOf(`:${key}:`) !== -1 )
+          data.QUESTIONS[qIndex].answers[aIndex].text = a.text.replaceAll(`:${key}:`, `<img class='inline-emoji' src='${inlineEmojis[key]}' />`)
+        })
+        
+      })
+    } else {
+      q.answers.forEach((a, aIndex) => {
+        Object.keys(inlineEmojis).forEach(key => {
+          if ( a.indexOf(`:${key}:`) !== -1 )
+            data.QUESTIONS[qIndex].answers[aIndex] = a.replaceAll(`:${key}:`, `<img class='inline-emoji' src='${inlineEmojis[key]}' />`)
+        })
+      })
+    }
   })
   preloadImages(preload);
   
@@ -44,9 +83,9 @@
 
   // Новые типы вопросов ломают всё, что можно сломать. Автоматически добавим туда 5 или 3 выбора ответа.
   data.QUESTIONS.forEach(q => {
-    if (q.type && q.type == "spectrum")
+    if (q.type && q.type == "spectrum" && q.answers.length == 0)
       q.answers = ["1","2","3","4","5"]
-    if (q.type && q.type == "emoji")
+    if (q.type && q.type == "emoji" && q.answers.length == 0)
       q.answers = ["Да","Отчасти","Нет"]
   })
 
@@ -299,19 +338,58 @@
           {question.question}
         </div>
         
-        <div class="spectrum-wrapper emoji-wrapper">
-          <div class="emoji-flex-wrapper">
-            <div class='spectrum-circle emoji' style={`background-image: url('https://static.tildacdn.com/tild3439-6435-4632-b630-616661646362/photo.png')`} data-index="0"></div>
-            <div>Да</div>
+        <div class="emoji-wrapper">
+          <div class="emoji-allign">
+            {#if question.answers.length == 3}
+            <div class="emojiContainer threeEmojis">
+              {#each question.answers as ans, emojiIndex}
+              <div class="emoji-flex-wrapper">
+                <div class='spectrum-circle emoji' style={`background-image: url('${threeEmojis[emojiIndex]}')`} data-index={emojiIndex}></div>
+                <div class="emoji-flex-wrapper-text">{ans}</div>
+              </div>  
+              {/each}
+            </div>
+            {/if}
+            {#if question.answers.length == 4}
+            <div class="emojiContainer fourEmojis">
+              {#each question.answers as ans, emojiIndex}
+              <div class="emoji-flex-wrapper">
+                <div class='spectrum-circle emoji' style={`background-image: url('${fourEmojis[emojiIndex]}')`} data-index={emojiIndex}></div>
+                <div class="emoji-flex-wrapper-text">{ans}</div>
+              </div>  
+              {/each}
+            </div>
+            {/if}
           </div>
-          <div class="emoji-flex-wrapper">
-            <div class='spectrum-circle emoji' style={`background-image: url('https://static.tildacdn.com/tild6530-6533-4562-a235-623262343263/photo.png')`} data-index="1"></div>
-            <div>Отчасти</div>
-          </div>
-          <div class="emoji-flex-wrapper">
-            <div class='spectrum-circle emoji' style={`background-image: url('https://static.tildacdn.com/tild3835-6234-4566-b536-323165663563/photo.png')`} data-index="2"></div>
-            <div>Нет</div>
-          </div>
+        </div>
+      </div>
+    {/if}
+    {#if question.type == "modern-classic"}
+      <div class="z-skypro-proftest-wrapper-modern">
+        <div class="z-skypro-proftest-wrapper__header">
+          {question.question}
+        </div>
+        <div class="z-skypro-proftest__answers">
+          {#each question.answers as answer, index}
+            <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions-->
+            <div 
+              class={
+                (userAnswers[currentQuestionIndex] && userAnswers[currentQuestionIndex].answerIndex == index) 
+                ? 
+                "z-skypro-proftest__answer z-skypro-proftest__answer--selected" 
+                : 
+                "z-skypro-proftest__answer"
+              } 
+              
+              on:click={function(e) {
+                document.querySelectorAll('.z-skypro-proftest__answer--selected').forEach(s => s.classList.remove('z-skypro-proftest__answer--selected'))
+                e.currentTarget.classList.add('z-skypro-proftest__answer--selected')
+                writeAnswer(index)
+              }}>
+              <div class="z-skypro-proftest__answer-text">{@html answer}</div>
+              <div class="z-skypro-proftest__answer-checkbox"></div>
+            </div>
+          {/each}
         </div>
       </div>
     {/if}
@@ -343,6 +421,41 @@
     font-family: StratosSkyeng;
     width: 100%;
   }
+  
+  :global(.inline-emoji) {
+    height: 1em;
+  }
+
+  .z-skypro-proftest__answer-text {
+    display: flex;
+    gap: 2px;
+  }
+
+  .emoji-allign {
+    width: 100%;
+  }
+
+  .emojiContainer {
+    display: grid;
+    grid-auto-columns: auto;
+    
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .threeEmojis {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .fourEmojis {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .emoji-flex-wrapper-text {
+    white-space: break-spaces;
+    text-align: center;
+  } 
 
   .z-proftest-header {
     width: 100%;
@@ -377,11 +490,14 @@
     flex-direction: column;
     align-items: center;
     gap: 47px;
+    width: 150px;
+    margin: 0 auto;
   }
 
   .z-skypro-proftest-wrapper-modern .z-skypro-proftest-wrapper__header {
     width: 100%;
   }
+
   .emoji {
     color: rgba(164, 108, 255, 1); 
     width: 150px;
@@ -390,8 +506,6 @@
     background-repeat: no-repeat;
     background-position: center;
   }
-
-  
 
   .spectrum-wrapper {
     width: 100%;
@@ -402,11 +516,20 @@
     color: white;
     font-size: 22px;
     text-wrap: nowrap;
-    height: 100%;
+    height: 400px;
   }
 
   .emoji-wrapper {
-    width: 740px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    height: 100%;
+    min-height: 155px;
   }
 
   .spectrum-circle {
@@ -422,18 +545,25 @@
     transition: 0.5s;
   }
 
-  .spectrum-circle:hover {
-    border-radius: 99px;
-    box-sizing: border-box;
-    border: 10px currentColor solid;
-    transition: 0.5s;
-    cursor: pointer;
+  @media (hover: hover) {
+    .spectrum-circle:hover {
+      border-radius: 99px;
+      box-sizing: border-box;
+      border: 10px currentColor solid;
+      transition: 0.5s;
+      cursor: pointer;
+    }
+
+    .z-skypro-proftest__modern-answer:hover {
+      border-color: var(--color-grey2);
+    }
   }
+
+  
   
   .z-skypro-proftest-main-wrapper {
-    min-height: 570px;
     overflow: hidden;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
     position: relative;
@@ -501,9 +631,7 @@
     justify-content: space-between;
   }
 
-  .z-skypro-proftest__modern-answer:hover {
-    border-color: var(--color-grey2);
-  }
+  
 
   .z-skypro-proftest-wrapper-modern-question-image {
     height: 370px;
@@ -539,10 +667,11 @@
 
   
 
-  @media screen and (max-width: 1160px) {
+  @media screen and (max-width: 1200px) {
     .z-skypro-proftest-wrapper {
-      width: 100%;
+      width: calc(100%);
       height: unset;
+      min-height: unset;
       padding: 20px;
     } 
 
@@ -551,9 +680,10 @@
     }
 
     .z-skypro-proftest-wrapper-modern-question-image {
-      height: 212px;
+      height: 150px;
       background-size: contain;
       background-color: #f4f5f6;
+      background-position-y: -10px;
     }
 
     .z-proftest-header {
@@ -568,17 +698,24 @@
     .spectrum-wrapper {
       width: 100%;
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 400;
       padding-bottom: 20px;
+      height: unset;
+    }
+
+    .emoji-flex-wrapper-text {
+      font-size: 14px;
+      font-weight: 400;
     }
 
     .emoji {
-      width: 15vw;
-      height: 15vw;
+      width: 125px;
+      height: 125px;
     }
 
     .emoji-flex-wrapper {
       gap: 10px;
+      width: 125px;
     }
 
     .z-proftest-header__timer {
@@ -609,14 +746,6 @@
     :global(.spectrum-circle-selected) {
       background-color: currentColor !important;
       transition: 0.5s;
-    }
-
-    .spectrum-circle:hover {
-      border-radius: 99px;
-      box-sizing: border-box;
-      border: 10px currentColor solid;
-      transition: 0.5s;
-      cursor: pointer;
     }
 
     .z-skypro-proftest__modern-answer-checkbox {
@@ -700,8 +829,14 @@
     .z-skypro-proftest-wrapper {
       width: calc(100%);
       height: unset;
+      min-height: unset;
       padding: 20px;
     } 
+
+    .fourEmojis {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
 
     .z-proftest-header__timer {
       font-size: 16px;
@@ -713,11 +848,15 @@
     }
 
     .z-proftest-header__logo {
-      background-size: 80%;
+      background-size: 175px;
     }
     .z-skypro-proftest-main-wrapper {
       width: calc(100%);
       padding: 13px;
+    }
+
+    .emoji-flex-wrapper {
+      width: 80px;
     }
 
     .emoji {

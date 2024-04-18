@@ -40,6 +40,7 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 10px;
+    width: 100%;
 }
 
 .z-skypro-proftest__answer {
@@ -47,7 +48,7 @@
     padding-right: 50px;
     border-radius: 8px;
     border: 1px solid var(--color-grey);
-
+    background-color: white;
     color: #000;
     font-size: 18px;
     line-height: 100%;
@@ -235,7 +236,6 @@ display: inline-block;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 570px;
 }
 
 .z-skypro-proftest-wrapper__header {
@@ -366,11 +366,12 @@ display: inline-block;
     }
 
     .z-skypro-proftest__answers {
-        margin-top: 34px;
+        margin-top: 24px;
         overflow-y: auto;
         max-height: 100%;
         overflow-x: hidden;
         scrollbar-width: thin;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
     .z-skypro-proftest__answer {
@@ -380,6 +381,7 @@ display: inline-block;
         font-size: 20px;
         cursor: pointer;
         transition: border 0.2s ease;
+        background-color: white;
     }
 
     .z-skypro-proftest__answer:hover {
