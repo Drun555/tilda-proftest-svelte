@@ -457,7 +457,7 @@
             ) {
                 clearInterval(updateFn);
                 
-                document.querySelectorAll('.blur').forEach(b => hide(b));
+                document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
                 hide(ZERO_BLOCK_RESULT)
                 hide(ZERO_BLOCK_RESULT_SECOND)
             }
