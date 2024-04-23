@@ -419,6 +419,13 @@
     })
     
     window.addEventListener("proftestCompleted", e => {
+      safeDataLayer({
+          'event' : 'GTMevent',
+          'eventCategory' : 'viewing',
+          'eventAction' : 'success',
+          'eventLabel' : 'contact_page'
+      })
+      
       // Убираем профтест
       hide(ZERO_BLOCK_PROFTEST);
       
@@ -517,6 +524,13 @@
   `;
     }
 
+    function safeDataLayer(obj) {
+      try {
+        dataLayer.push(obj)
+      } catch {
+        console.warn(`Ошибка добавления в dataLayer`, obj)
+      }
+    }
     ////
     // Дальше - код от бандлера
     ////
