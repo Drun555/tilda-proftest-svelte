@@ -377,7 +377,10 @@ display: inline-block;
         scrollbar-width: thin;
         grid-template-columns: 1fr 1fr 1fr;
     }
-
+    
+    .classic .z-skypro-proftest__answers {
+        grid-template-columns: 1fr;
+    }
     .z-skypro-proftest__answer {
         padding: 20px;
         padding-right: 50px;

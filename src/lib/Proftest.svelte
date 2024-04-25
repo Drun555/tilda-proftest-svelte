@@ -234,7 +234,7 @@
       <div style={`background-image: url(${question.questionImageUrl})`} class="z-skypro-proftest-wrapper__question-image"></div>
       {/if}
       
-      <div class="z-skypro-proftest-main-wrap">
+      <div class="z-skypro-proftest-main-wrap classic">
           <div class="z-skypro-proftest">
               <span class="z-skypro-proftest__progress">{currentProgress}%</span>
               <h3 class="z-skypro-proftest__question">{question.question}</h3>

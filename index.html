@@ -23,6 +23,7 @@
     const ZERO_BLOCK_RESULT = "#rec731878586";
     const ZERO_BLOCK_INSERTBUTTON = "#rec731878580";
     const ZERO_BLOCK_RESULT_SECOND = "#rec731878608";
+    const ZERO_BLOCK_IMAGES_ANSWERS = "#rec740313583";
 
     window.proftest.QUESTIONS = [
       {
@@ -294,6 +295,50 @@
           ":moneybag::moneybag::moneybag::moneybag:&nbsp;&nbsp;больше 5000 ₽"
         ]
       },
+      {
+        question: "Во сколько раз зарплаты в компании А выше, чем в компании Б?",
+        type: "classic",
+        questionImageUrl:
+          "https://static.tildacdn.com/tild6634-6666-4634-a237-646664313538/Frame_2043683087.png",
+        answers: [
+          "В 4 раза",
+          "В 2,5 раза",
+          "В 2 раза",
+        ],
+      },
+      {
+        question: "Какое решение для роста прибыли бизнеса вы бы приняли на основе графика продаж соков?",
+        type: "classic",
+        questionImageUrl:
+          "https://static.tildacdn.com/tild3335-3462-4630-b738-323263646165/Frame_2043683087_1.png",
+        answers: [
+          "Продавать только яблочный",
+          "Убрать из продажи апельсиновый",
+          "Дать скидку на апельсиновый",
+          "Ничего не делать",
+        ],
+      },
+      {
+        question: "Как вы считаете, какое оформление рекламного баннера считается правильным? На ваш вкус.",
+        type: "classic",
+        questionImageUrl:
+          "https://static.tildacdn.com/tild6139-3864-4131-a436-333136613238/image_14.png",
+        answers: [
+          "Первое",
+          "Второе",
+        ],
+      },
+      {
+        question: "Как вы считаете, как нужно разложить вещи в шкафу, чтобы одеваться в два раза быстрее?",
+        type: "classic",
+        questionImageUrl:
+          "https://static.tildacdn.com/tild3930-3432-4566-a465-353433663163/image_14_1.png",
+        answers: [
+          "По цветам",
+          "По типам (верх, низ)",
+          "По размерам",
+        ],
+      }
     ];
 
     window.proftest.RESULT_PROFESSION = [
@@ -378,7 +423,8 @@
       [
         ZERO_BLOCK_RESULT,
         ZERO_BLOCK_RESULT_SECOND,
-        ZERO_BLOCK_INSERTBUTTON
+        ZERO_BLOCK_INSERTBUTTON,
+        ZERO_BLOCK_IMAGES_ANSWERS
       ].forEach(b => hide(b));
 
       // Скрываем все финальные блоки
@@ -433,9 +479,10 @@
       // Показываем нужные финальные блоки
       data.professions[0].finalBlocks.forEach(b => show(b))
 
-      // Показываем две формы
+      // Показываем две формы и блок с ответами на картинки (последние 4)
       show(ZERO_BLOCK_RESULT)
       show(ZERO_BLOCK_RESULT_SECOND)
+      show(ZERO_BLOCK_IMAGES_ANSWERS)
 
       // Дополняем инпуты форм
       setTimeout(function () {
@@ -465,6 +512,8 @@
                 clearInterval(updateFn);
                 
                 document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
+                t_lazyload_update();
+                
                 hide(ZERO_BLOCK_RESULT)
                 hide(ZERO_BLOCK_RESULT_SECOND)
             }
