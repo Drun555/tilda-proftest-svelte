@@ -49,7 +49,6 @@
 
 .z-skypro-proftest__answer {
     padding: 12px;
-    padding-right: 50px;
     border-radius: 8px;
     border: 1px solid var(--color-grey);
     background-color: white;
@@ -57,6 +56,9 @@
     font-size: 18px;
     line-height: 100%;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .z-skypro-proftest__answer--selected {
@@ -81,17 +83,14 @@
     height: 16px;
     border-radius: 50%;
     border: solid 2px var(--color);
-    position: absolute;
-    top: 12px;
-    right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .z-skypro-proftest__answer-checkbox::after {
     content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -112,8 +111,9 @@
     justify-content: center;
     align-items: center;
     border-radius: 40px;
-    background: rgba(89, 92, 122, 1);
-    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(80px);
+    color: #595C7A;
     font-size: 14px;
     line-height: 100%;
     border: none;
@@ -233,9 +233,10 @@ display: inline-block;
     box-sizing: border-box;
     position: relative;
     border-radius: 20px;
-    background: rgba(32, 34, 41, 0.6);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(80px);
     padding: 16px;
-    width: 1160px;
+    width: 1260px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -249,14 +250,14 @@ display: inline-block;
     font-size: 18px;
     font-weight: 500;
     line-height: 110%;
-    color: white;
+    color: black;
 }
 
 .z-skypro-proftest-wrapper__header-wrap {
     align-self: baseline;
 }
 .z-skypro-proftest-wrapper__subtitle {
-    color: white;
+    color: black;
     font-size: 14px;
     line-height: 1;
     font-weight: 400;
@@ -293,7 +294,7 @@ display: inline-block;
     box-sizing: border-box;
     width: 54px;
     height: 35px;
-    color: white;
+    color: black;
     border-radius: 10px;
     font-size: 14px;
     font-weight: 500;
@@ -317,7 +318,7 @@ display: inline-block;
     .z-skypro-proftest-wrapper {
         display: flex;
         gap: 40px;
-        padding: 45px 50px 50px;
+        padding: 57px;
         border-radius: 40px;
         flex-direction: row;
     }
@@ -378,9 +379,12 @@ display: inline-block;
         grid-template-columns: 1fr 1fr 1fr;
     }
 
+    .two-rows {
+        grid-template-columns: 1fr 1fr;
+    }
+    
     .z-skypro-proftest__answer {
         padding: 20px;
-        padding-right: 50px;
         border-radius: 10px;
         font-size: 20px;
         cursor: pointer;

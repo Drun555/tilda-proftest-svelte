@@ -2,11 +2,16 @@
   // @ts-nocheck
 
   import '../assets/styles.scss'
+  import ProftestSelect from './Select.svelte'
 
   let data = window.proftest;
   
   const preload = [
-    "https://static.tildacdn.com/tild6635-6465-4766-a263-316539366231/Group_1321316717.svg"
+    "https://static.tildacdn.com/tild3335-6662-4363-b965-326337623833/Group_1321316717_1.svg",
+    "https://static.tildacdn.com/tild6635-3332-4665-a266-636332653530/Icon.png", // gift icon
+    "https://static.tildacdn.com/tild6631-3136-4430-a638-306231656165/Frame_2043683098_1.svg", // badge
+    "https://static.tildacdn.com/tild6435-3637-4936-a431-353165653266/photo.png", // star
+    "https://static.tildacdn.com/tild6138-3830-4532-b561-336233396535/Frame_2043683099.svg", // waves svg
   ];
   
   const threeEmojis = [
@@ -189,7 +194,7 @@
 
       if (elapsedTime >= duration) {
           clearInterval(timerInterval);
-          timer = '00:00'
+          timer = ''
       } else {
         let remainingTime = duration - elapsedTime;
 
@@ -211,9 +216,24 @@
 
 <div class="z-skypro-proftest-main-wrapper">
   <div class="z-proftest-header">
-    <div class="z-proftest-header__logo" style={`background-image: url('https://static.tildacdn.com/tild6635-6465-4766-a263-316539366231/Group_1321316717.svg')`}></div>
+    <div class="z-proftest-header__logo" style={`background-image: url('https://static.tildacdn.com/tild3335-6662-4363-b965-326337623833/Group_1321316717_1.svg')`}></div>
     <div class="z-proftest-header__timer">{timer}</div>
   </div>
+
+  <div class="z-proftest-second-header">
+    <div class="z-proftest-second-header-h1">
+      Пройдите тест и узнайте
+      {#if screenWidth > 960}
+      <br/>
+      {/if}
+      свой реальный уровень зарплаты
+    </div>
+    <div class="z-proftest-second-header-badge">
+      <img src="https://static.tildacdn.com/tild6635-3332-4665-a266-636332653530/Icon.png" alt="">
+      Подарим разбор ваших навыков и персональную консультацию по развитию карьеры
+    </div>
+  </div>
+
   {#key currentQuestionIndex}
   <div class="z-skypro-proftest-wrapper">
     {#if !question.type || question.type == 'classic'}
@@ -332,6 +352,45 @@
         {/if}
       </div>
     {/if}
+    {#if question.type == "spectrum-numbers"}
+      <div class="z-skypro-proftest-wrapper-modern spectrum-numbers">
+        <div class="z-skypro-proftest-wrapper__head">
+          <div class="z-skypro-proftest-wrapper__header">
+            {question.question}
+          </div>
+          <div class="z-skypro-proftest-wrapper__header-tip">
+            <img style="width: 24px; height: 25px" src="https://static.tildacdn.com/tild6435-3637-4936-a431-353165653266/photo.png" alt="">
+            <div class="z-skypro-proftest-wrapper__header-tip-text">
+              Оцените, насколько у вас развит навык
+            </div>
+          </div>
+        </div>
+        
+        {#if screenWidth > 1160}
+        <div class="spectrum-wrapper">
+          <div>{question.left}</div>
+          <div class='spectrum-circle' data-index="0" style="color: rgba(188, 147, 255, 1); width: 110px; height: 110px">1</div>
+          <div class='spectrum-circle' data-index="1" style="color: rgba(188, 147, 255, 1); width: 120px; height: 120px">2</div>
+          <div class='spectrum-circle' data-index="2" style="color: rgba(188, 147, 255, 1); width: 130px; height: 130px">3</div>
+          <div class='spectrum-circle' data-index="3" style="color: rgba(188, 147, 255, 1); width: 140px; height: 140px">4</div>
+          <div class='spectrum-circle' data-index="4" style="color: rgba(188, 147, 255, 1); width: 150px; height: 150px">5</div>
+          <div>{question.right}</div>
+        </div>
+        {:else}
+        <div class="spectrum-wrapper" style="padding-bottom: 10px; padding-top: 20px;">
+          <div>{question.left}</div>
+          <div>{question.right}</div>
+        </div>
+        <div class="spectrum-wrapper">
+          <div class='spectrum-circle' data-index="0" style="color: rgba(188, 147, 255, 1); width: 11vw; height: 11vw">1</div>
+          <div class='spectrum-circle' data-index="1" style="color: rgba(188, 147, 255, 1); width: 12vw; height: 12vw">2</div>
+          <div class='spectrum-circle' data-index="2" style="color: rgba(188, 147, 255, 1); width: 13vw; height: 13vw">3</div>
+          <div class='spectrum-circle' data-index="3" style="color: rgba(188, 147, 255, 1); width: 14vw; height: 14vw">4</div>
+          <div class='spectrum-circle' data-index="4" style="color: rgba(188, 147, 255, 1); width: 15vw; height: 15vw">5</div>
+        </div>
+        {/if}
+      </div>
+    {/if}
     {#if question.type == "emoji"}
       <div class="z-skypro-proftest-wrapper-modern">
         <div class="z-skypro-proftest-wrapper__header">
@@ -369,7 +428,7 @@
         <div class="z-skypro-proftest-wrapper__header">
           {question.question}
         </div>
-        <div class="z-skypro-proftest__answers">
+        <div class={(question.answers.length < 5 && question.answers.length !== 3) ? "z-skypro-proftest__answers two-rows" : "z-skypro-proftest__answers"}>
           {#each question.answers as answer, index}
             <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions-->
             <div 
@@ -391,6 +450,15 @@
             </div>
           {/each}
         </div>
+      </div>
+    {/if}
+    {#if question.type == "select"}
+      <div class="z-skypro-proftest-wrapper-modern">
+        <div class="z-skypro-proftest-wrapper__header">
+          {question.question}
+        </div>
+        
+        <ProftestSelect answers={question.answers} on:answerPressed={index => writeAnswer(index)}/>
       </div>
     {/if}
   </div>
@@ -466,16 +534,15 @@
     align-items: center;
     width: -webkit-fill-available;
     width: -moz-available;
-    padding-left: 45px;
-    padding-right: 45px;
   }
 
   .z-proftest-header__timer {
     font-size: 24px;
-    color: white;
     padding: 10px;
     border-radius: 10px;
-    background: rgba(32, 34, 41, 0.6);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(80px);
+    color: black;
   }
 
   .z-proftest-header__logo {
@@ -513,10 +580,11 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    color: white;
+    color: black;
     font-size: 22px;
     text-wrap: nowrap;
-    height: 400px;
+    height: 250px;
+    padding-top: 15px;
   }
 
   .emoji-wrapper {
@@ -545,6 +613,11 @@
     transition: 0.5s;
   }
 
+  :global(.spectrum-numbers .spectrum-circle-selected) {
+    background-color: rgb(188, 147, 255) !important;
+    transition: 0.5s;
+  }
+
   @media (hover: hover) {
     .spectrum-circle:hover {
       border-radius: 99px;
@@ -554,13 +627,16 @@
       cursor: pointer;
     }
 
+    .spectrum-numbers .spectrum-circle:hover {
+      border: 10px rgb(188, 147, 255) solid;
+      transition: 0.5s;
+    }
+
     .z-skypro-proftest__modern-answer:hover {
       border-color: var(--color-grey2);
     }
   }
 
-  
-  
   .z-skypro-proftest-main-wrapper {
     overflow: hidden;
     padding-top: 10px;
@@ -571,7 +647,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 1160px;
+    width: 1260px;
     justify-content: center;
   }
 
@@ -665,8 +741,76 @@
     width: 100%;
   }
 
-  
+  .z-proftest-second-header {
+    width: 100%;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
 
+  .z-proftest-second-header-badge {
+    background: linear-gradient(92deg, #7334EA -8.98%, #360495 98.1%), url(https://static.tildacdn.com/tild6138-3830-4532-b561-336233396535/Frame_2043683099.svg);
+    width: 612px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    background-blend-mode: overlay;
+    background-position-x: -10px;
+    background-position-y: -25px;
+    background-size: 140%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .z-proftest-second-header-badge img {
+    padding-left: 20px;
+  }
+  .z-proftest-second-header-h1 {
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  .z-skypro-proftest-wrapper__head {
+    display: flex;
+    gap: 5em;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .z-skypro-proftest-wrapper__header-tip {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 350px;
+  }
+  .z-skypro-proftest-wrapper__header-tip-text {
+    color: #25212D;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: StratosSkyeng;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%;
+    opacity: 0.6;
+  }
+
+  .spectrum-numbers .spectrum-circle {
+    border: 2px rgb(188, 147, 255) solid;
+    color: #0F1119 !important;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   @media screen and (max-width: 1200px) {
     .z-skypro-proftest-wrapper {
       width: calc(100%);

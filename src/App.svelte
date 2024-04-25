@@ -10,7 +10,11 @@
 
     addStyle(`
     :root {
-      background-color: black;
+      background-color: white;
+      background-image: url('https://static.tildacdn.com/tild3365-6235-4731-a132-653135303436/Ellipse_2444_1.png');
+      background-size: auto;
+      background-position: center;
+      background-repeat: repeat;
     }
     `);
 
