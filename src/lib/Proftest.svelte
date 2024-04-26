@@ -12,7 +12,6 @@
     "https://static.tildacdn.com/tild6631-3136-4430-a638-306231656165/Frame_2043683098_1.svg", // badge
     "https://static.tildacdn.com/tild6435-3637-4936-a431-353165653266/photo.png", // star
     "https://static.tildacdn.com/tild6138-3830-4532-b561-336233396535/Frame_2043683099.svg", // waves svg
-    "https://static.tildacdn.com/tild3262-6637-4639-b864-636338396632/Group_1597880218_1.svg", // достояние российской экономики
   ];
   
   //
@@ -224,7 +223,6 @@
 
 
 <div class="z-skypro-proftest-main-wrapper">
-  <div class="background-ruble" style={`background-image: url('https://static.tildacdn.com/tild3262-6637-4639-b864-636338396632/Group_1597880218_1.svg')`}></div>
   <div class="z-proftest-header">
     <div class="z-proftest-header__logo" style={`background-image: url('https://static.tildacdn.com/tild3335-6662-4363-b965-326337623833/Group_1321316717_1.svg')`}></div>
     <div class="z-proftest-header__timer">{timer}</div>
@@ -516,17 +514,6 @@
     --color-black: #000000;
     font-family: StratosSkyeng;
     width: 100%;
-  }
-  
-  .background-ruble {
-    height: 381px;
-    width: 377px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: absolute;
-    left: 407px;
-    top: -21px;
-    z-index: -1;
   }
 
   :global(.inline-emoji) {
@@ -854,11 +841,6 @@
   @media screen and (max-width: 1260px) {
     .z-proftest-second-header-h1 {
       font-size: 20px;
-    }
-    
-    .background-ruble {
-      left: unset;
-      right: 0px;
     }
     
     .z-skypro-proftest__answers {
