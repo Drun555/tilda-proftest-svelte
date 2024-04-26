@@ -238,7 +238,7 @@
       {/if}
       свой реальный уровень зарплаты
     </div>
-    {#if screenWidth >= 1200}
+    {#if screenWidth >= 1260}
     <div class="z-proftest-second-header-badge">
       <img src="https://static.tildacdn.com/tild6635-3332-4665-a266-636332653530/Icon.png" alt="">
       Подарим разбор ваших навыков и&nbsp;персональную консультацию по развитию карьеры
@@ -397,8 +397,8 @@
         </div>
         {:else}
         <div class="spectrum-wrapper mobile-text">
-          <div>Совсем не умею</div>
-          <div style="text-align:end">Отлично умею</div>
+          <div>Совсем<br/>не умею</div>
+          <div style="text-align:end">Отлично<br/>умею</div>
         </div>
         <div class="spectrum-wrapper">
           <div class='spectrum-circle' data-index="0" style="color: rgba(188, 147, 255, 1); width: 11vw; height: 11vw">1</div>
@@ -485,7 +485,7 @@
   </div>
   {/key}
   
-  {#if screenWidth <= 1200}
+  {#if screenWidth < 1260}
     <div class="z-proftest-second-header-badge">
       <img src="https://static.tildacdn.com/tild6635-3332-4665-a266-636332653530/Icon.png" alt="">
       Подарим разбор ваших навыков и&nbsp;персональную консультацию по развитию карьеры
@@ -851,7 +851,7 @@
     align-items: center;
     justify-content: center;
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1260px) {
     .z-proftest-second-header-h1 {
       font-size: 20px;
     }
