@@ -567,8 +567,10 @@
     font-size: 24px;
     padding: 10px;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(80px);
+    background: white;
+    /* клёвый блюр */
+    /* background: rgba(255, 255, 255, 0.6); */
+    /* backdrop-filter: blur(80px); */
     color: black;
   }
 
@@ -1052,10 +1054,6 @@
 
   @media screen and (max-width: 640px) {
     
-    .background-ruble {
-      width: 186px;
-      top: 5px;
-    }
 
     .z-skypro-proftest-wrapper {
       width: calc(100%);
