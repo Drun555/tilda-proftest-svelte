@@ -553,14 +553,14 @@
 
   .z-proftest-header {
     width: 100%;
-    height: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: -webkit-fill-available;
     width: -moz-available;
-    padding-bottom: 85px;
+    padding-bottom: 30px;
+    padding-top: 21px;
   }
 
   .z-proftest-header__timer {
@@ -578,6 +578,7 @@
     background-size: auto;
     width: 100%;
     background-repeat: no-repeat;
+    background-position: left center;
     height: 35px;
   }
 
@@ -612,8 +613,7 @@
     color: black;
     font-size: 22px;
     text-wrap: nowrap;
-    height: 250px;
-    padding-top: 15px;
+    padding-top: 50px;
   }
 
   .emoji-wrapper {
@@ -845,6 +845,10 @@
       font-size: 20px;
     }
     
+    .spectrum-wrapper {
+      padding-top: 10px;
+    }
+
     .z-skypro-proftest__answers {
       margin-top: 0;
     }
