@@ -84,8 +84,8 @@
     --color-inner: var(--color-white);
 
     box-sizing: border-box;
-    width: 16px;
-    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
     border-radius: 50%;
     border: solid 2px var(--color);
     display: flex;
@@ -405,8 +405,8 @@ display: inline-block;
     
 
     .z-skypro-proftest__answer-checkbox {
-        width: 23px;
-        height: 23px;
+        min-width: 23px;
+        min-height: 23px;
         top: 20px;
         right: 20px;
     }

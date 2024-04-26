@@ -12,29 +12,35 @@
     "https://static.tildacdn.com/tild6631-3136-4430-a638-306231656165/Frame_2043683098_1.svg", // badge
     "https://static.tildacdn.com/tild6435-3637-4936-a431-353165653266/photo.png", // star
     "https://static.tildacdn.com/tild6138-3830-4532-b561-336233396535/Frame_2043683099.svg", // waves svg
+    "https://static.tildacdn.com/tild3262-6637-4639-b864-636338396632/Group_1597880218_1.svg", // достояние российской экономики
   ];
   
-  const threeEmojis = [
-    "https://static.tildacdn.com/tild3439-6435-4632-b630-616661646362/photo.png", // Да
-    "https://static.tildacdn.com/tild3835-6234-4566-b536-323165663563/photo.png", // Отчасти
-    "https://static.tildacdn.com/tild6530-6533-4562-a235-623262343263/photo.png", // Нет
+  //
+  // Для этого теста эти прелоды не нужны
+  //
+
+  // const threeEmojis = [
+  //   "https://static.tildacdn.com/tild3439-6435-4632-b630-616661646362/photo.png", // Да
+  //   "https://static.tildacdn.com/tild3835-6234-4566-b536-323165663563/photo.png", // Отчасти
+  //   "https://static.tildacdn.com/tild6530-6533-4562-a235-623262343263/photo.png", // Нет
     
-  ]
+  // ]
 
-  const fourEmojis = [
-    "https://static.tildacdn.com/tild3438-6336-4061-b038-313836613539/photo.png", // Flatlined
-    "https://static.tildacdn.com/tild6635-3264-4363-a534-663966343933/photo.png", // Без лица
-    "https://static.tildacdn.com/tild6166-3330-4662-b434-336561633731/photo.png", // Happy
-    "https://static.tildacdn.com/tild6233-3864-4036-b136-653437383839/photo.png", // Lovely
-  ]
+  // const fourEmojis = [
+  //   "https://static.tildacdn.com/tild3438-6336-4061-b038-313836613539/photo.png", // Flatlined
+  //   "https://static.tildacdn.com/tild6635-3264-4363-a534-663966343933/photo.png", // Без лица
+  //   "https://static.tildacdn.com/tild6166-3330-4662-b434-336561633731/photo.png", // Happy
+  //   "https://static.tildacdn.com/tild6233-3864-4036-b136-653437383839/photo.png", // Lovely
+  // ]
 
-  const inlineEmojis = {
-    moneybag: "https://static.tildacdn.com/tild6661-3564-4439-b038-356366343038/money-bag_1f4b0.png", // Moneybag
-    seeding: "https://static.tildacdn.com/tild6166-3431-4262-a337-396664383062/seedling_1f331.png" // Seeding
-  }
-  preload.push(...threeEmojis)
-  preload.push(...fourEmojis)
-  preload.push(...Object.values(inlineEmojis))
+  // const inlineEmojis = {
+  //   moneybag: "https://static.tildacdn.com/tild6661-3564-4439-b038-356366343038/money-bag_1f4b0.png", // Moneybag
+  //   seeding: "https://static.tildacdn.com/tild6166-3431-4262-a337-396664383062/seedling_1f331.png" // Seeding
+  // }
+  
+  // preload.push(...threeEmojis)
+  // preload.push(...fourEmojis)
+  // preload.push(...Object.values(inlineEmojis))
 
   // сразу загрузим картинки в кэш
   function preloadImages(array) {
@@ -61,24 +67,26 @@
   data.QUESTIONS.forEach((q, qIndex) => {
     if (q.hasOwnProperty("questionImageUrl"))
       preload.push(q.questionImageUrl)
-    if (q.type && q.type == 'horizontal-with-images') {
-      q.answers.forEach((a, aIndex) => {
-        preload.push(a.imageUrl)
 
-        Object.keys(inlineEmojis).forEach(key => {
-          if ( a.text.indexOf(`:${key}:`) !== -1 )
-          data.QUESTIONS[qIndex].answers[aIndex].text = a.text.replaceAll(`:${key}:`, `<img class='inline-emoji' src='${inlineEmojis[key]}' />`)
-        })
+    // if (q.type && q.type == 'horizontal-with-images') {
+    //   q.answers.forEach((a, aIndex) => {
+    //     preload.push(a.imageUrl)
+
+    //     Object.keys(inlineEmojis).forEach(key => {
+    //       if ( a.text.indexOf(`:${key}:`) !== -1 )
+    //       data.QUESTIONS[qIndex].answers[aIndex].text = a.text.replaceAll(`:${key}:`, `<img class='inline-emoji' src='${inlineEmojis[key]}' />`)
+    //     })
         
-      })
-    } else {
-      q.answers.forEach((a, aIndex) => {
-        Object.keys(inlineEmojis).forEach(key => {
-          if ( a.indexOf(`:${key}:`) !== -1 )
-            data.QUESTIONS[qIndex].answers[aIndex] = a.replaceAll(`:${key}:`, `<img class='inline-emoji' src='${inlineEmojis[key]}' />`)
-        })
-      })
-    }
+    //   })
+    // } else {
+    //   q.answers.forEach((a, aIndex) => {
+    //     Object.keys(inlineEmojis).forEach(key => {
+    //       if ( a.indexOf(`:${key}:`) !== -1 )
+    //         data.QUESTIONS[qIndex].answers[aIndex] = a.replaceAll(`:${key}:`, `<img class='inline-emoji' src='${inlineEmojis[key]}' />`)
+    //     })
+    //   })
+    // }
+
   })
   preloadImages(preload);
   
@@ -214,7 +222,9 @@
 <!-- Для рендеринга на основе размера окна -->
 <svelte:window bind:innerWidth={screenWidth} />
 
+
 <div class="z-skypro-proftest-main-wrapper">
+  <div class="background-ruble" style={`background-image: url('https://static.tildacdn.com/tild3262-6637-4639-b864-636338396632/Group_1597880218_1.svg')`}></div>
   <div class="z-proftest-header">
     <div class="z-proftest-header__logo" style={`background-image: url('https://static.tildacdn.com/tild3335-6662-4363-b965-326337623833/Group_1321316717_1.svg')`}></div>
     <div class="z-proftest-header__timer">{timer}</div>
@@ -230,7 +240,7 @@
     </div>
     <div class="z-proftest-second-header-badge">
       <img src="https://static.tildacdn.com/tild6635-3332-4665-a266-636332653530/Icon.png" alt="">
-      Подарим разбор ваших навыков и персональную консультацию по развитию карьеры
+      Подарим разбор ваших навыков и&nbsp;персональную консультацию по развитию карьеры
     </div>
   </div>
 
@@ -283,6 +293,7 @@
           </div>
       </div>
     {/if}
+    <!--     
     {#if question.type == "horizontal-with-images"}
       <div class="z-skypro-proftest-wrapper-modern">
         <div class="z-skypro-proftest-wrapper__header">
@@ -290,7 +301,6 @@
         </div>
         <div class="z-skypro-proftest-wrapper-modern-questions">
           {#each question.answers as answer, index}
-          <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions-->
           <div class="z-skypro-proftest-wrapper-modern-question-answer">
             <div 
               style={`background-image: url(${answer.imageUrl})`} 
@@ -322,6 +332,8 @@
         </div>
       </div>
     {/if}
+    -->
+    <!--     
     {#if question.type == "spectrum"}
       <div class="z-skypro-proftest-wrapper-modern">
         <div class="z-skypro-proftest-wrapper__header">
@@ -351,7 +363,9 @@
         </div>
         {/if}
       </div>
-    {/if}
+    {/if} 
+    -->
+
     {#if question.type == "spectrum-numbers"}
       <div class="z-skypro-proftest-wrapper-modern spectrum-numbers">
         <div class="z-skypro-proftest-wrapper__head">
@@ -393,6 +407,7 @@
         {/if}
       </div>
     {/if}
+    <!-- 
     {#if question.type == "emoji"}
       <div class="z-skypro-proftest-wrapper-modern">
         <div class="z-skypro-proftest-wrapper__header">
@@ -425,6 +440,7 @@
         </div>
       </div>
     {/if}
+     -->
     {#if question.type == "modern-classic"}
       <div class="z-skypro-proftest-wrapper-modern">
         <div class="z-skypro-proftest-wrapper__header">
@@ -492,6 +508,17 @@
     width: 100%;
   }
   
+  .background-ruble {
+    height: 381px;
+    width: 377px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 407px;
+    top: -21px;
+    z-index: -1;
+  }
+
   :global(.inline-emoji) {
     height: 1em;
   }
@@ -536,6 +563,7 @@
     align-items: center;
     width: -webkit-fill-available;
     width: -moz-available;
+    padding-bottom: 85px;
   }
 
   .z-proftest-header__timer {
@@ -753,7 +781,7 @@
 
   .z-proftest-second-header-badge {
     background: linear-gradient(92deg, #7334EA -8.98%, #360495 98.1%), url(https://static.tildacdn.com/tild6138-3830-4532-b561-336233396535/Frame_2043683099.svg);
-    width: 612px;
+    width: 640px;
     padding-top: 20px;
     padding-bottom: 20px;
     border-radius: 20px;
@@ -765,9 +793,10 @@
     align-items: center;
     gap: 20px;
     color: white;
-    font-size: 22px;
+    font-size: 21px;
     font-style: normal;
-    font-weight: 400;
+    line-height: 115%;
+    font-weight: 300;
   }
 
   .z-proftest-second-header-badge img {
@@ -781,7 +810,6 @@
   .z-skypro-proftest-wrapper__head {
     display: flex;
     gap: 5em;
-    align-items: center;
     justify-content: space-between;
     width: 100%;
   }
@@ -817,6 +845,15 @@
     .z-proftest-second-header-h1 {
       font-size: 20px;
     }
+    
+    .background-ruble {
+      left: unset;
+      right: 0px;
+    }
+    
+    .z-skypro-proftest__answers {
+      margin-top: 0;
+    }
 
     .z-proftest-second-header {
       flex-direction: column;
@@ -827,10 +864,19 @@
     .z-proftest-second-header-badge {
       width: 100%;
       font-size: 14px;
-      font-weight: 400;
+      font-weight: 300;
       padding-right: 19px;
       box-sizing: border-box;
+      gap: 15px;
+      padding: 16px;
+      line-height: 120%;
     }
+
+    .z-proftest-second-header-badge img {
+      width: 30px;
+      padding-left: 3px;
+    }
+
 
     .z-skypro-proftest-wrapper__head {
       flex-direction: column-reverse;
@@ -1013,6 +1059,10 @@
 
   @media screen and (max-width: 640px) {
     
+    .background-ruble {
+      width: 186px;
+      top: 5px;
+    }
 
     .z-skypro-proftest-wrapper {
       width: calc(100%);
@@ -1028,16 +1078,16 @@
 
     .z-proftest-header__timer {
       font-size: 16px;
+      display: none;
     }
 
     .z-proftest-header {
       padding: 0;
-      padding-left: 15px;
       height: 75px;
     }
 
     .z-proftest-header__logo {
-      background-size: 175px;
+      background-size: 145px;
     }
     .z-skypro-proftest-main-wrapper {
       width: calc(100%);

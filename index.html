@@ -264,7 +264,7 @@
       show(ZERO_BLOCK_RESULT)
       show(ZERO_BLOCK_RESULT_SECOND)
       t_lazyload_update();
-      
+
       // подставим значение зп
       document.safeQuerySelector(`${salaryClass} .tn-atom`).innerHTML = data.professions[0].title
 
@@ -301,15 +301,27 @@
                 
                 document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
 
+                let atLeastOneSupersila = false;
+                let atLeastOneRazvivaite = false;
                 // потом пройдемся и анблюрнем те, что нужны
                 for (const key in data.answers) {
                   let a = data.answers[key]
                   a.answerIndex = Number(a.answerIndex)
                   
                   if (a.questionLink.type !== "spectrum-numbers") continue;
-                  if ([3,4].includes(a.answerIndex)) document.safeQuerySelector(`${ZERO_BLOCK_SUPERSILA} ${a.questionLink.class}`).classList.remove("blur-for-marks")
-                  if ([0,1].includes(a.answerIndex)) document.safeQuerySelector(`${ZERO_BLOCK_RAZVIVAITE} ${a.questionLink.class}`).classList.remove("blur-for-marks")
+                  if ([3,4].includes(a.answerIndex)) {
+                    document.safeQuerySelector(`${ZERO_BLOCK_SUPERSILA} ${a.questionLink.class}`).classList.remove("blur-for-marks")
+                    atLeastOneSupersila = true;
+                  }
+                  if ([0,1].includes(a.answerIndex)) {
+                    document.safeQuerySelector(`${ZERO_BLOCK_RAZVIVAITE} ${a.questionLink.class}`).classList.remove("blur-for-marks")
+                    atLeastOneRazvivaite = true;
+                  }
                 }
+                
+                // если нет ни одного признака, то скрываем
+                if (!atLeastOneSupersila) hide(ZERO_BLOCK_SUPERSILA)
+                if (!atLeastOneRazvivaite) hide(ZERO_BLOCK_RAZVIVAITE)
               
                 hide(ZERO_BLOCK_RESULT)
                 hide(ZERO_BLOCK_RESULT_SECOND)
