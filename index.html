@@ -259,11 +259,12 @@
       let data = e.detail; 
       // Показываем нужные финальные блоки
       data.professions[0].finalBlocks.forEach(b => show(b))
-
+      
       // Показываем две формы
       show(ZERO_BLOCK_RESULT)
       show(ZERO_BLOCK_RESULT_SECOND)
-
+      t_lazyload_update();
+      
       // подставим значение зп
       document.safeQuerySelector(`${salaryClass} .tn-atom`).innerHTML = data.professions[0].title
 
