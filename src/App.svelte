@@ -20,10 +20,6 @@
 
     console.log('Мы в деве')
   }
-
-  
-
-
 </script>
 
 <main>

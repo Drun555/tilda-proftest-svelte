@@ -19,88 +19,81 @@
 
     
     // ID этой формы T123
-    const ZERO_BLOCK_PROFTEST = "#rec735863399";
-    const ZERO_BLOCK_RESULT = "#rec731878586";
-    const ZERO_BLOCK_INSERTBUTTON = "#rec731878580";
-    const ZERO_BLOCK_RESULT_SECOND = "#rec731878608";
+    const ZERO_BLOCK_PROFTEST = "#rec739872187";
+    const ZERO_BLOCK_RESULT = "#rec739872195";
+    const ZERO_BLOCK_INSERTBUTTON = "#rec739872189";
+    const ZERO_BLOCK_RESULT_SECOND = "#rec739928868";
+
+    const ZERO_BLOCK_SUPERSILA = "#rec739913019";
+    const ZERO_BLOCK_RAZVIVAITE = "#rec739927854";
+    const salaryClass = ".proftest-howMuch"
 
     window.proftest.QUESTIONS = [
       {
         question: "Работа в команде",
         type: "spectrum-numbers",
         answers: [],
-        left: "Совсем не умею",
-        right: "Отлично умею"
+        class: ".blur-1"
       },
       {
         question: "Выполнение задач в срок",
         type: "spectrum-numbers",
         answers: [],
-        left: "Совсем не умею",
-        right: "Отлично умею"
+        class: ".blur-2"
+      },
+      {
+        question: "Решение конфликтных ситуаций в команде",
+        type: "spectrum-numbers",
+        answers: [],
+        class: ".blur-3"
       },
       {
         question: "Быстрая обучаемость",
         type: "spectrum-numbers",
         answers: [],
-        left: "Совсем не умею",
-        right: "Отлично умею"
+        class: ".blur-4"
       },
       {
         question: "Дисциплинированность",
         type: "spectrum-numbers",
         answers: [],
-        left: "Совсем не умею",
-        right: "Отлично умею"
+        class: ".blur-5"
       },
       {
         question: "Критическое мышление",
         type: "spectrum-numbers",
         answers: [],
-        left: "Совсем не умею",
-        right: "Отлично умею"
+        class: ".blur-6"
       },
       {
         question: "Умение брать ответственность",
         type: "spectrum-numbers",
         answers: [],
-        left: "Совсем не умею",
-        right: "Отлично умею"
+        class: ".blur-7"
       },
       {
         question: "Работа в форс-мажорных и стрессовых ситуациях",
         type: "spectrum-numbers",
         answers: [],
-        left: "Совсем не умею",
-        right: "Отлично умею"
+        class: ".blur-8"
       },
       {
         question: "Умение быстро адаптироваться к изменениям",
         type: "spectrum-numbers",
         answers: [],
-        left: "Совсем не умею",
-        right: "Отлично умею"
+        class: ".blur-9"
       },
       {
         question: "Последовательность и системность",
         type: "spectrum-numbers",
         answers: [],
-        left: "Совсем не умею",
-        right: "Отлично умею"
+        class: ".blur-10"
       },
       {
         question: "Умение признавать ошибки и делать выводы",
         type: "spectrum-numbers",
         answers: [],
-        left: "Совсем не умею",
-        right: "Отлично умею"
-      },
-      {
-        question: "Умение признавать ошибки и делать выводы",
-        type: "spectrum-numbers",
-        answers: [],
-        left: "Совсем не умею",
-        right: "Отлично умею"
+        class: ".blur-11"
       },
       {
         question: "Какое у вас образование?", 
@@ -166,76 +159,42 @@
 
     window.proftest.RESULT_PROFESSION = [
       {
-          title: "Аналитик",
-          dataCheck: [4,4,-1,2,0,0,0,0,2,0,0,2,0,2,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,4,4,0,2,2,0,2,2,0,0,0,0,2,2,0,2,2,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          title: "От 60 000 до 80 000 ₽",
+          dataCheck: [2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
           userProggress: 0,
           finalBlocks: [
-              "#rec731878588",
-              "#rec731878590",
-              "#rec731878593",
-              "#rec731878607",
+              "#rec739872197",
+              "#rec739891888",
+              "#rec739913019",
+              "#rec739927854",
 
           ],
-          salary: 95000,
-          link: "https://sky.pro/courses/analytics/data_analytics",
       },
       {
-          title: "Разработчик",
-          dataCheck: [2,0,0,4,-1,4,0,0,2,0,0,2,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,4,4,0,4,4,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          title: "От 70 000 до 100 000 ₽",
+          dataCheck: [0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,2,2,2,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
           userProggress: 0,
           finalBlocks: [
-              "#rec731878594",
-              "#rec731878595",
-              "#rec731878596",
-              "#rec731878607",
+              "#rec739872197",
+              "#rec739891888",
+              "#rec739913019",
+              "#rec739927854",
 
           ],
-          salary: 90000,
-          link: "https://sky.pro/courses/programming",
       },
       {
-          title: "Тестировщик",
-          dataCheck: [2,0,0,0,0,2,0,0,0,0,0,2,0,0,2,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,4,4,0,-1,-1,0,2,2,0,4,4,0,4,4,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          title: "от 100 000 ₽",
+          dataCheck: [0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,0,0,0,2,2,2,2,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
           userProggress: 0,
           finalBlocks: [
-              "#rec731878597",
-              "#rec731878598",
-              "#rec731878599",
-              "#rec731878607",
+              "#rec739872197",
+              "#rec739891888",
+              "#rec739913019",
+              "#rec739927854",
 
           ],
-          salary: 70000,
-          link: "https://sky.pro/courses/programming/qa-engineer",
       },
-      {
-          title: "Маркетолог",
-          dataCheck: [-1,4,4,0,2,0,0,4,0,0,0,0,2,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,2,0,2,2,0,0,0,0,0,0,2,2,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-          userProggress: 0,
-          finalBlocks: [
-              "#rec731878600",
-              "#rec731878601",
-              "#rec731878602",
-              "#rec731878607",
-
-          ],
-          salary: 65000,
-          link: "https://sky.pro/courses/marketing/pim_n",
-      },
-      {
-          title: "Дизайнер",
-          dataCheck: [4,4,-1,-1,2,4,0,2,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,2,2,0,0,0,0,0,0,2,0,0,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-          userProggress: 0,
-          finalBlocks: [
-              "#rec731878603",
-              "#rec731878604",
-              "#rec731878605",
-              "#rec731878607",
-
-          ],
-          salary: 80000,
-          link: "https://sky.pro/courses/design/graf-designer",
-      },
-    ];
+    ]
     
     ////
     // Блок логики, которую не хочется пихать в сам тест. Скрытие блоков и сбор UUID'ов.
@@ -305,6 +264,13 @@
       show(ZERO_BLOCK_RESULT)
       show(ZERO_BLOCK_RESULT_SECOND)
 
+      // подставим значение зп
+      document.safeQuerySelector(`${salaryClass} .tn-atom`).innerHTML = data.professions[0].title
+
+      // сначала заблюрим все признаки
+      for (const key in data.answers) 
+        document.querySelectorAll(`${data.answers[key].questionLink.class}`).forEach(b => b.classList.add("blur-for-marks"))
+      
       // Дополняем инпуты форм
       setTimeout(function () {
         const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
@@ -333,6 +299,17 @@
                 clearInterval(updateFn);
                 
                 document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
+
+                // потом пройдемся и анблюрнем те, что нужны
+                for (const key in data.answers) {
+                  let a = data.answers[key]
+                  a.answerIndex = Number(a.answerIndex)
+                  
+                  if (a.questionLink.type !== "spectrum-numbers") continue;
+                  if ([3,4].includes(a.answerIndex)) document.safeQuerySelector(`${ZERO_BLOCK_SUPERSILA} ${a.questionLink.class}`).classList.remove("blur-for-marks")
+                  if ([0,1].includes(a.answerIndex)) document.safeQuerySelector(`${ZERO_BLOCK_RAZVIVAITE} ${a.questionLink.class}`).classList.remove("blur-for-marks")
+                }
+              
                 hide(ZERO_BLOCK_RESULT)
                 hide(ZERO_BLOCK_RESULT_SECOND)
             }

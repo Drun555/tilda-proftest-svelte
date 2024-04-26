@@ -361,25 +361,27 @@
           <div class="z-skypro-proftest-wrapper__header-tip">
             <img style="width: 24px; height: 25px" src="https://static.tildacdn.com/tild6435-3637-4936-a431-353165653266/photo.png" alt="">
             <div class="z-skypro-proftest-wrapper__header-tip-text">
-              Оцените, насколько у вас развит навык
+              Оцените, насколько
+              <br/>
+              у вас развит навык
             </div>
           </div>
         </div>
         
         {#if screenWidth > 1160}
         <div class="spectrum-wrapper">
-          <div>{question.left}</div>
+          <div>Совсем не умею</div>
           <div class='spectrum-circle' data-index="0" style="color: rgba(188, 147, 255, 1); width: 110px; height: 110px">1</div>
           <div class='spectrum-circle' data-index="1" style="color: rgba(188, 147, 255, 1); width: 120px; height: 120px">2</div>
           <div class='spectrum-circle' data-index="2" style="color: rgba(188, 147, 255, 1); width: 130px; height: 130px">3</div>
           <div class='spectrum-circle' data-index="3" style="color: rgba(188, 147, 255, 1); width: 140px; height: 140px">4</div>
           <div class='spectrum-circle' data-index="4" style="color: rgba(188, 147, 255, 1); width: 150px; height: 150px">5</div>
-          <div>{question.right}</div>
+          <div>Отлично умею</div>
         </div>
         {:else}
-        <div class="spectrum-wrapper" style="padding-bottom: 10px; padding-top: 20px;">
-          <div>{question.left}</div>
-          <div>{question.right}</div>
+        <div class="spectrum-wrapper mobile-text">
+          <div>Совсем не умею</div>
+          <div style="text-align:end">Отлично умею</div>
         </div>
         <div class="spectrum-wrapper">
           <div class='spectrum-circle' data-index="0" style="color: rgba(188, 147, 255, 1); width: 11vw; height: 11vw">1</div>
@@ -812,6 +814,46 @@
     justify-content: center;
   }
   @media screen and (max-width: 1200px) {
+    .z-proftest-second-header-h1 {
+      font-size: 20px;
+    }
+
+    .z-proftest-second-header {
+      flex-direction: column;
+      gap: 30px;
+      padding-bottom: 20px;
+    } 
+
+    .z-proftest-second-header-badge {
+      width: 100%;
+      font-size: 14px;
+      font-weight: 400;
+      padding-right: 19px;
+      box-sizing: border-box;
+    }
+
+    .z-skypro-proftest-wrapper__head {
+      flex-direction: column-reverse;
+      gap: 20px;
+    }
+
+    .z-skypro-proftest-wrapper__header-tip {
+      width: 100%;
+    }
+
+    .z-skypro-proftest-wrapper__header-tip-text {
+      font-size: 12px;
+    }
+
+    .spectrum-numbers .spectrum-circle {
+      font-size: 5.5vw;
+    }
+
+    .spectrum-numbers .mobile-text div {
+      max-width: 25vw;
+      text-wrap: balance;
+    }
+
     .z-skypro-proftest-wrapper {
       width: calc(100%);
       height: unset;
@@ -843,7 +885,7 @@
       width: 100%;
       font-size: 14px;
       font-weight: 400;
-      padding-bottom: 20px;
+      /* padding-bottom: 20px; */
       height: unset;
     }
 
@@ -970,6 +1012,8 @@
   }
 
   @media screen and (max-width: 640px) {
+    
+
     .z-skypro-proftest-wrapper {
       width: calc(100%);
       height: unset;

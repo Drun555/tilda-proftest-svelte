@@ -2,9 +2,13 @@
     filter: blur(25px);
 }
 
+.blur-for-marks {
+    filter: blur(10px);
+}
+
 .z-skypro-proftest-main-wrap {
-    --color-grey: #ebebeb;
-    --color-grey2: #bcbcbc;
+    --color-grey: #C3C5E0;
+    --color-grey2: #b088b5;
     --color-white: #ffffff;
     --color-purple: #7334ea;
     --color-green: #bcec30;
@@ -59,6 +63,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: 0.3s;
 }
 
 .z-skypro-proftest__answer--selected {
@@ -314,6 +319,12 @@ display: inline-block;
     pointer-events: none;
 }
 
+.z-skypro-proftest__answer:hover {
+    border-color: var(--color-grey2);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
 @media screen and (min-width: 1200px) {
     .z-skypro-proftest-wrapper {
         display: flex;
@@ -387,14 +398,11 @@ display: inline-block;
         padding: 20px;
         border-radius: 10px;
         font-size: 20px;
-        cursor: pointer;
         transition: border 0.2s ease;
         background-color: white;
     }
 
-    .z-skypro-proftest__answer:hover {
-        border-color: var(--color-grey2);
-    }
+    
 
     .z-skypro-proftest__answer-checkbox {
         width: 23px;

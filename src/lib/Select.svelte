@@ -124,4 +124,41 @@
         transform: rotate(225deg) translateY(-6px);
         transition: 0.3s;
     }
+
+    @media screen and (max-width: 1200px) { 
+        .proftest-select {
+            height: 40px;
+            padding-left: 13px;
+            padding-right: 13px;
+        }
+
+        .select-text {
+            font-size: 14px;
+        }
+
+        .arrow_down {
+            width: 6px;
+            height: 6px;
+            transform: rotate(45deg) translateY(-4px);
+        }
+
+        .arrow_reverse {
+            transform: rotate(225deg) translateY(-6px);
+            transition: 0.3s;
+        }
+
+        .proftest-select-options__option {
+            height: calc(1em + 35px);
+            padding-left: 13px;
+            padding-right: 13px;
+        }
+
+        .proftest-select-options {
+            padding-top: 10px;
+        }
+
+        .proftest-select-options::before {
+            top: -3px;
+        }
+    }
 </style>
