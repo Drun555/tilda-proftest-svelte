@@ -238,10 +238,13 @@
       {/if}
       свой реальный уровень зарплаты
     </div>
+    {#if screenWidth >= 1200}
     <div class="z-proftest-second-header-badge">
       <img src="https://static.tildacdn.com/tild6635-3332-4665-a266-636332653530/Icon.png" alt="">
       Подарим разбор ваших навыков и&nbsp;персональную консультацию по развитию карьеры
     </div>
+    {/if}
+    
   </div>
 
   {#key currentQuestionIndex}
@@ -482,6 +485,13 @@
   </div>
   {/key}
   
+  {#if screenWidth <= 1200}
+    <div class="z-proftest-second-header-badge">
+      <img src="https://static.tildacdn.com/tild6635-3332-4665-a266-636332653530/Icon.png" alt="">
+      Подарим разбор ваших навыков и&nbsp;персональную консультацию по развитию карьеры
+    </div>
+  {/if}
+
   <div class="z-skypro-proftest__buttons">
     {#if currentQuestionIndex > 0}
     <button on:click={() => currentQuestionIndex-- } class="z-skypro-proftest__button z-skypro-proftest__button--prev">
@@ -780,7 +790,7 @@
   }
 
   .z-proftest-second-header-badge {
-    background: linear-gradient(92deg, #7334EA -8.98%, #360495 98.1%), url(https://static.tildacdn.com/tild6138-3830-4532-b561-336233396535/Frame_2043683099.svg);
+    background: linear-gradient(266deg, #9EA9DD -5.4%, #5E6AA4 111.87%);
     width: 640px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -870,6 +880,7 @@
       gap: 15px;
       padding: 16px;
       line-height: 120%;
+      margin-top: 10px;
     }
 
     .z-proftest-second-header-badge img {
