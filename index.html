@@ -277,7 +277,7 @@
         const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
         const SECOND_FORM = ZERO_BLOCK_RESULT_SECOND.replace('rec', 'form');
         let target_lead = true;
-        let televox_import_group_id = '9128' 
+        let televox_import_group_id = '9411' 
 
         document.safeQuerySelector(`${FORM} input[name="thank-you-page"]`).value = "";
         document.safeQuerySelector(`${FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
@@ -354,31 +354,29 @@
       let result = "";
       for (const key in userAnswers) {
         let answer = userAnswers[key]
-        result += `${answer.questionLink.question}: ${answer.questionLink.answers[ answer.answerIndex ]}\n`;
+        let factAnswer = (answer.questionLink.answers[ answer.answerIndex ] ? answer.questionLink.answers[ answer.answerIndex ] : Number(answer.answerIndex)+1)
+        result += `  ${answer.questionLink.question}: ${factAnswer}\n`;
       }
       return result;
     }
 
     function getResultForAmoCrm(professions, userAnswers) {
       let profStr = "";
-      professions.forEach((p,i) => profStr += `Топ-${i+1}: p.title (${p.userProggress}%)\n`);
+      professions.forEach((p,i) => profStr += `  Топ-${i+1}: ${p.title} (${p.userProggress}%)\n`);
 
   return `
-  Результат:
-  ${profStr}
+  Результат:\n${profStr}
 
-  Ответы на вопросы:
-  ${getTextUserAnswers(userAnswers)}
+  Ответы на вопросы:\n${getTextUserAnswers(userAnswers)}
   `;
     }
 
     function getResultForAmoCrmOnlyProfs(professions, userAnswers) {
       let profStr = "";
-      professions.forEach((p,i) => profStr += `Топ-${i+1}: p.title (${p.userProggress}%)\n`);
+      professions.forEach((p,i) => profStr += `  Топ-${i+1}: ${p.title} (${p.userProggress}%)\n`);
 
   return `
-  Результат:
-  ${profStr}
+  Результат:\n${profStr}
   `;
     }
 
