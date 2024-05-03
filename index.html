@@ -365,7 +365,7 @@
       professions.forEach((p,i) => profStr += `  Топ-${i+1}: ${p.title} (${p.userProggress}%)\n`);
 
   return `
-  Результат:\n${profStr}
+  Зарплата: ${professions[0].title}
 
   Ответы на вопросы:\n${getTextUserAnswers(userAnswers)}
   `;
@@ -376,7 +376,7 @@
       professions.forEach((p,i) => profStr += `  Топ-${i+1}: ${p.title} (${p.userProggress}%)\n`);
 
   return `
-  Результат:\n${profStr}
+  Зарплата: ${professions[0].title}
   `;
     }
 

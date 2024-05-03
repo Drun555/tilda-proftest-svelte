@@ -477,7 +477,7 @@
           {question.question}
         </div>
         
-        <ProftestSelect answers={question.answers} on:answerPressed={index => writeAnswer(index)}/>
+        <ProftestSelect answers={question.answers} on:answerPressed={evt => writeAnswer(evt.detail)}/>
       </div>
     {/if}
   </div>
