@@ -10,43 +10,589 @@
 //  |_|   |_|  \__,_|_|\_\\__|_|_|\_\\__,_|_| |_| |_|
 //                                                                          
 -->
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <script>                                    
-    
-    // Обрезанная версия профтеста без "головы"
+    <script>
 
     window.proftest = {}
 
     
     // ID этой формы T123
     const ZERO_BLOCK_PROFTEST = "#rec755398580";
-    document.onload = () => ZERO_BLOCK_PROFTEST.hide();
+    const ZERO_BLOCK_RESULT = "#rec752270035";
+    const ZERO_BLOCK_INSERTBUTTON = "#rec739872189";
+    const ZERO_BLOCK_RESULT_SECOND = "#rec752270068";
+    const ZERO_BLOCK_PROGRESSBAR = "#rec752270034";
+    const CHANGING_TEXT_CLASS = ".changingText"
+    const CHANGING_TEXT_ARRAY = [
+        "Наш научный алгоритм уже нашел вашу профессию",
+        "Сегодня уже 5 472 человек узнали свое призвание",
+        "Результат готов!"
+    ]
 
     window.proftest.QUESTIONS = [
-    {
-      question: 'этот профтест пустой', 
-      answers: [
-        'что могло пойти не так?'
-      ],
-      progress: null
-    },
+        {
+          question: "Я предпочитаю ", 
+          answers: [
+            "Работать самостоятельно и не зависеть от других",
+            "Работать в команде и рассчитывать на помощь коллег",
+            "Организовывать и контролировать процесс работы",
+          ],
+          progress: "0%"
+        },
+        {
+          question: "В школе мне больше нравились: ", 
+          answers: [
+            "Точные науки (информатика, математика, химия)",
+            "Гуманитарные науки (языки, литература)",
+            "Уроки творчества (рисование, музыка)",
+          ],
+          progress: "10%"
+        },
+        {
+          question: "В свободное время я люблю ", 
+          answers: [
+            "Играть в видеоигры",
+            "Проводить время в соцсетях",
+            "Читать полезные книги",
+          ],
+          progress: "20%"
+        },
+        {
+          question: "Я лучше запоминаю информацию: ", 
+          answers: [
+            "С помощью слуха",
+            "С помощью зрения",
+            "С помощью логических рассуждений",
+          ],
+          progress: "25%"
+        },
+        {
+          question: "Мне больше нравится:", 
+          answers: [
+            "Решать сложные задачи",
+            "Анализировать и выстраивать логические цепочки",
+            "Придумывать что-то новое",
+          ],
+          progress: "27%"
+        },
+        {
+          question: "Я лучше справляюсь с задачами, которые требуют", 
+          answers: [
+            "Концентрации, усидчивости",
+            "Инициативы, самостоятельности",
+            "Гибкости, сговорчивости",
+          ],
+          progress: "31%"
+        },
+        {
+          question: "Мне проще работать", 
+          answers: [
+            "С людьми",
+            "С цифрами и таблицами",
+            "С компьютерными технологиями",
+          ],
+          progress: "33%"
+        },
+        {
+          question: "Моя сильная сторона ", 
+          answers: [
+            "Аналитический склад ума, развитая логика",
+            "Эмпатия, любовь к общению с людьми",
+            "Гибкость, быстрая обучаемость и адаптация",
+          ],
+          progress: "37%"
+        },
+        {
+          question: "Мне более интересны профессии, которые дают возможность:", 
+          answers: [
+            "Стать руководителем",
+            "Стать классным высокооплачиваемым специалистом",
+            "Стать предпринимателем, работать на себя",
+          ],
+          progress: "41%"
+        },
+        {
+          question: "С другими людьми мне легче объясняться:", 
+          answers: [
+            "Картинками, образами",
+            "Схемами, цифрами",
+            "Словами",
+          ],
+          progress: "44%"
+        },
+        {
+          question: "Я считаю, что для успешной карьеры нужно:", 
+          answers: [
+            "Иметь широкий кругозор и знания во многих областях",
+            "Не распыляться, а глубоко разбираться в своей теме",
+            "Иметь амбиции и способности к управлению",
+          ],
+          progress: "47%"
+        },
+        {
+          question: "Мне легко и комфортно: ", 
+          answers: [
+            "Обдумывать свои идеи, быть одному",
+            "Заводить знакомства, быть с другими",
+          ],
+          progress: "51%"
+        },
+        {
+          question: "Если бы я оказался средневековым человеком, то я бы: ", 
+          answers: [
+            "Обустраивал жилище и растил еду рядом с домом",
+            "Был авантюристом и исследовал незнакомые места",
+          ],
+          progress: "53%"
+        },
+        {
+          question: "Меня привлекает: ", 
+          answers: [
+            "Понятное, знакомое, предсказуемое",
+            "Неизвестное, новое, неожиданное",
+          ],
+          progress: "55%"
+        },
+        {
+          question: "Мои друзья описали бы меня как:", 
+          answers: [
+            "Спокойного и сдержанного",
+            "Общительного и дружелюбного",
+          ],
+          progress: "58%"
+        },
+        {
+          question: "В разговоре мне интереснее:", 
+          answers: [
+            "Слушать выводы, выявлять причины",
+            "Наблюдать за эмоциями, ощущать настроение",
+          ],
+          progress: "61%"
+        },
+        {
+          question: "На работе я предпочитаю задачи:", 
+          answers: [
+            "Знакомые, которые понятно как делать",
+            "Новые, в которых нужно разбираться",
+          ],
+          progress: "63%"
+        },
+        {
+          question: "Когда я рассказываю историю, то: ", 
+          answers: [
+            "Отмечаю факты, говорю емко и четко",
+            "Наполняю деталями, добавляю яркость и эмоции",
+          ],
+          progress: "66%"
+        },
+        {
+          question: "Важную задачу я выбрал бы: ", 
+          answers: [
+            "Сделать самостоятельно, не зависеть от других",
+            "Сделать в команде, используя силы других",
+          ],
+          progress: "69%"
+        },
+        {
+          question: "Насколько легко вы идёте на компромисс?", 
+          answers: [
+            "У меня твёрдый характер, как правило, я не иду на компромиссы",
+            "Я могу пойти на компромисс ради общего дела, но мне это не нравится",
+            "Для меня важнее быть гибким и найти общий язык с другими людьми, поэтому я легко иду на компромисс",
+          ],
+          progress: "72%"
+        },
+        {
+          question: "С какой из этих задач вам будет проще справиться?", 
+          answers: [
+            "Разобраться, как работает незнакомая компьютерная программа",
+            "Написать текст или документ",
+            "Составить бюджет или финансовый отчёт",
+            "Сделать что-то красивое своими руками (нарисовать, сшить, смастерить)",
+          ],
+          progress: "74%"
+        },
+        {
+          question: "Какой способ получения информации вы чаще используете? ", 
+          answers: [
+            "Слушаю аудиокниги и подкасты",
+            "Смотрю видеоролики",
+            "Читаю книги, статьи, треды",
+          ],
+          progress: "77%"
+        },
+        {
+          question: "В каком ритме вам комфортнее работать? ", 
+          answers: [
+            "Когда я делаю несколько дел одновременно",
+            "Когда я могу полностью сосредоточиться на одной задаче, не отвлекаясь",
+            "Когда я могу время от времени переключаться между задачами",
+          ],
+          progress: "80%"
+        },
+        {
+          question: "Насколько уверенно вы пользуетесь компьютером? ", 
+          answers: [
+            "Продвинутый пользователь, работаю за компьютером каждый день с различными программами",
+            "На бытовом уровне, использую стандартные сервисы (почта, YouTube, поиск в интернете и тому подобное)",
+            "На уровне системного администратора - сам устанавливаю нужные программы и разбираюсь в железе",
+            "С детства играю в видеоигры",
+          ],
+          progress: "82%"
+        },
+        {
+          question: "Сколько вам лет? ", 
+          answers: [
+            "От 17 до 23",
+            "От 24 до 29",
+            "От 30 до 35",
+            "От 36 до 40",
+            "От 41 до 50",
+            "больше 50",
+          ],
+          progress: "84%"
+        },
+        {
+          question: "Есть ли айти-профессия, которая уже вам приглянулась?", 
+          answers: [
+            "Да, уже есть такая",
+            "Есть несколько профессий, которые интересны, но конечного определения нет",
+            "Нет",
+          ],
+          progress: "86%"
+        },
+        {
+          question: "С какой целью вы проходили профориентацию, зачем пришли? ", 
+          answers: [
+            "Просто так, захотелось потыкать ответы и посмотреть итог, профессию менять не планирую",
+            "Стало интересно узнать результат, пока не знаю, хочу ли менять профессию",
+            "Хочу, чтобы тест указал мне направление, планирую сменить специальность",
+          ],
+          progress: "89%"
+        },
+        {
+          question: "Насколько вы заинтересованы в обучении новой профессии на данный момент? ", 
+          answers: [
+            "Готов приступить к обучению в течение недели",
+            "Хочу начать обучение в ближайший месяц",
+            "Не планирую учиться в ближайший месяц",
+          ],
+          progress: "91%"
+        },
+        {
+          question: "Сколько вы зарабатываете сейчас? ", 
+          answers: [
+            "Ничего не зарабатываю",
+            "До 30 000 р.",
+            "От 30 000 р. до 60 000 р.",
+            "От 60 000 р. до 100 000 р.",
+            "От 100 000 р.",
+          ],
+          progress: "92%"
+        },
+        {
+          question: "Сколько вы готовы платить за обучение в месяц в течение года?", 
+          answers: [
+            "Только бесплатно",
+            "До 1 000 р.",
+            "От 1 000 р. до 3 000 р.",
+            "От 3 000 р. до 5 000 р.",
+            "От 5 000 р. до 10 000 р.",
+            "От 10 000 р. до 30 000 р.",
+          ],
+          progress: "94%"
+        },
+        {
+            question: "Во сколько раз зарплаты в компании А выше, чем в компании Б?",
+            questionImageUrl:
+                "https://static.tildacdn.com/tild6634-6666-4634-a237-646664313538/Frame_2043683087.png",
+            progress: "96%",
+            answers: [
+                "В 4 раза",
+                "В 2,5 раза",
+                "В 2 раза",
+            ],
+        },
+        {
+            question: "Какое решение для роста прибыли бизнеса вы бы приняли на основе графика продаж соков?",
+            questionImageUrl:
+                "https://static.tildacdn.com/tild3335-3462-4630-b738-323263646165/Frame_2043683087_1.png",
+            progress: "97%",
+            answers: [
+                "Продавать только яблочный",
+                "Убрать из продажи апельсиновый",
+                "Дать скидку на апельсиновый",
+                "Ничего не делать",
+            ],
+        },
+        {
+            question: "Как вы считаете, какое оформление рекламного баннера считается правильным? На ваш вкус.",
+            questionImageUrl:
+                "https://static.tildacdn.com/tild6139-3864-4131-a436-333136613238/image_14.png",
+            progress: "98%",
+            answers: [
+                "Первое",
+                "Второе",
+            ],
+        },
+        {
+            question: "Как вы считаете, как нужно разложить вещи в шкафу, чтобы одеваться в два раза быстрее?",
+            questionImageUrl:
+                "https://static.tildacdn.com/tild3930-3432-4566-a465-353433663163/image_14_1.png",
+            progress: "99%",
+            answers: [
+                "По цветам",
+                "По типам (верх, низ)",
+                "По размерам",
+            ],
+        }
     ];
 
+    // window.proftest.QUESTIONS = [
+    //     {
+    //       question: "Я предпочитаю ", 
+    //       answers: [
+    //         "Работать самостоятельно и не зависеть от других",
+    //         "Работать в команде и рассчитывать на помощь коллег",
+    //         "Организовывать и контролировать процесс работы",
+    //       ],
+    //       progress: "0%"
+    //     }
+    // ];
     window.proftest.RESULT_PROFESSION = [
-      {
-            title: null,
-            dataCheck: [0],
+        {
+            title: "Аналитик",
+            dataCheck: [
+                // вопрос 1
+                4, 4, -1,
+                // вопрос 2
+                2, 0, 0,
+                // вопрос 3
+                0, 2, 0,
+                // вопрос 4
+                0, 0, 0, 0,
+                // вопрос 5
+                2, 0, 2,
+                // вопрос 6
+                4, 2, 4,
+                // вопрос 7
+                0, 2, 0,
+                // вопрос 8
+                2, 0, 0,
+                // вопрос 9
+                0, 2, 0,
+                // вопрос 10
+                0, 0, 0, 0,
+                // вопрос 11
+                0, 2, 0,
+                // вопрос 12
+                2, 0, 0,
+                // вопрос 13
+                0, 0, 0,
+                // вопрос 14
+                0, 0,
+                // вопрос 15
+                0, 0, 0, 0,
+                // вопрос 16
+                0, 0,
+                // вопрос 17
+                0, 0,
+                // вопрос 18
+                0, 0,
+                // вопрос 19
+                0, 0,
+                // вопрос 20
+                0, 0, 0, 0,
+            ],
             userProggress: 0,
             finalBlocks: [
-              null
+                "#rec752270047",
+                "#rec752270507",
+                "#rec752270048",
+                "#rec752270049",
+
+                "#rec752270063",
+                "#rec752270062",
             ],
-            superFinalBlock: null,
-            salary: null,
-            link: null,
+            salary: 95000,
+            link: "https://sky.pro/courses/analytics/data_analytics",
+        },
+        {
+            title: "Разработчик",
+            dataCheck: [
+                // вопрос 1
+                2, 0, 0,
+                // вопрос 2
+                4, -1, 4,
+                // вопрос 3
+                0, 2, 0,
+                // вопрос 4
+                0, 0, 0, 0,
+                // вопрос 5
+                2, 4, 4,
+                // вопрос 6
+                2, 0, 0,
+                // вопрос 7
+                0, 0, 2,
+                // вопрос 8
+                2, 0, 0,
+                // вопрос 9
+                0, 2, 0,
+                // вопрос 10
+                0, 0, 0, 0,
+                // вопрос 11
+                0, 2, 0,
+                // вопрос 12
+                0, 2, 0,
+                // вопрос 13
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            ],
+            userProggress: 0,
+            finalBlocks: [
+                "#rec752270050",
+                "#rec752270507",
+                "#rec752270051",
+                "#rec752270052",
+
+                "#rec752270064",
+                "#rec752270062",
+            ],
+            salary: 90000,
+            link: "https://sky.pro/courses/programming",
+        },
+        {
+            title: "Тестировщик",
+            dataCheck: [
+                // вопрос 1
+                2, 0, 0,
+                // вопрос 2
+                0, 0, 2,
+                // вопрос 3
+                0, 0, 0,
+                // вопрос 4
+                0, 0, 0, 0,
+                // вопрос 5
+                2, 4, 4,
+                // вопрос 6
+                4, -1, 4,
+                // вопрос 7
+                0, 0, 2,
+                // вопрос 8
+                0, 0, 2,
+                // вопрос 9
+                0, 2, 0,
+                // вопрос 10
+                0, 0, 0, 0,
+                // вопрос 11
+                2, 0, 0,
+                // вопрос 12
+                2, 0, 0,
+                // вопрос 13
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            ],
+            userProggress: 0,
+            finalBlocks: [
+                "#rec752270053",
+                "#rec752270507",
+                "#rec752270054",
+                "#rec752270055",
+
+                "#rec752270065",
+                "#rec752270062",
+            ],
+            salary: 70000,
+            link: "https://sky.pro/courses/programming/qa-engineer",
+        },
+        {
+            title: "Маркетолог",
+            dataCheck: [
+                // вопрос 1
+                -1, 4, 4,
+                // вопрос 2
+                0, 2, 0,
+                // вопрос 3
+                4, 0, 0,
+                // вопрос 4
+                0, 0, 0, 0,
+                // вопрос 5
+                0, 0, 0,
+                // вопрос 6
+                0, 2, 0,
+                // вопрос 7
+                2, 0, 0,
+                // вопрос 8
+                0, 2, 0,
+                // вопрос 9
+                0, 2, 0,
+                // вопрос 10
+                0, 0, 0, 0,
+                // вопрос 11
+                0, 0, 2,
+                // вопрос 12
+                2, 0, 0,
+                // вопрос 13
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            ],
+            userProggress: 0,
+            finalBlocks: [
+                "#rec752270056",
+                "#rec752270507",
+                "#rec752270057",
+                "#rec752270058",
+
+                "#rec752270066",
+                "#rec752270062",
+            ],
+            salary: 65000,
+            link: "https://sky.pro/courses/marketing/pim_n",
+        },
+        {
+            title: "Дизайнер",
+            dataCheck: [
+                // вопрос 1
+                4, 4, -1,
+                // вопрос 2
+                -1, 2, 4,
+                // вопрос 3
+                2, 0, 0,
+                // вопрос 4
+                0, 0, 0, 0,
+                // вопрос 5
+                0, 0, 0,
+                // вопрос 6
+                0, 0, 2,
+                // вопрос 7
+                0, 0, 2,
+                // вопрос 8
+                0, 0, 2,
+                // вопрос 9
+                0, 2, 0,
+                // вопрос 10
+                0, 0, 0, 0,
+                // вопрос 11
+                2, 0, 0,
+                // вопрос 12
+                0, 2, 0,
+                // вопрос 13
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            ],
+            userProggress: 0,
+            finalBlocks: [
+                "#rec752270059",
+                "#rec752270507",
+                "#rec752270060",
+                "#rec752270061",
+                
+                "#rec752270067",
+                "#rec752270062",
+            ],
+            salary: 80000,
+            link: "https://sky.pro/courses/design/graf-designer",
         },
     ];
     
@@ -62,6 +608,7 @@
           {
             leftText: null,
             imageAfterText: 'https://static.tildacdn.com/tild6131-3466-4137-b961-393435313965/Group_1597880544.png',
+            mobileImageAfterText: 'https://static.tildacdn.com/tild6263-3632-4334-b862-633666373464/Group_1597880549.svg',
             greyTextAfter: null,
             onlyImages: false,
             rightTextBeforeAnswers: 'Какие ценные для бизнеса выводы мы можем сделать?',
@@ -92,6 +639,7 @@
           {
             leftText: 'Ваш коллега попросил вас сегодня выгрузить отчет обо всех совершенных поездках в Краснодаре, которые длились меньше 7 минут.',
             imageAfterText: null,
+            mobileImageAfterText: null,
             greyTextAfter: null,
             onlyImages: false,
             rightTextBeforeAnswers: 'Какой дополнительный вопрос вы ему зададите?',
@@ -122,6 +670,7 @@
           {
             leftText: 'Вы заметили, что в одном районе города в дневное время высокий процент отмен заказов клиентами.',
             imageAfterText: 'https://static.tildacdn.com/tild3334-3531-4036-b366-613062303236/image_56_1.png',
+            mobileImageAfterText: null,
             greyTextAfter: null,
             onlyImages: false,
             rightTextBeforeAnswers: 'Что пойдете проверять, чтобы выяснить причину?',
@@ -152,6 +701,7 @@
           {
             leftText: 'Посмотрите на таблицу пользователей такси. Какой вывод для бизнеса правильно сделать из этих данных?',
             imageAfterText: 'https://static.tildacdn.com/tild3238-3563-4661-b061-663835333335/Group_1597880551.png',
+            mobileImageAfterText: null,
             greyTextAfter: null,
             onlyImages: false,
             rightTextBeforeAnswers: 'Какой вывод для бизнеса правильно сделать?',
@@ -192,6 +742,7 @@
           {
             leftText: '',
             imageAfterText: '',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: true,
             rightTextBeforeAnswers: 'Какое фото вы выберете для рекламы?',
@@ -222,6 +773,7 @@
           {
             leftText: '',
             imageAfterText: 'https://static.tildacdn.com/tild3035-3330-4431-b936-386439306133/Frame_1077239960.png',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: true,
             rightTextBeforeAnswers: 'Какой фон лучше выбрать для нашего яблока?',
@@ -252,6 +804,7 @@
           {
             leftText: '',
             imageAfterText: 'https://static.tildacdn.com/tild3238-3362-4238-a136-333835343264/Frame_2043683408.png',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: true,
             rightTextBeforeAnswers: 'Какой шрифт текста лучше выбрать для баннера?',
@@ -282,6 +835,7 @@
           {
             leftText: '',
             imageAfterText: 'https://static.tildacdn.com/tild6130-3337-4863-a233-623131613639/Frame_2043683408_2.png',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: true,
             rightTextBeforeAnswers: 'Какую кнопку лучше поставить на баннер?',
@@ -322,6 +876,7 @@
           {
             leftText: 'Есть форма для заполнения данных на сайте.',
             imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: false,
             rightTextBeforeAnswers: 'Какие условия надо прописать, чтобы в форму можно было вписать только 12 цифр?',
@@ -352,6 +907,7 @@
           {
             leftText: null,
             imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: false,
             rightTextBeforeAnswers: 'Как думаете, что должно произойти на сайте, когда в форму вводят неверные данные и нажимают на кнопку «отправить»?',
@@ -382,6 +938,7 @@
           {
             leftText: 'Условие заполнения: Форма должна содержать ровно 12 символов, только цифры, и не должна быть пустой',
             imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: false,
             rightTextBeforeAnswers: 'Как еще можно обойти эти условия и отправить некорректные данные?',
@@ -419,6 +976,7 @@
           {
             leftText: 'Вы нашли ошибку в работе формы, передали разработчику, а он говорит, что у него такой ошибки нет.',
             imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: false,
             rightTextBeforeAnswers: 'Что будете делать?',
@@ -459,6 +1017,7 @@
           {
             leftText: 'Есть форма для заполнения данных на сайте.',
             imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: false,
             rightTextBeforeAnswers: 'Какие условия надо прописать, чтобы в форму можно было вписать только 12 цифр?',
@@ -489,6 +1048,7 @@
           {
             leftText: null,
             imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: false,
             rightTextBeforeAnswers: 'Как думаете, что должно произойти на сайте, когда в форму вводят неверные данные и нажимают на кнопку «отправить»?',
@@ -519,6 +1079,7 @@
           {
             leftText: 'Вы настроили условия для заполнения, но коллеги жалуются, что пользователи продолжают заполнять некорректные данные.',
             imageAfterText: null,
+            mobileImageAfterText: null,
             greyTextAfter: 'Условие:<br>Форма должна содержать ровно 12 символов, только цифры, и не должна быть пустой',
             onlyImages: false,
             rightTextBeforeAnswers: 'Как усилим наши условия?',
@@ -556,6 +1117,7 @@
           {
             leftText: 'Какой алгоритм проверки условий заполнения составлен в правильном порядке?',
             imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: false,
             rightTextBeforeAnswers: 'Что будете делать?',
@@ -596,6 +1158,7 @@
           {
             leftText: 'Товар: женские спортивные леггинсы.',
             imageAfterText: 'https://static.tildacdn.com/tild3264-6363-4761-b066-363534303233/Frame_2043683425.png',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: false,
             rightTextBeforeAnswers: 'Какой портрет покупателя этого товара?',
@@ -626,6 +1189,7 @@
           {
             leftText: 'Товар: женские спортивные леггинсы.',
             imageAfterText: 'https://static.tildacdn.com/tild3264-6363-4761-b066-363534303233/Frame_2043683425.png',
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: false,
             rightTextBeforeAnswers: 'На каком ютуб-канале лучше разместить рекламу товара?',
@@ -656,6 +1220,7 @@
           {
             leftText: 'Отлично! Теперь настроим рекламу в интернете',
             imageAfterText: null,
+            mobileImageAfterText: null,
             greyTextAfter: '',
             onlyImages: false,
             rightTextBeforeAnswers: 'Какие фильтры аудитории нужно выбрать для настройки рекламы?',
@@ -686,6 +1251,7 @@
           {
             leftText: null,
             imageAfterText: null,
+            mobileImageAfterText: null,
             greyTextAfter: `Результаты:
               <br>Затраты на рекламу: 3 000 000 ₽
               <br>Просмотров видео с рекламой: 877 655
@@ -721,17 +1287,138 @@
       },
     }
     
+    ////
+    // Блок логики, которую не хочется пихать в сам тест. Скрытие блоков и сбор UUID'ов.
+    ////
+    
+    document.addEventListener("DOMContentLoaded", function(event) {
+      // Как загрузится страничка - скрываем все  функциональные блоки
+      [
+        ZERO_BLOCK_RESULT,
+        ZERO_BLOCK_RESULT_SECOND,
+        ZERO_BLOCK_INSERTBUTTON,
+        ZERO_BLOCK_PROGRESSBAR
+      ].forEach(b => hide(b));
+
+      // Скрываем все финальные блоки
+      window.proftest.RESULT_PROFESSION.forEach(p => {
+        p.finalBlocks.forEach(b => hide(b))
+      })
+    });
+    
+    // UUID'ы
+    let UUIDs = {};
+    document.addEventListener("gotLead", (e) => {
+      UUIDs['leadUUID'] = e.detail
+      UUIDs['exponeaUUID'] = getCookie('__exponea_etc__')
+
+      function getCookie(name) {
+          const value = `; ${document.cookie}`;
+          const parts = value.split(`; ${name}=`);
+          if (parts.length === 2) return parts.pop().split(';').shift();
+      }
+    })
+
+    // У нас часто меняются инпуты. Это костыль, который не будет блокировать код, если что-то пойдет не так.
+    Document.prototype.safeQuerySelector = function(selector) {
+      if (document.querySelector(selector) !== null)
+        return document.querySelector(selector)
+      else 
+        return document.createElement('div')
+    }
+
+    ////
+    // Главные функции. Профтест отдает два ивента - answerPressed и proftestCompleted
+    ////
+
     window.addEventListener("answerPressed", e => {
       // метрики будем слушать тут
     })
     
     window.addEventListener("proftestCompleted", e => {
+      let data = e.detail;
+
       safeDataLayer({
           'event' : 'GTMevent',
           'eventCategory' : 'viewing',
           'eventAction' : 'success',
           'eventLabel' : 'contact_page'
       })
+      
+      // Убираем профтест
+      hide(ZERO_BLOCK_PROFTEST);
+      show(ZERO_BLOCK_PROGRESSBAR)  
+
+      let currentTextIndex = 0;
+      $(`${CHANGING_TEXT_CLASS} .tn-atom`).html( CHANGING_TEXT_ARRAY[currentTextIndex] );
+      let changingTextInterval = setInterval(() => {
+          currentTextIndex++;
+          $(`${CHANGING_TEXT_CLASS} .tn-atom`).html( CHANGING_TEXT_ARRAY[currentTextIndex] );
+          if (currentTextIndex + 1 == CHANGING_TEXT_ARRAY.length) clearInterval(changingTextInterval)
+      }, (9 / CHANGING_TEXT_ARRAY.length / 2) * 1000)
+      
+
+      t_lazyload_update();
+      let progressBarWidth = Math.round(document.querySelector('.proftest-zeroBlock-progressBar').computedStyleMap().get('width').value);
+      document.querySelector('.proftest-zeroBlock-progressBar').style.setProperty('max-width', `${progressBarWidth}px`, 'important');
+      setTimeout(() => {
+        document.safeQuerySelector(ZERO_BLOCK_PROGRESSBAR).classList.add('rightHide')
+            
+            // Показываем нужные финальные блоки
+        data.professions[0].finalBlocks.forEach(b => show(b))
+        
+        // Показываем две формы
+        show(ZERO_BLOCK_RESULT)
+        show(ZERO_BLOCK_RESULT_SECOND)
+        t_lazyload_update();
+        
+        // Дополняем инпуты форм
+        setTimeout(function () {
+          const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
+          const SECOND_FORM = ZERO_BLOCK_RESULT_SECOND.replace('rec', 'form');
+          let target_lead = true;
+          let televox_import_group_id = '9411' 
+
+          document.safeQuerySelector(`${FORM} input[name="thank-you-page"]`).value = "";
+          document.safeQuerySelector(`${FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
+          document.safeQuerySelector(`${FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
+          document.safeQuerySelector(`${FORM} input[name="target_lead"]`).value = target_lead;
+          document.safeQuerySelector(`${FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
+
+          document.safeQuerySelector(`${SECOND_FORM} input[name="thank-you-page"]`).value = "";
+          document.safeQuerySelector(`${SECOND_FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
+          document.safeQuerySelector(`${SECOND_FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
+          document.safeQuerySelector(`${SECOND_FORM} input[name="target_lead"]`).value = target_lead;
+          document.safeQuerySelector(`${SECOND_FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
+          
+          const updateFn = setInterval(function () {
+              if (
+                  document.safeQuerySelector(FORM).classList.contains("js-send-form-success")
+                  ||
+                  document.safeQuerySelector(SECOND_FORM).classList.contains("js-send-form-success")
+              ) {
+                  clearInterval(updateFn);
+                  
+                  document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
+
+                
+                  hide(ZERO_BLOCK_RESULT)
+                  hide(ZERO_BLOCK_RESULT_SECOND)
+                  
+                  var evt = new CustomEvent("formFilled", { detail: data.professions[0].title });
+                  window.dispatchEvent(evt);
+                  show(ZERO_BLOCK_PROFTEST);
+              }
+          }, 300);
+        }, 2000);
+
+        // document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
+        // hide(ZERO_BLOCK_RESULT)
+        // hide(ZERO_BLOCK_RESULT_SECOND)
+        // var evt = new CustomEvent("formFilled", { detail: data.professions[0].title });
+        // window.dispatchEvent(evt);
+        // show(ZERO_BLOCK_PROFTEST);
+      }, 9 * 1000)
     })
     
     ////
@@ -754,6 +1441,36 @@
       }
     }
 
+    function getTextUserAnswers(userAnswers) {
+      let result = "";
+      for (const key in userAnswers) {
+        let answer = userAnswers[key]
+        let factAnswer = (answer.questionLink.answers[ answer.answerIndex ] ? answer.questionLink.answers[ answer.answerIndex ] : Number(answer.answerIndex)+1)
+        result += `  ${answer.questionLink.question}: ${factAnswer}\n`;
+      }
+      return result;
+    }
+
+    function getResultForAmoCrm(professions, userAnswers) {
+      let profStr = "";
+      professions.forEach((p,i) => profStr += `  Топ-${i+1}: ${p.title} (${p.userProggress}%)\n`);
+
+  return `
+  Зарплата: ${professions[0].title}
+
+  Ответы на вопросы:\n${getTextUserAnswers(userAnswers)}
+  `;
+    }
+
+    function getResultForAmoCrmOnlyProfs(professions, userAnswers) {
+      let profStr = "";
+      professions.forEach((p,i) => profStr += `  Топ-${i+1}: ${p.title} (${p.userProggress}%)\n`);
+
+  return `
+  Зарплата: ${professions[0].title}
+  `;
+    }
+
     function safeDataLayer(obj) {
       try {
         dataLayer.push(obj)
@@ -761,7 +1478,6 @@
         console.warn(`Ошибка добавления в dataLayer`, obj)
       }
     }
-
     ////
     // Дальше - код от бандлера
     ////

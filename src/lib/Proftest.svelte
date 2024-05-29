@@ -108,7 +108,7 @@
 
       console.log(userAnswers)
       answerBlock = false;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (!professionalQuestions) window.scrollTo({ top: 0, behavior: 'smooth' });
       window.dispatchEvent(
         new CustomEvent("answerPressed", { detail: {
           questionLink: questions[currentQuestionIndex],
@@ -117,12 +117,17 @@
           overallAnswerIndex: questions.startAnswerIndex + index
         }})
       );
-
-      if (currentQuestionIndex +1 !== questions.length && !professionalQuestions) {
+      
+      if ( professionalQuestions == null ) {
+        if (currentQuestionIndex + 1 !== questions.length) {
           next()
+        }
+        else {
+          proftestCompleted()
+        }
+      } else {
+        // setTimeout(next, 4000)
       }
-      else
-        proftestCompleted()
 
     }, ((professionalQuestions) ? 0 : 100));
   }
@@ -188,6 +193,9 @@
   let currentTrueAnswers = 0;
   let professionalQuestions = null;
   window.addEventListener('formFilled', (e) => {
+    // Переключаемся на белую тему
+    blackTheme = false;
+
     userAnswers = {}
     currentQuestionIndex = 0;
     professionalQuestions = e.detail;
@@ -198,6 +206,7 @@
     })
   })
 
+  // Сразу переходим в профессиональные вопросы
   // var evt = new CustomEvent("formFilled", { detail: "Разработчик" });
   // window.dispatchEvent(evt);
 
@@ -230,6 +239,17 @@
       currentQuestionIndex++
     }, 320)
   }
+
+  let blackTheme = true;
+  $: if (blackTheme) {
+    document.documentElement.style.setProperty('--background-color', 'rgba(32, 34, 41, 0.6)');
+    document.documentElement.style.setProperty('--text-color', 'white');
+  } else {
+    document.documentElement.style.setProperty('--background-color', '#e8ecfb');
+    document.documentElement.style.setProperty('--text-color', 'black');
+  }
+    
+
 </script>
 
 <!-- Для рендеринга на основе размера окна -->
@@ -241,7 +261,7 @@
     <div class="z-proftest-header__logo" style={`background-image: url('https://static.tildacdn.com/tild3335-6662-4363-b965-326337623833/Group_1321316717_1.svg')`}></div>
     <div class="z-proftest-header__timer">{timer}</div>
   </div>
-
+  
   <div class="z-proftest-second-header">
     <div class="z-proftest-second-header-h1">
       Пройдите тест и узнайте
@@ -278,7 +298,7 @@
           {/if}
           
           {#if question.imageAfterText}
-            <img alt='' class="professionalQuestions-imageAfterText" src={question.imageAfterText} />
+            <img alt='' class="professionalQuestions-imageAfterText" src={(question.mobileImageAfterText && screenWidth < 1260) ? question.mobileImageAfterText : question.imageAfterText} />
           {/if}
           
           {#if question.greyTextAfter}
@@ -453,6 +473,7 @@
     --color-purple: #7334ea;
     --color-green: #bcec30;
     --color-black: #000000;
+    --blur: blur(10px);
     font-family: StratosSkyeng;
     width: 100%;
   }
@@ -483,7 +504,7 @@
     /* клёвый блюр */
     /* background: rgba(255, 255, 255, 0.6); */
     /* backdrop-filter: blur(80px); */
-    color: black;
+    color: var(--text-color);
   }
 
   .z-proftest-header__logo {
@@ -509,7 +530,7 @@
 
   .z-skypro-proftest-main-wrapper {
     overflow: hidden;
-    padding-top: 10px;
+    padding-top: 50px;
     padding-left: 20px;
     padding-right: 20px;
     position: relative;
@@ -546,7 +567,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    color: white;
+    color: var(--text-color);
     font-size: 21px;
     font-style: normal;
     line-height: 115%;
@@ -594,7 +615,6 @@
     }
 
     .z-skypro-proftest-wrapper {
-      width: calc(100%);
       height: unset;
       min-height: unset;
       padding: 20px;
@@ -660,7 +680,8 @@
     .z-skypro-proftest-main-wrapper {
       width: calc(100%);
       padding: 13px;
-      padding-top: 0;
+      padding-top: 10px;
     }
   }
+  
 </style>

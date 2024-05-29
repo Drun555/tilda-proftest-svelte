@@ -28,7 +28,6 @@
 
 <style>
   main {
-    min-height: 90vh;
     overflow: hidden;
     position: relative;
     display: flex;
