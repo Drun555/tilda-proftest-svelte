@@ -1,546 +1,52 @@
+<!-- 
+//   ____             __ _            _              
+//  |  _ \ _ __ ___  / _| |_ ___  ___| |_            
+//  | |_) | '__/ _ \| |_| __/ _ \/ __| __|           
+//  |  __/| | | (_) |  _| ||  __/\__ \ |_            
+//  |_|__ |_|  \___/|_|  \__\___||___/\__|           
+//  |  _ \ _ __ __ _| | _| |_(_) | ___   _ _ __ ___  
+//  | |_) | '__/ _` | |/ / __| | |/ / | | | '_ ` _ \ 
+//  |  __/| | | (_| |   <| |_| |   <| |_| | | | | | |
+//  |_|   |_|  \__,_|_|\_\\__|_|_|\_\\__,_|_| |_| |_|
+//                                                                          
+-->
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <script>
-      
-    //  _______                       ______    __                            __                        ______  
-    // /       \                     /      \  /  |                          /  |                      /      \ 
-    // $$$$$$$  | ______    ______  /$$$$$$  |_$$ |_     ______    _______  _$$ |_          __     __ /$$$$$$  |
-    // $$ |__$$ |/      \  /      \ $$ |_ $$// $$   |   /      \  /       |/ $$   |        /  \   /  |$$ ___$$ |
-    // $$    $$//$$$$$$  |/$$$$$$  |$$   |   $$$$$$/   /$$$$$$  |/$$$$$$$/ $$$$$$/         $$  \ /$$/   /   $$< 
-    // $$$$$$$/ $$ |  $$/ $$ |  $$ |$$$$/      $$ | __ $$    $$ |$$      \   $$ | __        $$  /$$/   _$$$$$  |
-    // $$ |     $$ |      $$ \__$$ |$$ |       $$ |/  |$$$$$$$$/  $$$$$$  |  $$ |/  |        $$ $$/   /  \__$$ |
-    // $$ |     $$ |      $$    $$/ $$ |       $$  $$/ $$       |/     $$/   $$  $$/          $$$/    $$    $$/ 
-    // $$/      $$/        $$$$$$/  $$/         $$$$/   $$$$$$$/ $$$$$$$/     $$$$/            $/      $$$$$$/  
+    <script>                                    
+    
+    // Обрезанная версия профтеста без "головы"
 
     window.proftest = {}
 
     
     // ID этой формы T123
-    const ZERO_BLOCK_PROFTEST = "#rec755388642";
-    const ZERO_BLOCK_RESULT = "#rec752270035";
-    const ZERO_BLOCK_INSERTBUTTON = "#rec739872189";
-    const ZERO_BLOCK_RESULT_SECOND = "#rec752270068";
-    
+    const ZERO_BLOCK_PROFTEST = "#rec755398580";
+    document.onload = () => ZERO_BLOCK_PROFTEST.hide();
+
     window.proftest.QUESTIONS = [
-        {
-          question: "Я предпочитаю ", 
-          answers: [
-            "Работать самостоятельно и не зависеть от других",
-            "Работать в команде и рассчитывать на помощь коллег",
-            "Организовывать и контролировать процесс работы",
-          ],
-          progress: "0%"
-        },
-        {
-          question: "В школе мне больше нравились: ", 
-          answers: [
-            "Точные науки (информатика, математика, химия)",
-            "Гуманитарные науки (языки, литература)",
-            "Уроки творчества (рисование, музыка)",
-          ],
-          progress: "10%"
-        },
-        {
-          question: "В свободное время я люблю ", 
-          answers: [
-            "Играть в видеоигры",
-            "Проводить время в соцсетях",
-            "Читать полезные книги",
-          ],
-          progress: "20%"
-        },
-        {
-          question: "Я лучше запоминаю информацию: ", 
-          answers: [
-            "С помощью слуха",
-            "С помощью зрения",
-            "С помощью логических рассуждений",
-          ],
-          progress: "25%"
-        },
-        {
-          question: "Мне больше нравится:", 
-          answers: [
-            "Решать сложные задачи",
-            "Анализировать и выстраивать логические цепочки",
-            "Придумывать что-то новое",
-          ],
-          progress: "27%"
-        },
-        {
-          question: "Я лучше справляюсь с задачами, которые требуют", 
-          answers: [
-            "Концентрации, усидчивости",
-            "Инициативы, самостоятельности",
-            "Гибкости, сговорчивости",
-          ],
-          progress: "31%"
-        },
-        {
-          question: "Мне проще работать", 
-          answers: [
-            "С людьми",
-            "С цифрами и таблицами",
-            "С компьютерными технологиями",
-          ],
-          progress: "33%"
-        },
-        {
-          question: "Моя сильная сторона ", 
-          answers: [
-            "Аналитический склад ума, развитая логика",
-            "Эмпатия, любовь к общению с людьми",
-            "Гибкость, быстрая обучаемость и адаптация",
-          ],
-          progress: "37%"
-        },
-        {
-          question: "Мне более интересны профессии, которые дают возможность:", 
-          answers: [
-            "Стать руководителем",
-            "Стать классным высокооплачиваемым специалистом",
-            "Стать предпринимателем, работать на себя",
-          ],
-          progress: "41%"
-        },
-        {
-          question: "С другими людьми мне легче объясняться:", 
-          answers: [
-            "Картинками, образами",
-            "Схемами, цифрами",
-            "Словами",
-          ],
-          progress: "44%"
-        },
-        {
-          question: "Я считаю, что для успешной карьеры нужно:", 
-          answers: [
-            "Иметь широкий кругозор и знания во многих областях",
-            "Не распыляться, а глубоко разбираться в своей теме",
-            "Иметь амбиции и способности к управлению",
-          ],
-          progress: "47%"
-        },
-        {
-          question: "Мне легко и комфортно: ", 
-          answers: [
-            "Обдумывать свои идеи, быть одному",
-            "Заводить знакомства, быть с другими",
-          ],
-          progress: "51%"
-        },
-        {
-          question: "Если бы я оказался средневековым человеком, то я бы: ", 
-          answers: [
-            "Обустраивал жилище и растил еду рядом с домом",
-            "Был авантюристом и исследовал незнакомые места",
-          ],
-          progress: "53%"
-        },
-        {
-          question: "Меня привлекает: ", 
-          answers: [
-            "Понятное, знакомое, предсказуемое",
-            "Неизвестное, новое, неожиданное",
-          ],
-          progress: "55%"
-        },
-        {
-          question: "Мои друзья описали бы меня как:", 
-          answers: [
-            "Спокойного и сдержанного",
-            "Общительного и дружелюбного",
-          ],
-          progress: "58%"
-        },
-        {
-          question: "В разговоре мне интереснее:", 
-          answers: [
-            "Слушать выводы, выявлять причины",
-            "Наблюдать за эмоциями, ощущать настроение",
-          ],
-          progress: "61%"
-        },
-        {
-          question: "На работе я предпочитаю задачи:", 
-          answers: [
-            "Знакомые, которые понятно как делать",
-            "Новые, в которых нужно разбираться",
-          ],
-          progress: "63%"
-        },
-        {
-          question: "Когда я рассказываю историю, то: ", 
-          answers: [
-            "Отмечаю факты, говорю емко и четко",
-            "Наполняю деталями, добавляю яркость и эмоции",
-          ],
-          progress: "66%"
-        },
-        {
-          question: "Важную задачу я выбрал бы: ", 
-          answers: [
-            "Сделать самостоятельно, не зависеть от других",
-            "Сделать в команде, используя силы других",
-          ],
-          progress: "69%"
-        },
-        {
-          question: "Насколько легко вы идёте на компромисс?", 
-          answers: [
-            "У меня твёрдый характер, как правило, я не иду на компромиссы",
-            "Я могу пойти на компромисс ради общего дела, но мне это не нравится",
-            "Для меня важнее быть гибким и найти общий язык с другими людьми, поэтому я легко иду на компромисс",
-          ],
-          progress: "72%"
-        },
-        {
-          question: "С какой из этих задач вам будет проще справиться?", 
-          answers: [
-            "Разобраться, как работает незнакомая компьютерная программа",
-            "Написать текст или документ",
-            "Составить бюджет или финансовый отчёт",
-            "Сделать что-то красивое своими руками (нарисовать, сшить, смастерить)",
-          ],
-          progress: "74%"
-        },
-        {
-          question: "Какой способ получения информации вы чаще используете? ", 
-          answers: [
-            "Слушаю аудиокниги и подкасты",
-            "Смотрю видеоролики",
-            "Читаю книги, статьи, треды",
-          ],
-          progress: "77%"
-        },
-        {
-          question: "В каком ритме вам комфортнее работать? ", 
-          answers: [
-            "Когда я делаю несколько дел одновременно",
-            "Когда я могу полностью сосредоточиться на одной задаче, не отвлекаясь",
-            "Когда я могу время от времени переключаться между задачами",
-          ],
-          progress: "80%"
-        },
-        {
-          question: "Насколько уверенно вы пользуетесь компьютером? ", 
-          answers: [
-            "Продвинутый пользователь, работаю за компьютером каждый день с различными программами",
-            "На бытовом уровне, использую стандартные сервисы (почта, YouTube, поиск в интернете и тому подобное)",
-            "На уровне системного администратора - сам устанавливаю нужные программы и разбираюсь в железе",
-            "С детства играю в видеоигры",
-          ],
-          progress: "82%"
-        },
-        {
-          question: "Сколько вам лет? ", 
-          answers: [
-            "От 17 до 23",
-            "От 24 до 29",
-            "От 30 до 35",
-            "От 36 до 40",
-            "От 41 до 50",
-            "больше 50",
-          ],
-          progress: "84%"
-        },
-        {
-          question: "Есть ли айти-профессия, которая уже вам приглянулась?", 
-          answers: [
-            "Да, уже есть такая",
-            "Есть несколько профессий, которые интересны, но конечного определения нет",
-            "Нет",
-          ],
-          progress: "86%"
-        },
-        {
-          question: "С какой целью вы проходили профориентацию, зачем пришли? ", 
-          answers: [
-            "Просто так, захотелось потыкать ответы и посмотреть итог, профессию менять не планирую",
-            "Стало интересно узнать результат, пока не знаю, хочу ли менять профессию",
-            "Хочу, чтобы тест указал мне направление, планирую сменить специальность",
-          ],
-          progress: "89%"
-        },
-        {
-          question: "Насколько вы заинтересованы в обучении новой профессии на данный момент? ", 
-          answers: [
-            "Готов приступить к обучению в течение недели",
-            "Хочу начать обучение в ближайший месяц",
-            "Не планирую учиться в ближайший месяц",
-          ],
-          progress: "91%"
-        },
-        {
-          question: "Сколько вы зарабатываете сейчас? ", 
-          answers: [
-            "Ничего не зарабатываю",
-            "До 30 000 р.",
-            "От 30 000 р. до 60 000 р.",
-            "От 60 000 р. до 100 000 р.",
-            "От 100 000 р.",
-          ],
-          progress: "92%"
-        },
-        {
-          question: "Сколько вы готовы платить за обучение в месяц в течение года?", 
-          answers: [
-            "Только бесплатно",
-            "До 1 000 р.",
-            "От 1 000 р. до 3 000 р.",
-            "От 3 000 р. до 5 000 р.",
-            "От 5 000 р. до 10 000 р.",
-            "От 10 000 р. до 30 000 р.",
-          ],
-          progress: "94%"
-        },
-        {
-            question: "Во сколько раз зарплаты в компании А выше, чем в компании Б?",
-            questionImageUrl:
-                "https://static.tildacdn.com/tild6634-6666-4634-a237-646664313538/Frame_2043683087.png",
-            progress: "96%",
-            answers: [
-                "В 4 раза",
-                "В 2,5 раза",
-                "В 2 раза",
-            ],
-        },
-        {
-            question: "Какое решение для роста прибыли бизнеса вы бы приняли на основе графика продаж соков?",
-            questionImageUrl:
-                "https://static.tildacdn.com/tild3335-3462-4630-b738-323263646165/Frame_2043683087_1.png",
-            progress: "97%",
-            answers: [
-                "Продавать только яблочный",
-                "Убрать из продажи апельсиновый",
-                "Дать скидку на апельсиновый",
-                "Ничего не делать",
-            ],
-        },
-        {
-            question: "Как вы считаете, какое оформление рекламного баннера считается правильным? На ваш вкус.",
-            questionImageUrl:
-                "https://static.tildacdn.com/tild6139-3864-4131-a436-333136613238/image_14.png",
-            progress: "98%",
-            answers: [
-                "Первое",
-                "Второе",
-            ],
-        },
-        {
-            question: "Как вы считаете, как нужно разложить вещи в шкафу, чтобы одеваться в два раза быстрее?",
-            questionImageUrl:
-                "https://static.tildacdn.com/tild3930-3432-4566-a465-353433663163/image_14_1.png",
-            progress: "99%",
-            answers: [
-                "По цветам",
-                "По типам (верх, низ)",
-                "По размерам",
-            ],
-        }
+    {
+      question: 'этот профтест пустой', 
+      answers: [
+        'что могло пойти не так?'
+      ],
+      progress: null
+    },
     ];
 
     window.proftest.RESULT_PROFESSION = [
-        {
-            title: "Аналитик",
-            dataCheck: [
-                // вопрос 1
-                4, 4, -1,
-                // вопрос 2
-                2, 0, 0,
-                // вопрос 3
-                0, 2, 0,
-                // вопрос 4
-                0, 0, 0, 0,
-                // вопрос 5
-                2, 0, 2,
-                // вопрос 6
-                4, 2, 4,
-                // вопрос 7
-                0, 2, 0,
-                // вопрос 8
-                2, 0, 0,
-                // вопрос 9
-                0, 2, 0,
-                // вопрос 10
-                0, 0, 0, 0,
-                // вопрос 11
-                0, 2, 0,
-                // вопрос 12
-                2, 0, 0,
-                // вопрос 13
-                0, 0, 0,
-                // вопрос 14
-                0, 0,
-                // вопрос 15
-                0, 0, 0, 0,
-                // вопрос 16
-                0, 0,
-                // вопрос 17
-                0, 0,
-                // вопрос 18
-                0, 0,
-                // вопрос 19
-                0, 0,
-                // вопрос 20
-                0, 0, 0, 0,
-            ],
+      {
+            title: null,
+            dataCheck: [0],
             userProggress: 0,
             finalBlocks: [
-                "#rec752961986",
-                "#rec752961987",
-                "#rec752961989",
-                "#rec752962010",
-                "#rec752962008",
-
+              null
             ],
-            superFinalBlock: "#rec752961988",
-            salary: 95000,
-            link: "https://sky.pro/courses/analytics/data_analytics",
-        },
-        {
-            title: "Разработчик",
-            dataCheck: [2,0,0,4,-1,4,0,2,0,2,4,4,2,0,0,0,0,2,2,0,0,0,2,0,0,2,0,0,2,0,0,0,0,0,0,0,0,0,0],
-            userProggress: 0,
-            finalBlocks: [
-                "#rec752977908",
-                "#rec752978941",
-                "#rec752979412",
-                "#rec753042161",
-                "#rec752962008",
-            ],
-            superFinalBlock: "#rec752979322",
-            salary: 90000,
-            link: "https://sky.pro/courses/programming",
-        },
-        {
-            title: "Тестировщик",
-            dataCheck: [
-                // вопрос 1
-                2, 0, 0,
-                // вопрос 2
-                0, 0, 2,
-                // вопрос 3
-                0, 0, 0,
-                // вопрос 4
-                0, 0, 0, 0,
-                // вопрос 5
-                2, 4, 4,
-                // вопрос 6
-                4, -1, 4,
-                // вопрос 7
-                0, 0, 2,
-                // вопрос 8
-                0, 0, 2,
-                // вопрос 9
-                0, 2, 0,
-                // вопрос 10
-                0, 0, 0, 0,
-                // вопрос 11
-                2, 0, 0,
-                // вопрос 12
-                2, 0, 0,
-                // вопрос 13
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            ],
-            userProggress: 0,
-            finalBlocks: [
-                "#rec752961996",
-                "#rec752961997",
-                "#rec752961999",
-                "#rec752962012",
-                "#rec752962008",
-            ],
-            superFinalBlock: "#rec752961998",
-            salary: 70000,
-            link: "https://sky.pro/courses/programming/qa-engineer",
-        },
-        {
-            title: "Маркетолог",
-            dataCheck: [
-                // вопрос 1
-                -1, 4, 4,
-                // вопрос 2
-                0, 2, 0,
-                // вопрос 3
-                4, 0, 0,
-                // вопрос 4
-                0, 0, 0, 0,
-                // вопрос 5
-                0, 0, 0,
-                // вопрос 6
-                0, 2, 0,
-                // вопрос 7
-                2, 0, 0,
-                // вопрос 8
-                0, 2, 0,
-                // вопрос 9
-                0, 2, 0,
-                // вопрос 10
-                0, 0, 0, 0,
-                // вопрос 11
-                0, 0, 2,
-                // вопрос 12
-                2, 0, 0,
-                // вопрос 13
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            ],
-            userProggress: 0,
-            finalBlocks: [
-                "#rec752962000",
-                "#rec752962001",
-                "#rec752962003",
-                "#rec752962013",
-                "#rec752962008",
-            ],
-            superFinalBlock: "#rec752962002",
-            salary: 65000,
-            link: "https://sky.pro/courses/marketing/pim_n",
-        },
-        {
-            title: "Дизайнер",
-            dataCheck: [
-                // вопрос 1
-                4, 4, -1,
-                // вопрос 2
-                -1, 2, 4,
-                // вопрос 3
-                2, 0, 0,
-                // вопрос 4
-                0, 0, 0, 0,
-                // вопрос 5
-                0, 0, 0,
-                // вопрос 6
-                0, 0, 2,
-                // вопрос 7
-                0, 0, 2,
-                // вопрос 8
-                0, 0, 2,
-                // вопрос 9
-                0, 2, 0,
-                // вопрос 10
-                0, 0, 0, 0,
-                // вопрос 11
-                2, 0, 0,
-                // вопрос 12
-                0, 2, 0,
-                // вопрос 13
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            ],
-            userProggress: 0,
-            finalBlocks: [
-                "#rec752962004",
-                "#rec752962005",
-                "#rec752962007",
-                "#rec752962014",
-                "#rec752962008",
-            ],
-            superFinalBlock: "#rec752962006",
-            salary: 80000,
-            link: "https://sky.pro/courses/design/graf-designer",
+            superFinalBlock: null,
+            salary: null,
+            link: null,
         },
     ];
     
@@ -1214,51 +720,7 @@
         ]
       },
     }
-    ////
-    // Блок логики, которую не хочется пихать в сам тест. Скрытие блоков и сбор UUID'ов.
-    ////
     
-    document.addEventListener("DOMContentLoaded", function(event) {
-      // Как загрузится страничка - скрываем все  функциональные блоки
-      [
-        ZERO_BLOCK_RESULT,
-        ZERO_BLOCK_RESULT_SECOND,
-        ZERO_BLOCK_INSERTBUTTON
-      ].forEach(b => hide(b));
-
-      // Скрываем все финальные блоки
-      window.proftest.RESULT_PROFESSION.forEach(p => {
-        p.finalBlocks.forEach(b => hide(b))
-      })
-      
-      
-    });
-    
-    // UUID'ы
-    let UUIDs = {};
-    document.addEventListener("gotLead", (e) => {
-      UUIDs['leadUUID'] = e.detail
-      UUIDs['exponeaUUID'] = getCookie('__exponea_etc__')
-
-      function getCookie(name) {
-          const value = `; ${document.cookie}`;
-          const parts = value.split(`; ${name}=`);
-          if (parts.length === 2) return parts.pop().split(';').shift();
-      }
-    })
-
-    // У нас часто меняются инпуты. Это костыль, который не будет блокировать код, если что-то пойдет не так.
-    Document.prototype.safeQuerySelector = function(selector) {
-      if (document.querySelector(selector) !== null)
-        return document.querySelector(selector)
-      else 
-        return document.createElement('div')
-    }
-
-    ////
-    // Главные функции. Профтест отдает два ивента - answerPressed и proftestCompleted
-    ////
-
     window.addEventListener("answerPressed", e => {
       // метрики будем слушать тут
     })
@@ -1270,58 +732,6 @@
           'eventAction' : 'success',
           'eventLabel' : 'contact_page'
       })
-      
-      // Убираем профтест
-      hide(ZERO_BLOCK_PROFTEST);
-      
-      let data = e.detail; 
-      // Показываем нужные финальные блоки
-      data.professions[0].finalBlocks.forEach(b => show(b))
-      
-      // Показываем две формы
-      show(ZERO_BLOCK_RESULT)
-      show(ZERO_BLOCK_RESULT_SECOND)
-      t_lazyload_update();
-
-      // сначала заблюрим все признаки
-      for (const key in data.answers) 
-        document.querySelectorAll(`${data.answers[key].questionLink.class}`).forEach(b => b.classList.add("blur-for-marks"))
-      
-      // Дополняем инпуты форм
-      setTimeout(function () {
-        const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
-        const SECOND_FORM = ZERO_BLOCK_RESULT_SECOND.replace('rec', 'form');
-        let target_lead = true;
-        let televox_import_group_id = '9411' 
-
-        document.safeQuerySelector(`${FORM} input[name="thank-you-page"]`).value = "";
-        document.safeQuerySelector(`${FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
-        document.safeQuerySelector(`${FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
-        document.safeQuerySelector(`${FORM} input[name="target_lead"]`).value = target_lead;
-        document.safeQuerySelector(`${FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
-
-        document.safeQuerySelector(`${SECOND_FORM} input[name="thank-you-page"]`).value = "";
-        document.safeQuerySelector(`${SECOND_FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
-        document.safeQuerySelector(`${SECOND_FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
-        document.safeQuerySelector(`${SECOND_FORM} input[name="target_lead"]`).value = target_lead;
-        document.safeQuerySelector(`${SECOND_FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
-        
-        const updateFn = setInterval(function () {
-            if (
-                document.safeQuerySelector(FORM).classList.contains("js-send-form-success")
-                ||
-                document.safeQuerySelector(SECOND_FORM).classList.contains("js-send-form-success")
-            ) {
-                clearInterval(updateFn);
-                
-                document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
-
-              
-                hide(ZERO_BLOCK_RESULT)
-                hide(ZERO_BLOCK_RESULT_SECOND)
-            }
-        }, 300);
-      }, 2000);
     })
     
     ////
@@ -1344,36 +754,6 @@
       }
     }
 
-    function getTextUserAnswers(userAnswers) {
-      let result = "";
-      for (const key in userAnswers) {
-        let answer = userAnswers[key]
-        let factAnswer = (answer.questionLink.answers[ answer.answerIndex ] ? answer.questionLink.answers[ answer.answerIndex ] : Number(answer.answerIndex)+1)
-        result += `  ${answer.questionLink.question}: ${factAnswer}\n`;
-      }
-      return result;
-    }
-
-    function getResultForAmoCrm(professions, userAnswers) {
-      let profStr = "";
-      professions.forEach((p,i) => profStr += `  Топ-${i+1}: ${p.title} (${p.userProggress}%)\n`);
-
-  return `
-  Зарплата: ${professions[0].title}
-
-  Ответы на вопросы:\n${getTextUserAnswers(userAnswers)}
-  `;
-    }
-
-    function getResultForAmoCrmOnlyProfs(professions, userAnswers) {
-      let profStr = "";
-      professions.forEach((p,i) => profStr += `  Топ-${i+1}: ${p.title} (${p.userProggress}%)\n`);
-
-  return `
-  Зарплата: ${professions[0].title}
-  `;
-    }
-
     function safeDataLayer(obj) {
       try {
         dataLayer.push(obj)
@@ -1381,6 +761,7 @@
         console.warn(`Ошибка добавления в dataLayer`, obj)
       }
     }
+
     ////
     // Дальше - код от бандлера
     ////
