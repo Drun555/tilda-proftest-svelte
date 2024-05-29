@@ -10,8 +10,8 @@
 
     addStyle(`
     :root {
-      background-color: white;
-      background-image: url('https://static.tildacdn.com/tild3365-6235-4731-a132-653135303436/Ellipse_2444_1.png');
+      background-color: black;
+      background-image: url('https://static.tildacdn.com/tild3861-3062-4335-a562-303338373166/Frame_2043683093_2_1.png');
       background-size: auto;
       background-position: center;
       background-repeat: repeat;
@@ -30,8 +30,6 @@
   main {
     min-height: 90vh;
     overflow: hidden;
-    padding-left: 20px;
-    padding-right: 20px;
     position: relative;
     display: flex;
     align-items: center;
