@@ -2,9 +2,18 @@
   // @ts-nocheck
 
   import '../assets/styles.scss'
-
+  import { cumulativeOffset } from './helpers'
   let data = window.proftest;
   
+  let blackTheme = true;
+  $: if (blackTheme) {
+    document.documentElement.style.setProperty('--background-color', 'rgba(32, 34, 41, 0.6)');
+    document.documentElement.style.setProperty('--text-color', 'white');
+  } else {
+    document.documentElement.style.setProperty('--background-color', '#e8ecfb');
+    document.documentElement.style.setProperty('--text-color', 'black');
+  }
+
   const preload = [
     "https://static.tildacdn.com/tild6162-6164-4262-b463-623437623433/Frame_1077239957_1.png",
     "https://static.tildacdn.com/tild6337-3535-4534-b737-356263663536/Frame_1077239959_1.png",
@@ -108,7 +117,9 @@
 
       console.log(userAnswers)
       answerBlock = false;
-      if (!professionalQuestions) window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      let thisProftestOffset = cumulativeOffset(document.querySelector('.z-skypro-proftest-wrapper'))
+      window.scrollTo({ top: thisProftestOffset.top, behavior: 'smooth' });
       window.dispatchEvent(
         new CustomEvent("answerPressed", { detail: {
           questionLink: questions[currentQuestionIndex],
@@ -126,23 +137,43 @@
           proftestCompleted()
         }
       } else {
-        // setTimeout(next, 4000)
+        beforeSwitching = true;
+        setTimeout(next, 3000)
+
+        if (currentQuestionIndex + 1 == questions.length) {
+          professionalTestCompleted()
+        }
       }
 
     }, ((professionalQuestions) ? 0 : 100));
   }
 
-  function proftestCompleted() {
+  function professionalTestCompleted() {
     currentTrueAnswers = 0;
+    professionalCompleted = true;
+
+    for (const key in userAnswers) {
+      let a = userAnswers[key]
+
+      if (a.questionLink.answers[a.answerIndex])
+        currentTrueAnswers++;
+    }
+
+    window.dispatchEvent(
+      new CustomEvent("professionalTestCompleted", { detail: {
+        answers: userAnswers,
+        profession: professionalQuestions
+      }})
+    );
+  }
+  function proftestCompleted() {
+    
     // подсчитаем общие баллы по каждой профессии
     for (const key in userAnswers) {
       let a = userAnswers[key]
       data.RESULT_PROFESSION.forEach(prof => {
         prof.userProggress += prof.dataCheck[a.overallAnswerIndex] || 0
       })
-
-      if (a.questionLink.answers[a.answerIndex])
-        currentTrueAnswers++;
     }
 
     // Отсортируем
@@ -151,8 +182,7 @@
     // Отчитываемся
     var evt = new CustomEvent("proftestCompleted", { detail: {
       answers: userAnswers,
-      professions: data.RESULT_PROFESSION,
-      usedData: data
+      professions: data.RESULT_PROFESSION
     }});
     window.dispatchEvent(evt);
   }
@@ -192,10 +222,12 @@
 
   let currentTrueAnswers = 0;
   let professionalQuestions = null;
+  let professionalCompleted = false;
   window.addEventListener('formFilled', (e) => {
     // Переключаемся на белую тему
     blackTheme = false;
-
+    professionalCompleted = false;
+    currentTrueAnswers = 0;
     userAnswers = {}
     currentQuestionIndex = 0;
     professionalQuestions = e.detail;
@@ -223,7 +255,8 @@
     }
   }
 
-  let switching = false; 
+  let switching = false;
+  let beforeSwitching = false; 
   function back() {
     switching = true;
     setTimeout(() => {
@@ -236,19 +269,10 @@
     switching = true;
     setTimeout(() => {
       switching = false;
-      currentQuestionIndex++
+      beforeSwitching = false;
+      currentQuestionIndex++;
     }, 320)
   }
-
-  let blackTheme = true;
-  $: if (blackTheme) {
-    document.documentElement.style.setProperty('--background-color', 'rgba(32, 34, 41, 0.6)');
-    document.documentElement.style.setProperty('--text-color', 'white');
-  } else {
-    document.documentElement.style.setProperty('--background-color', '#e8ecfb');
-    document.documentElement.style.setProperty('--text-color', 'black');
-  }
-    
 
 </script>
 
@@ -392,18 +416,21 @@
     {:else if typeof question.subtitle === 'undefined' && (!question.type || question.type == 'classic')}
       <!-- Разметка для обычных вопросов -->
       {#if !question.questionImageUrl}
-      <div class={`z-skypro-proftest-wrapper__header-wrap ${switching ? 'opacity0' : 'opacity100'}`}>
+      <div class={`z-skypro-proftest-wrapper__header-wrap`}>
           <p class="z-skypro-proftest-wrapper__header">
-              Пройдите тест, узнайте какой профессии подходите и&nbsp;получите
-              бесплатную карьерную консультацию
+            Подходит ли вам IT-сфера?
           </p>
-          <div class={`z-skypro-proftest-wrapper__subtitle ${switching ? 'opacity0' : 'opacity100'}`}>
-              В конце подарим
-              <span class="ddd">скидку до 55%</span> на&nbsp;обучение
+          <div class={`z-skypro-proftest-wrapper__subtitle`}>
+            Пройдите тест и узнайте, получится ли у вас работать в IT
+          </div>
+          <div class="z-skypro-proftest-wrapper__giftBox">
+            В конце подарим бесплатную консультацию с карьерным экспертом и книгу «Первые шаги в IT» для начинающих
+            <img alt='подарок' src="https://static.tildacdn.com/tild6636-3238-4332-b831-613138613336/Group_1597880045.png">
           </div>
       </div>
       {/if}
 
+      
       {#if question.questionImageUrl}
       <div style={`background-image: url(${question.questionImageUrl})`} class={`z-skypro-proftest-wrapper__question-image ${switching ? 'opacity0' : 'opacity100'}`}></div>
       {/if}
@@ -452,16 +479,28 @@
   {/if}
   -->
   <div class="z-skypro-proftest__buttons">
-    {#if currentQuestionIndex > 0}
+    {#if currentQuestionIndex > 0 && !beforeSwitching}
     <button on:click={() => back() } class="z-skypro-proftest__button z-skypro-proftest__button--prev">
         Назад
     </button>
     {/if}
-    {#if userAnswers[currentQuestionIndex] && !switching}
+    {#if userAnswers[currentQuestionIndex] && !switching && !beforeSwitching}
     <button on:click={() => next() } class="z-skypro-proftest__button z-skypro-proftest__button--next">
         Далее
     </button>
+    {:else if professionalCompleted && !beforeSwitching}
+    <button 
+      on:click={() => {
+        window.dispatchEvent(
+          new CustomEvent("formFilled", { detail: professionalQuestions })
+        );
+      }} 
+      class="z-skypro-proftest__button z-skypro-proftest__button--next"
+    >
+      Пройти заново
+    </button>
     {/if}
+    
   </div>
 </div>
 
