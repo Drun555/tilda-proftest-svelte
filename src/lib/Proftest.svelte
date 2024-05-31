@@ -119,7 +119,10 @@
       answerBlock = false;
 
       let thisProftestOffset = cumulativeOffset(document.querySelector('.z-skypro-proftest-wrapper'))
-      window.scrollTo({ top: thisProftestOffset.top, behavior: 'smooth' });
+      let currentTopOffset = document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentTopOffset > thisProftestOffset.top)
+        window.scrollTo({ top: thisProftestOffset.top, behavior: 'smooth' });
+
       window.dispatchEvent(
         new CustomEvent("answerPressed", { detail: {
           questionLink: questions[currentQuestionIndex],
@@ -239,8 +242,8 @@
   })
 
   // Сразу переходим в профессиональные вопросы
-  var evt = new CustomEvent("formFilled", { detail: "Разработчик" });
-  window.dispatchEvent(evt);
+  // var evt = new CustomEvent("formFilled", { detail: "Разработчик" });
+  // window.dispatchEvent(evt);
 
   let currentProfessionalAnswer = null;
   $: try {
