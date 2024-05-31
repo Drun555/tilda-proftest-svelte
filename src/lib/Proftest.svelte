@@ -102,7 +102,7 @@
       let thisProftestOffset = cumulativeOffset(document.querySelector('.z-skypro-proftest-wrapper'))
       let currentTopOffset = document.documentElement.scrollTop || document.body.scrollTop;
       if (currentTopOffset > thisProftestOffset.top)
-      window.scrollTo({ top: thisProftestOffset.top, behavior: 'smooth' });
+        window.scrollTo({ top: thisProftestOffset.top, behavior: 'smooth' });
       window.dispatchEvent(
         new CustomEvent("answerPressed", { detail: {
           questionLink: questions[currentQuestionIndex],
@@ -264,13 +264,13 @@
 <svelte:window bind:innerWidth={screenWidth} />
 
 <div class="z-skypro-proftest-main-wrapper">
-  
+  <!--
   <div class="z-proftest-header">
     <div class="z-proftest-header__logo" style={`background-image: url('https://static.tildacdn.com/tild3438-3830-4232-a335-386262333166/Group_18541.svg')`}></div>
     <div class="z-proftest-header__timer">{timer}</div>
   </div>
   
-  <!-- 
+   
   <div class="z-proftest-second-header">
     <div class="z-proftest-second-header-h1">
       Пройдите тест и узнайте
@@ -409,10 +409,10 @@
             Пройдите тест и узнайте, получится ли у вас работать в IT
           </div>
           <div class="z-skypro-proftest-wrapper__giftBox">
-            <img alt='подарок' src="https://static.tildacdn.com/tild6636-3238-4332-b831-613138613336/Group_1597880045.png">
             <div class="z-skypro-proftest-wrapper__giftBox-text">
               В конце подарим бесплатную консультацию с карьерным экспертом и книгу «Первые шаги в IT» для начинающих
             </div>
+            <img alt='подарок' src="https://static.tildacdn.com/tild6636-3238-4332-b831-613138613336/Group_1597880045.png">
           </div>
       </div>
       {/if}
