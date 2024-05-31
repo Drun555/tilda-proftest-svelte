@@ -1,14 +1,16 @@
 <!-- 
-//   ____             __ _            _              
-//  |  _ \ _ __ ___  / _| |_ ___  ___| |_            
-//  | |_) | '__/ _ \| |_| __/ _ \/ __| __|           
-//  |  __/| | | (_) |  _| ||  __/\__ \ |_            
-//  |_|__ |_|  \___/|_|  \__\___||___/\__|           
-//  |  _ \ _ __ __ _| | _| |_(_) | ___   _ _ __ ___  
-//  | |_) | '__/ _` | |/ / __| | |/ / | | | '_ ` _ \ 
-//  |  __/| | | (_| |   <| |_| |   <| |_| | | | | | |
-//  |_|   |_|  \__,_|_|\_\\__|_|_|\_\\__,_|_| |_| |_|
-//                                                                          
+.%%%%%...%%%%%....%%%%...%%%%%%..%%%%%%..%%%%%%...%%%%...%%%%%%.
+.%%..%%..%%..%%..%%..%%..%%........%%....%%......%%........%%...
+.%%%%%...%%%%%...%%..%%..%%%%......%%....%%%%.....%%%%.....%%...
+.%%......%%..%%..%%..%%..%%........%%....%%..........%%....%%...
+.%%......%%..%%...%%%%...%%........%%....%%%%%%...%%%%.....%%...
+................................................................
+..%%%%....%%%%...%%..%%..........%%%%%%..%%%%%%.................                
+.%%..%%..%%..%%..%%%.%%............%%......%%...................                
+.%%......%%%%%%..%%.%%%..%%%%%%....%%......%%...................                
+.%%..%%..%%..%%..%%..%%............%%......%%...................                
+..%%%%...%%..%%..%%..%%..........%%%%%%....%%...................                
+................................................................                
 -->
 
 <!doctype html>
@@ -22,17 +24,10 @@
 
     
     // ID этой формы T123
-    const ZERO_BLOCK_PROFTEST = "#rec755398580";
-    const ZERO_BLOCK_RESULT = "#rec752270035";
-    const ZERO_BLOCK_INSERTBUTTON = "#rec739872189";
-    const ZERO_BLOCK_RESULT_SECOND = "#rec752270068";
-    const ZERO_BLOCK_PROGRESSBAR = "#rec752270034";
-    const CHANGING_TEXT_CLASS = ".changingText"
-    const CHANGING_TEXT_ARRAY = [
-        "Наш научный алгоритм уже нашел вашу профессию",
-        "Сегодня уже 5 472 человек узнали свое призвание",
-        "Результат готов!"
-    ]
+    const ZERO_BLOCK_PROFTEST = "#rec756019498";
+    const ZERO_BLOCK_RESULT = "#rec754515338";
+    const ZERO_BLOCK_INSERTBUTTON = "#rec754498819";
+    const ZERO_BLOCK_RESULT_SECOND = "#rec754560367";
 
     window.proftest.QUESTIONS = [
         {
@@ -306,50 +301,6 @@
             "От 10 000 р. до 30 000 р.",
           ],
           progress: "94%"
-        },
-        {
-            question: "Во сколько раз зарплаты в компании А выше, чем в компании Б?",
-            questionImageUrl:
-                "https://static.tildacdn.com/tild6634-6666-4634-a237-646664313538/Frame_2043683087.png",
-            progress: "96%",
-            answers: [
-                "В 4 раза",
-                "В 2,5 раза",
-                "В 2 раза",
-            ],
-        },
-        {
-            question: "Какое решение для роста прибыли бизнеса вы бы приняли на основе графика продаж соков?",
-            questionImageUrl:
-                "https://static.tildacdn.com/tild3335-3462-4630-b738-323263646165/Frame_2043683087_1.png",
-            progress: "97%",
-            answers: [
-                "Продавать только яблочный",
-                "Убрать из продажи апельсиновый",
-                "Дать скидку на апельсиновый",
-                "Ничего не делать",
-            ],
-        },
-        {
-            question: "Как вы считаете, какое оформление рекламного баннера считается правильным? На ваш вкус.",
-            questionImageUrl:
-                "https://static.tildacdn.com/tild6139-3864-4131-a436-333136613238/image_14.png",
-            progress: "98%",
-            answers: [
-                "Первое",
-                "Второе",
-            ],
-        },
-        {
-            question: "Как вы считаете, как нужно разложить вещи в шкафу, чтобы одеваться в два раза быстрее?",
-            questionImageUrl:
-                "https://static.tildacdn.com/tild3930-3432-4566-a465-353433663163/image_14_1.png",
-            progress: "99%",
-            answers: [
-                "По цветам",
-                "По типам (верх, низ)",
-                "По размерам",
-            ],
         }
     ];
 
@@ -364,928 +315,31 @@
     //       progress: "0%"
     //     }
     // ];
+
     window.proftest.RESULT_PROFESSION = [
-        {
-            title: "Аналитик",
-            dataCheck: [
-                // вопрос 1
-                4, 4, -1,
-                // вопрос 2
-                2, 0, 0,
-                // вопрос 3
-                0, 2, 0,
-                // вопрос 4
-                0, 0, 0, 0,
-                // вопрос 5
-                2, 0, 2,
-                // вопрос 6
-                4, 2, 4,
-                // вопрос 7
-                0, 2, 0,
-                // вопрос 8
-                2, 0, 0,
-                // вопрос 9
-                0, 2, 0,
-                // вопрос 10
-                0, 0, 0, 0,
-                // вопрос 11
-                0, 2, 0,
-                // вопрос 12
-                2, 0, 0,
-                // вопрос 13
-                0, 0, 0,
-                // вопрос 14
-                0, 0,
-                // вопрос 15
-                0, 0, 0, 0,
-                // вопрос 16
-                0, 0,
-                // вопрос 17
-                0, 0,
-                // вопрос 18
-                0, 0,
-                // вопрос 19
-                0, 0,
-                // вопрос 20
-                0, 0, 0, 0,
-            ],
-            userProggress: 0,
-            finalBlocks: [
-                "#rec752270047",
-                "#rec752270507",
-                "#rec752270048",
-                "#rec752270049",
-
-                "#rec752270063",
-                "#rec752270062",
-            ],
-            salary: 95000,
-            link: "https://sky.pro/courses/analytics/data_analytics",
-        },
-        {
-            title: "Разработчик",
-            dataCheck: [
-                // вопрос 1
-                2, 0, 0,
-                // вопрос 2
-                4, -1, 4,
-                // вопрос 3
-                0, 2, 0,
-                // вопрос 4
-                0, 0, 0, 0,
-                // вопрос 5
-                2, 4, 4,
-                // вопрос 6
-                2, 0, 0,
-                // вопрос 7
-                0, 0, 2,
-                // вопрос 8
-                2, 0, 0,
-                // вопрос 9
-                0, 2, 0,
-                // вопрос 10
-                0, 0, 0, 0,
-                // вопрос 11
-                0, 2, 0,
-                // вопрос 12
-                0, 2, 0,
-                // вопрос 13
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            ],
-            userProggress: 0,
-            finalBlocks: [
-                "#rec752270050",
-                "#rec752270507",
-                "#rec752270051",
-                "#rec752270052",
-
-                "#rec752270064",
-                "#rec752270062",
-            ],
-            salary: 90000,
-            link: "https://sky.pro/courses/programming",
-        },
-        {
-            title: "Тестировщик",
-            dataCheck: [
-                // вопрос 1
-                2, 0, 0,
-                // вопрос 2
-                0, 0, 2,
-                // вопрос 3
-                0, 0, 0,
-                // вопрос 4
-                0, 0, 0, 0,
-                // вопрос 5
-                2, 4, 4,
-                // вопрос 6
-                4, -1, 4,
-                // вопрос 7
-                0, 0, 2,
-                // вопрос 8
-                0, 0, 2,
-                // вопрос 9
-                0, 2, 0,
-                // вопрос 10
-                0, 0, 0, 0,
-                // вопрос 11
-                2, 0, 0,
-                // вопрос 12
-                2, 0, 0,
-                // вопрос 13
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            ],
-            userProggress: 0,
-            finalBlocks: [
-                "#rec752270053",
-                "#rec752270507",
-                "#rec752270054",
-                "#rec752270055",
-
-                "#rec752270065",
-                "#rec752270062",
-            ],
-            salary: 70000,
-            link: "https://sky.pro/courses/programming/qa-engineer",
-        },
-        {
-            title: "Маркетолог",
-            dataCheck: [
-                // вопрос 1
-                -1, 4, 4,
-                // вопрос 2
-                0, 2, 0,
-                // вопрос 3
-                4, 0, 0,
-                // вопрос 4
-                0, 0, 0, 0,
-                // вопрос 5
-                0, 0, 0,
-                // вопрос 6
-                0, 2, 0,
-                // вопрос 7
-                2, 0, 0,
-                // вопрос 8
-                0, 2, 0,
-                // вопрос 9
-                0, 2, 0,
-                // вопрос 10
-                0, 0, 0, 0,
-                // вопрос 11
-                0, 0, 2,
-                // вопрос 12
-                2, 0, 0,
-                // вопрос 13
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            ],
-            userProggress: 0,
-            finalBlocks: [
-                "#rec752270056",
-                "#rec752270507",
-                "#rec752270057",
-                "#rec752270058",
-
-                "#rec752270066",
-                "#rec752270062",
-            ],
-            salary: 65000,
-            link: "https://sky.pro/courses/marketing/pim_n",
-        },
-        {
-            title: "Дизайнер",
-            dataCheck: [
-                // вопрос 1
-                4, 4, -1,
-                // вопрос 2
-                -1, 2, 4,
-                // вопрос 3
-                2, 0, 0,
-                // вопрос 4
-                0, 0, 0, 0,
-                // вопрос 5
-                0, 0, 0,
-                // вопрос 6
-                0, 0, 2,
-                // вопрос 7
-                0, 0, 2,
-                // вопрос 8
-                0, 0, 2,
-                // вопрос 9
-                0, 2, 0,
-                // вопрос 10
-                0, 0, 0, 0,
-                // вопрос 11
-                2, 0, 0,
-                // вопрос 12
-                0, 2, 0,
-                // вопрос 13
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            ],
-            userProggress: 0,
-            finalBlocks: [
-                "#rec752270059",
-                "#rec752270507",
-                "#rec752270060",
-                "#rec752270061",
-                
-                "#rec752270067",
-                "#rec752270062",
-            ],
-            salary: 80000,
-            link: "https://sky.pro/courses/design/graf-designer",
-        },
+      {
+        title: "Вам подходит IT",
+        finalBlocks: [
+          "#rec754515372",
+          "#rec754525707",
+        ],
+        dataCheck: [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        superFinalBlock: "#rec754520671",
+        userProggress: 0
+      },
+      {
+        title: "Вам не подходит IT",
+        finalBlocks: [
+          "#rec754535307",
+          "#rec754498823",
+        ],
+        dataCheck: [0,0,99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        superFinalBlock: "#rec754498823",
+        userProggress: 0
+      }
     ];
     
-    window.proftest.SPECIALIZED_QUESTIONS = {
-      "Аналитик": {
-        title: "Сейчас вы попробуете <br>себя в роли аналитика",
-        subtitle: "<img class='inline-emoji' src='https://static.tildacdn.com/tild3662-6666-4132-a135-323464616239/wrench_1f527.png' />Анализируем работу такси",
-        finalImage: '',
-        finalTitle: "Задание решено! <img class='inline-emoji' src='https://static.tildacdn.com/tild3732-3734-4564-a632-383234393463/party-popper_1f389.png' />",
-        finalRedBlock: 'Не страшно, если не получилось с первого раза. Тест подобрал профессию не просто так — узнайте на консультации, что еще вам может подойти',
-        finalGreenBlock: 'Вы отлично справились с задачей аналитика! Понравилось? Узнайте, как начать зарабатывать на этом реальные деньги.',
-        questions: [
-          {
-            leftText: null,
-            imageAfterText: 'https://static.tildacdn.com/tild6131-3466-4137-b961-393435313965/Group_1597880544.png',
-            mobileImageAfterText: 'https://static.tildacdn.com/tild6263-3632-4334-b862-633666373464/Group_1597880549.svg',
-            greyTextAfter: null,
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Какие ценные для бизнеса выводы мы можем сделать?',
-            answers: [
-              {
-                text: 'Клиенты в Краснодаре не готовы ждать машину больше четырех минут',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, но это не ценные выводы для бизнеса — они не помогут увеличить прибыль',
-              },
-              {
-                text: 'Жители Самары более терпеливы и не торопятся',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, но это не ценные выводы для бизнеса — они не помогут увеличить прибыль',
-              },
-              {
-                text: 'Время поиска машины на заказ напрямую влияет на отказы от поездок',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Это верный вывод, который поможет вырастить прибыль',
-              }
-            ]
-          },
-          {
-            leftText: 'Ваш коллега попросил вас сегодня выгрузить отчет обо всех совершенных поездках в Краснодаре, которые длились меньше 7 минут.',
-            imageAfterText: null,
-            mobileImageAfterText: null,
-            greyTextAfter: null,
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Какой дополнительный вопрос вы ему зададите?',
-            answers: [
-              {
-                text: 'Зачем ему нужен этот отчет?',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, нет. Вам важнее всего узнать даты формирования отчета: за последние 10 лет или за последний месяц.',
-              },
-              {
-                text: 'Нужно ли что-то еще включить в отчет?',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, нет. Вам важнее всего узнать даты формирования отчета: за последние 10 лет или за последний месяц.',
-              },
-              {
-                text: 'За какой период нужен этот отчет?',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Важно понимать даты формирования отчета: за последние 10 лет или всего за последний месяц.',
-              }
-            ]
-          },
-          {
-            leftText: 'Вы заметили, что в одном районе города в дневное время высокий процент отмен заказов клиентами.',
-            imageAfterText: 'https://static.tildacdn.com/tild3334-3531-4036-b366-613062303236/image_56_1.png',
-            mobileImageAfterText: null,
-            greyTextAfter: null,
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Что пойдете проверять, чтобы выяснить причину?',
-            answers: [
-              {
-                text: 'Марку машины водителя отмененного заказа',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Проверить можно, но это вряд ли так сильно влияет на уровень отказов',
-              },
-              {
-                text: 'Совпадает ли это с час-пиком и пробками в городе',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Высока вероятность, что это место пробок в городе и клиенты не дожидаются машин — так бывает',
-              },
-              {
-                text: 'Рейтинг клиентов, которые отменяют заказы',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Проверить можно, но это вряд ли так сильно влияет на уровень отказов',
-              }
-            ]
-          },
-          {
-            leftText: 'Посмотрите на таблицу пользователей такси. Какой вывод для бизнеса правильно сделать из этих данных?',
-            imageAfterText: 'https://static.tildacdn.com/tild3238-3563-4661-b061-663835333335/Group_1597880551.png',
-            mobileImageAfterText: null,
-            greyTextAfter: null,
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Какой вывод для бизнеса правильно сделать?',
-            answers: [
-              {
-                text: 'Можно не ориентироваться на клиентов 50+, потому что их меньше всего в городах',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Нельзя отказываться от аудитории полностью, тем более, если в одном городе она вторая по популярности',
-              },
-              {
-                text: 'В Москве надо запускать рекламу только для возраста 17-23, потому что их больше всех',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Нельзя ориентироваться только на одну аудиторию и принимать решение только по одному критерию',
-              },
-              {
-                text: 'Нельзя использовать одинаковую рекламу в Москве и Санкт-Петербурге, потому что у них разные возрастные группы',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Главный вывод — в городах разные возрастные группы и работать с ними надо по-разному',
-              }
-            ]
-          },
-        ]
-      },
-      "Дизайнер": {
-        title: "Сейчас вы попробуете себя в роли дизайнера",
-        subtitle: "<img class='inline-emoji' src='https://static.tildacdn.com/tild3662-6666-4132-a135-323464616239/wrench_1f527.png' />Собираем рекламный баннер для яблок",
-        finalImage: 'https://static.tildacdn.com/tild3338-6132-4434-b437-363634626632/Frame_2043683410.png',
-        finalTitle: "Баннер готов! <img class='inline-emoji' src='https://static.tildacdn.com/tild3732-3734-4564-a632-383234393463/party-popper_1f389.png' />",
-        finalRedBlock: 'Не страшно, если не получилось с первого раза. Тест подобрал профессию не просто так — узнайте на консультации, что еще вам может подойти',
-        finalGreenBlock: 'Вы отлично справились с задачей дизайнера! Понравилось? Узнайте, как начать зарабатывать на этом реальные деньги.',
-        questions: [
-          {
-            leftText: '',
-            imageAfterText: '',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: true,
-            rightTextBeforeAnswers: 'Какое фото вы выберете для рекламы?',
-            answers: [
-              {
-                text: '',
-                imageUrl: 'https://static.tildacdn.com/tild6134-6131-4133-a664-326266636562/Frame_1077239957.png',
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, неверно — фото плохого качества и яблоко на нем непривлекательно для рекламы.',
-              },
-              {
-                text: '',
-                imageUrl: 'https://static.tildacdn.com/tild3965-3133-4533-b532-326431363263/Frame_1077239959.png',
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, неверно — фото плохого качества и яблоко на нем непривлекательно для рекламы.',
-              },
-              {
-                text: '',
-                imageUrl: 'https://static.tildacdn.com/tild3035-3330-4431-b936-386439306133/Frame_1077239960.png',
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Это отличное фото, чтобы положить его в основу рекламы — сочное, отличного качества.',
-              }
-            ]
-          },
-          {
-            leftText: '',
-            imageAfterText: 'https://static.tildacdn.com/tild3035-3330-4431-b936-386439306133/Frame_1077239960.png',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: true,
-            rightTextBeforeAnswers: 'Какой фон лучше выбрать для нашего яблока?',
-            answers: [
-              {
-                text: '',
-                imageUrl: null,
-                backgroundColor: "#FCD19C",
-                trueAnswer: false,
-                hintAfter: 'Увы, неверно. Надо выбирать цвет, который будет контрастировать с главным элементом.',
-              },
-              {
-                text: '',
-                imageUrl: null,
-                backgroundColor: "#6CD65B",
-                trueAnswer: true,
-                hintAfter: 'Верно! Это лучший выбор, на таком фоне яблоко будет заметным.',
-              },
-              {
-                text: '',
-                imageUrl: null,
-                backgroundColor: "#E34C22",
-                trueAnswer: false,
-                hintAfter: 'Увы, неверно. Надо выбирать цвет, который будет контрастировать с главным элементом.',
-              }
-            ]
-          },
-          {
-            leftText: '',
-            imageAfterText: 'https://static.tildacdn.com/tild3238-3362-4238-a136-333835343264/Frame_2043683408.png',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: true,
-            rightTextBeforeAnswers: 'Какой шрифт текста лучше выбрать для баннера?',
-            answers: [
-              {
-                text: '',
-                imageUrl: 'https://static.tildacdn.com/tild3065-6163-4634-b931-353832336530/Frame_1077239959_2.png',
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Это лучший выбор — такой шрифт легче всего прочитать.',
-              },
-              {
-                text: '',
-                imageUrl: 'https://static.tildacdn.com/tild3134-6562-4264-b261-613863656438/Frame_1077239957_2.png',
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, неверно. Этот шрифт плохо видно — любой заголовок должен читаться сразу.',
-              },
-              {
-                text: '',
-                imageUrl: 'https://static.tildacdn.com/tild6433-3736-4533-a161-633165656461/Frame_1077239960_2.png',
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, неверно. Этот шрифт плохо видно — любой заголовок должен читаться сразу.',
-              }
-            ]
-          },
-          {
-            leftText: '',
-            imageAfterText: 'https://static.tildacdn.com/tild6130-3337-4863-a233-623131613639/Frame_2043683408_2.png',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: true,
-            rightTextBeforeAnswers: 'Какую кнопку лучше поставить на баннер?',
-            answers: [
-              {
-                text: '',
-                imageUrl: 'https://static.tildacdn.com/tild6337-3535-4534-b737-356263663536/Frame_1077239959_1.png',
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, неверно. Любая кнопка должна быть заметна — поэтому надо выбирать контрастный от фона цвет.',
-              },
-              {
-                text: '',
-                imageUrl: 'https://static.tildacdn.com/tild6162-6164-4262-b463-623437623433/Frame_1077239957_1.png',
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Это лучший выбор. Кнопку видно сразу — на нее хочется нажать',
-              },
-              {
-                text: '',
-                imageUrl: 'https://static.tildacdn.com/tild3936-3965-4239-a563-313464343661/Frame_1077239960_1.png',
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, неверно. Любая кнопка должна быть заметна — поэтому надо выбирать контрастный от фона цвет.',
-              }
-            ]
-          },
-        ]
-      },
-      "Тестировщик": {
-        title: "Сейчас вы попробуете себя в роли тестировщика",
-        subtitle: "<img class='inline-emoji' src='https://static.tildacdn.com/tild3662-6666-4132-a135-323464616239/wrench_1f527.png' />Проверяем работу формы",
-        finalImage: '',
-        finalTitle: "Задание решено! <img class='inline-emoji' src='https://static.tildacdn.com/tild3732-3734-4564-a632-383234393463/party-popper_1f389.png' />",
-        finalRedBlock: 'Не страшно, если не получилось с первого раза. Тест подобрал профессию не просто так — узнайте на консультации, что еще вам может подойти',
-        finalGreenBlock: 'Вы отлично справились с задачей аналитика! Понравилось? Узнайте, как начать зарабатывать на этом реальные деньги.',
-        questions: [
-          {
-            leftText: 'Есть форма для заполнения данных на сайте.',
-            imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Какие условия надо прописать, чтобы в форму можно было вписать только 12 цифр?',
-            answers: [
-              {
-                text: 'Форма не должна содержать буквы, не больше 12 символов',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, но это условие легко обойти — ввести не 12 символов, ввести буквы или запятые.',
-              },
-              {
-                text: 'Форма должна содержать только цифры, не меньше 12 символов',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, но это условие легко обойти — ввести не 12 символов, ввести буквы или запятые.',
-              },
-              {
-                text: 'Форма должна содержать ровно 12 символов, только цифры, и не должна быть пустой',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! При таком условии в форму можно будет ввести только цифры и в нужном количчестве',
-              }
-            ]
-          },
-          {
-            leftText: null,
-            imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Как думаете, что должно произойти на сайте, когда в форму вводят неверные данные и нажимают на кнопку «отправить»?',
-            answers: [
-              {
-                text: 'Данные отправляются, но выдается сообщение, что они были заполнены неверно',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Нет, важно, чтобы данные не отправились и пользователь понял, что возникла ошибка',
-              },
-              {
-                text: 'Данные не отправляются и выдается сообщение об ошибке, что они заполнены неверно',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Важно указать пользователю об ошибке и не принимать такие данные',
-              },
-              {
-                text: 'Данные не отправляются',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Нет, важно, чтобы данные не отправились и пользователь понял, что возникла ошибка',
-              }
-            ]
-          },
-          {
-            leftText: 'Условие заполнения: Форма должна содержать ровно 12 символов, только цифры, и не должна быть пустой',
-            imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Как еще можно обойти эти условия и отправить некорректные данные?',
-            answers: [
-              {
-                text: 'Никак, это условие полностью решает задачу',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'К сожалению, условие неидеально и его легко обойти',
-              },
-              {
-                text: 'Ввести цифры с пробелами',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Эти условия тоже надо прописать в функционал формы',
-              },
-              {
-                text: 'Ввести 12 одинаковых цифр',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Эти условия тоже надо прописать в функционал формы',
-              },
-              {
-                text: 'Ввести буквы',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Вот и нет! В условии прописано «только цифры» — то есть буквы уже исключены.',
-              }
-            ]
-          },
-          {
-            leftText: 'Вы нашли ошибку в работе формы, передали разработчику, а он говорит, что у него такой ошибки нет.',
-            imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Что будете делать?',
-            answers: [
-              {
-                text: 'Приму ответ, хорошо, раз всё работает',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Попались! Тестировщику надо провести повторные тесты и проверить свою же работу',
-              },
-              {
-                text: 'Не приму такой ответ, буду настаивать, что ошибка есть',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Попались! Тестировщику надо провести повторные тесты и проверить свою же работу',
-              },
-              {
-                text: 'Проведу еще 10 тестов и буду настаивать на исправлении, если в большинстве раз она повторится',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Отлично! Доверяй, но проверяй — даже самого себя.',
-              }
-            ]
-          }
-        ]
-      },
-      "Разработчик": {
-        title: "Сейчас вы попробуете себя в роли разработчика",
-        subtitle: "<img class='inline-emoji' src='https://static.tildacdn.com/tild3662-6666-4132-a135-323464616239/wrench_1f527.png' />Проверяем работу формы",
-        finalImage: '',
-        finalTitle: "Задание решено! <img class='inline-emoji' src='https://static.tildacdn.com/tild3732-3734-4564-a632-383234393463/party-popper_1f389.png' />",
-        finalRedBlock: 'Не страшно, если не получилось с первого раза. Тест подобрал профессию не просто так — узнайте на консультации, что еще вам может подойти',
-        finalGreenBlock: 'Вы отлично справились с задачей аналитика! Понравилось? Узнайте, как начать зарабатывать на этом реальные деньги.',
-        questions: [
-          {
-            leftText: 'Есть форма для заполнения данных на сайте.',
-            imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Какие условия надо прописать, чтобы в форму можно было вписать только 12 цифр?',
-            answers: [
-              {
-                text: 'Форма не должна содержать буквы, не больше 12 символов',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, но это условие легко обойти — ввести не 12 символов, ввести буквы или запятые.',
-              },
-              {
-                text: 'Форма должна содержать только цифры, не меньше 12 символов',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, но это условие легко обойти — ввести не 12 символов, ввести буквы или запятые.',
-              },
-              {
-                text: 'Форма должна содержать ровно 12 символов, только цифры, и не должна быть пустой',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! При таком условии в форму можно будет ввести только цифры и в нужном количчестве',
-              }
-            ]
-          },
-          {
-            leftText: null,
-            imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Как думаете, что должно произойти на сайте, когда в форму вводят неверные данные и нажимают на кнопку «отправить»?',
-            answers: [
-              {
-                text: 'Данные отправляются, но выдается сообщение, что они были заполнены неверно',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Нет, важно, чтобы данные не отправились и пользователь понял, что возникла ошибка',
-              },
-              {
-                text: 'Данные не отправляются и выдается сообщение об ошибке, что они заполнены неверно',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Важно указать пользователю об ошибке и не принимать такие данные',
-              },
-              {
-                text: 'Данные не отправляются',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Нет, важно, чтобы данные не отправились и пользователь понял, что возникла ошибка',
-              }
-            ]
-          },
-          {
-            leftText: 'Вы настроили условия для заполнения, но коллеги жалуются, что пользователи продолжают заполнять некорректные данные.',
-            imageAfterText: null,
-            mobileImageAfterText: null,
-            greyTextAfter: 'Условие:<br>Форма должна содержать ровно 12 символов, только цифры, и не должна быть пустой',
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Как усилим наши условия?',
-            answers: [
-              {
-                text: 'Никак, условия прописаны полностью и решают нашу задачу',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'К сожалению, нет — условие неидеально и его легко обойти',
-              },
-              {
-                text: 'Запретим вводить пробелы',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Эти условия тоже надо прописать в функционал формы',
-              },
-              {
-                text: 'Запретим вводить несколько одинаковых символов подряд: 1111, 222 и тд',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Эти условия тоже надо прописать в функционал формы',
-              },
-              {
-                text: 'Запретим вводить буквы',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Проверка на внимательность! В условии прописано «только цифры» — то есть буквы уже исключены.',
-              }
-            ]
-          },
-          {
-            leftText: 'Какой алгоритм проверки условий заполнения составлен в правильном порядке?',
-            imageAfterText: 'https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Что будете делать?',
-            answers: [
-              {
-                text: 'Если был клик на кнопку «отправить», то выдать сообщение «данные отправлены», проверить соблюдение условий заполнения данных. Если условия соблюдены — передать данные на сервер.',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, такой порядок неверный. Надо сначала проверить данные, а потом выдавать сообщение об успехе — если они соблюдены',
-              },
-              {
-                text: 'Если был клик на кнопку «отправить», то передать данные на сервер. Проверить соблюдение условий заполнения и выдать сообщение «данные отправлены», если условия соблюдены',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, такой порядок неверный. Надо сначала проверить данные, а потом выдавать сообщение об успехе — если они соблюдены',
-              },
-              {
-                text: 'Если был клик на кнопку «отправить», то проверить соблюдение условий заполнения данных. Если условия соблюдены — передать данные на сервер и выдать сообщение «данные отправлены»',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Сначала проверяем данные, а потом оповещаем о статусе',
-              }
-            ]
-          }
-        ]
-      },
-      "Маркетолог": {
-        title: "Сейчас вы попробуете себя в роли маркетолога",
-        subtitle: "<img class='inline-emoji' src='https://static.tildacdn.com/tild3662-6666-4132-a135-323464616239/wrench_1f527.png' />Собираем рекламу для товара",
-        finalImage: '',
-        finalTitle: 'Задание решено!',
-        finalRedBlock: 'Не страшно, если не получилось с первого раза. Тест подобрал профессию не просто так — узнайте на консультации, что еще вам может подойти',
-        finalGreenBlock: 'Вы отлично справились с задачей маркетолога! Понравилось? Узнайте, как начать зарабатывать на этом реальные деньги.',
-        questions: [
-          {
-            leftText: 'Товар: женские спортивные леггинсы.',
-            imageAfterText: 'https://static.tildacdn.com/tild3264-6363-4761-b066-363534303233/Frame_2043683425.png',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Какой портрет покупателя этого товара?',
-            answers: [
-              {
-                text: 'Мужчины, 30-35 лет, женаты, есть дети, подписаны на спортивные сообщества',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, но это не целевая аудитория товара — они не будут его покупать.',
-              },
-              {
-                text: 'Женщины, 60-65 лет, пенсионерки, подписаны на кулинарные сообщества',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, но это не целевая аудитория товара — они не будут его покупать.',
-              },
-              {
-                text: 'Женщины, 26-35 лет, семейное положение неважно, подписаны на спортивные сообщества',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Это целевая аудитория товара — те, кто будут его покупать.',
-              }
-            ]
-          },
-          {
-            leftText: 'Товар: женские спортивные леггинсы.',
-            imageAfterText: 'https://static.tildacdn.com/tild3264-6363-4761-b066-363534303233/Frame_2043683425.png',
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: false,
-            rightTextBeforeAnswers: 'На каком ютуб-канале лучше разместить рекламу товара?',
-            answers: [
-              {
-                text: 'Wylsacom — обозреватель техники и гаджетов',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, неверно. На этом канале не сидит целевая аудитория для спортивных товаров.',
-              },
-              {
-                text: 'Ляйсан Утяшева — гимнастка, ведущая',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Здесь вероятнее всего попасть в аудиторию спортивных товаров.',
-              },
-              {
-                text: 'Стендап-клуб №1 — юмор и стендап',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, неверно. На этом канале не сидит целевая аудитория для спортивных товаров.',
-              }
-            ]
-          },
-          {
-            leftText: 'Отлично! Теперь настроим рекламу в интернете',
-            imageAfterText: null,
-            mobileImageAfterText: null,
-            greyTextAfter: '',
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Какие фильтры аудитории нужно выбрать для настройки рекламы?',
-            answers: [
-              {
-                text: 'Женщины, возраст: 26-35 лет, подписаны на спорт.сообщества',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Можно, но такая реклама не будет эффективна — слишком широкий запрос.',
-              },
-              {
-                text: 'Женщины, возраст: 26-35 лет, подписаны на спорт.сообщества, покупали товар в последние 14 дней',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Можно, но такая реклама не будет эффективна — слишком широкий запрос.',
-              },
-              {
-                text: 'Женщины, возраст: 26-35 лет, подписаны на спорт.сообщества, искали товар в интернете в последние 14 дней',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Это лучший выбор аудитории — такая реклама будет эффективной.',
-              }
-            ]
-          },
-          {
-            leftText: null,
-            imageAfterText: null,
-            mobileImageAfterText: null,
-            greyTextAfter: `Результаты:
-              <br>Затраты на рекламу: 3 000 000 ₽
-              <br>Просмотров видео с рекламой: 877 655
-              <br>Покупок из рекламы: 17
-              <br>Сумма покупок: 102 000₽`,
-            onlyImages: false,
-            rightTextBeforeAnswers: 'Оцените, насколько была успешна рекламная кампания',
-            answers: [
-              {
-                text: 'Успешная',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, но кампания провальная. Затраты не окупились и реклама ушла в минус.',
-              },
-              {
-                text: 'Провальная',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: true,
-                hintAfter: 'Верно! Кампания провальная. Затраты не окупились и реклама ушла в минус.',
-              },
-              {
-                text: 'Не могу оценить',
-                imageUrl: null,
-                backgroundColor: null,
-                trueAnswer: false,
-                hintAfter: 'Увы, но кампания провальная. Затраты не окупились и реклама ушла в минус.',
-              }
-            ]
-          },
-        ]
-      },
-    }
+    window.proftest.SPECIALIZED_QUESTIONS = {}
     
     ////
     // Блок логики, которую не хочется пихать в сам тест. Скрытие блоков и сбор UUID'ов.
@@ -1296,13 +350,17 @@
       [
         ZERO_BLOCK_RESULT,
         ZERO_BLOCK_RESULT_SECOND,
-        ZERO_BLOCK_INSERTBUTTON,
-        ZERO_BLOCK_PROGRESSBAR
+        ZERO_BLOCK_INSERTBUTTON
       ].forEach(b => hide(b));
 
       // Скрываем все финальные блоки
       window.proftest.RESULT_PROFESSION.forEach(p => {
         p.finalBlocks.forEach(b => hide(b))
+      })
+
+      // Скрываем все суперфинальные блоки
+      window.proftest.RESULT_PROFESSION.forEach(p => {
+        hide(p.superFinalBlock);
       })
     });
     
@@ -1347,80 +405,56 @@
       
       // Убираем профтест
       hide(ZERO_BLOCK_PROFTEST);
-      show(ZERO_BLOCK_PROGRESSBAR)  
 
-      let currentTextIndex = 0;
-      $(`${CHANGING_TEXT_CLASS} .tn-atom`).html( CHANGING_TEXT_ARRAY[currentTextIndex] );
-      let changingTextInterval = setInterval(() => {
-          currentTextIndex++;
-          $(`${CHANGING_TEXT_CLASS} .tn-atom`).html( CHANGING_TEXT_ARRAY[currentTextIndex] );
-          if (currentTextIndex + 1 == CHANGING_TEXT_ARRAY.length) clearInterval(changingTextInterval)
-      }, (9 / CHANGING_TEXT_ARRAY.length / 2) * 1000)
+            
+      // Показываем нужные финальные блоки
+      data.professions[0].finalBlocks.forEach(b => show(b))
       
+      // Показываем две формы
+      show(ZERO_BLOCK_RESULT)
+      show(ZERO_BLOCK_RESULT_SECOND)
+      // document.safeQuerySelector('.z-proftest-result__1 .tn-atom').innerHTML = data.professions[0].title
 
       t_lazyload_update();
-      let progressBarWidth = Math.round(document.querySelector('.proftest-zeroBlock-progressBar').computedStyleMap().get('width').value);
-      document.querySelector('.proftest-zeroBlock-progressBar').style.setProperty('max-width', `${progressBarWidth}px`, 'important');
-      setTimeout(() => {
-        document.safeQuerySelector(ZERO_BLOCK_PROGRESSBAR).classList.add('rightHide')
-            
-            // Показываем нужные финальные блоки
-        data.professions[0].finalBlocks.forEach(b => show(b))
+      
+      // Дополняем инпуты форм
+      setTimeout(function () {
+        const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
+        const SECOND_FORM = ZERO_BLOCK_RESULT_SECOND.replace('rec', 'form');
+        let target_lead = true;
+        let televox_import_group_id = '9411' 
+
+        document.safeQuerySelector(`${FORM} input[name="thank-you-page"]`).value = "";
+        document.safeQuerySelector(`${FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
+        document.safeQuerySelector(`${FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
+        document.safeQuerySelector(`${FORM} input[name="target_lead"]`).value = target_lead;
+        document.safeQuerySelector(`${FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
+
+        document.safeQuerySelector(`${SECOND_FORM} input[name="thank-you-page"]`).value = "";
+        document.safeQuerySelector(`${SECOND_FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
+        document.safeQuerySelector(`${SECOND_FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
+        document.safeQuerySelector(`${SECOND_FORM} input[name="target_lead"]`).value = target_lead;
+        document.safeQuerySelector(`${SECOND_FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
         
-        // Показываем две формы
-        show(ZERO_BLOCK_RESULT)
-        show(ZERO_BLOCK_RESULT_SECOND)
-        t_lazyload_update();
-        
-        // Дополняем инпуты форм
-        setTimeout(function () {
-          const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
-          const SECOND_FORM = ZERO_BLOCK_RESULT_SECOND.replace('rec', 'form');
-          let target_lead = true;
-          let televox_import_group_id = '9411' 
-
-          document.safeQuerySelector(`${FORM} input[name="thank-you-page"]`).value = "";
-          document.safeQuerySelector(`${FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
-          document.safeQuerySelector(`${FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
-          document.safeQuerySelector(`${FORM} input[name="target_lead"]`).value = target_lead;
-          document.safeQuerySelector(`${FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
-
-          document.safeQuerySelector(`${SECOND_FORM} input[name="thank-you-page"]`).value = "";
-          document.safeQuerySelector(`${SECOND_FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
-          document.safeQuerySelector(`${SECOND_FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
-          document.safeQuerySelector(`${SECOND_FORM} input[name="target_lead"]`).value = target_lead;
-          document.safeQuerySelector(`${SECOND_FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
-          
-          const updateFn = setInterval(function () {
-              if (
-                  document.safeQuerySelector(FORM).classList.contains("js-send-form-success")
-                  ||
-                  document.safeQuerySelector(SECOND_FORM).classList.contains("js-send-form-success")
-              ) {
-                  clearInterval(updateFn);
-                  
-                  document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
-
+        const updateFn = setInterval(function () {
+            if (
+                document.safeQuerySelector(FORM).classList.contains("js-send-form-success")
+                ||
+                document.safeQuerySelector(SECOND_FORM).classList.contains("js-send-form-success")
+            ) {
+                clearInterval(updateFn);
                 
-                  hide(ZERO_BLOCK_RESULT)
-                  hide(ZERO_BLOCK_RESULT_SECOND)
-                  
-                  var evt = new CustomEvent("formFilled", { detail: data.professions[0].title });
-                  window.dispatchEvent(evt);
-                  show(ZERO_BLOCK_PROFTEST);
-              }
-          }, 300);
-        }, 2000);
+                document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
 
-        // document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
-        // hide(ZERO_BLOCK_RESULT)
-        // hide(ZERO_BLOCK_RESULT_SECOND)
-        // var evt = new CustomEvent("formFilled", { detail: data.professions[0].title });
-        // window.dispatchEvent(evt);
-        // show(ZERO_BLOCK_PROFTEST);
-      }, 9 * 1000)
+                hide(ZERO_BLOCK_RESULT)
+                hide(ZERO_BLOCK_RESULT_SECOND)
+                show(data.professions[0].superFinalBlock)
+                // var evt = new CustomEvent("formFilled", { detail: data.professions[0].title });
+                // window.dispatchEvent(evt);
+            }
+        }, 300);
+      }, 2000);
     })
-    
     ////
     // Маленькие хэлперы
     ////

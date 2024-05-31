@@ -15,25 +15,7 @@
   }
 
   const preload = [
-    "https://static.tildacdn.com/tild6162-6164-4262-b463-623437623433/Frame_1077239957_1.png",
-    "https://static.tildacdn.com/tild6337-3535-4534-b737-356263663536/Frame_1077239959_1.png",
-    "https://static.tildacdn.com/tild3936-3965-4239-a563-313464343661/Frame_1077239960_1.png",
-    "https://static.tildacdn.com/tild6134-6131-4133-a664-326266636562/Frame_1077239957.png",
-    "https://static.tildacdn.com/tild3965-3133-4533-b532-326431363263/Frame_1077239959.png",
-    "https://static.tildacdn.com/tild3035-3330-4431-b936-386439306133/Frame_1077239960.png",
-    "https://static.tildacdn.com/tild3134-6562-4264-b261-613863656438/Frame_1077239957_2.png",
-    "https://static.tildacdn.com/tild3065-6163-4634-b931-353832336530/Frame_1077239959_2.png",
-    "https://static.tildacdn.com/tild6433-3736-4533-a161-633165656461/Frame_1077239960_2.png",
-    "https://static.tildacdn.com/tild3238-3362-4238-a136-333835343264/Frame_2043683408.png",
-    "https://static.tildacdn.com/tild6130-3337-4863-a233-623131613639/Frame_2043683408_2.png",
-    "https://static.tildacdn.com/tild3338-6132-4434-b437-363634626632/Frame_2043683410.png",
-    "https://static.tildacdn.com/tild6131-3466-4137-b961-393435313965/Group_1597880544.png",
-    "https://static.tildacdn.com/tild3238-3563-4661-b061-663835333335/Group_1597880551.png",
-    "https://static.tildacdn.com/tild3334-3531-4036-b366-613062303236/image_56_1.png",
-    "https://static.tildacdn.com/tild3264-6363-4761-b066-363534303233/Frame_2043683425.png",
-    "https://static.tildacdn.com/tild6266-6538-4536-a463-303636316337/Frame_2043683418.svg",
-    "https://static.tildacdn.com/tild3732-3734-4564-a632-383234393463/party-popper_1f389.png",
-    "https://static.tildacdn.com/tild3662-6666-4132-a135-323464616239/wrench_1f527.png",
+    "https://static.tildacdn.com/tild3438-3830-4232-a335-386262333166/Group_18541.svg"
   ];
   
   //
@@ -93,8 +75,8 @@
 
   // проставим стартовые индексы вопросов, чтобы потом было удобно их считать
   let startIndex = 0;
-  data.QUESTIONS.forEach(q => {
-    q.startAnswerIndex = startIndex;
+  data.QUESTIONS.forEach((q,index) => {
+    data.QUESTIONS[index]['startAnswerIndex'] = startIndex;
     startIndex += q.answers.length
   })
 
@@ -105,20 +87,21 @@
     answerBlock = true;
     
     setTimeout(() => { // Меняем вопрос с задержкой
-      // debugger;
       userAnswers[currentQuestionIndex] = {
         questionLink: question,
         questionIndex: currentQuestionIndex,
         answerIndex: index,
         // Ответы у нас в одном едином массиве. Например, третий ответ третьего вопроса будет под индексом 8
         // Чтобы потом удобно по нему пробегаться, нам нужно записать общий индекс ответа
-        overallAnswerIndex: (question.startAnswerIndex ? question.startAnswerIndex + index : null)
+        overallAnswerIndex: ( question.startAnswerIndex + index ?? null)
       }
 
       console.log(userAnswers)
       answerBlock = false;
 
       let thisProftestOffset = cumulativeOffset(document.querySelector('.z-skypro-proftest-wrapper'))
+      let currentTopOffset = document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentTopOffset > thisProftestOffset.top)
       window.scrollTo({ top: thisProftestOffset.top, behavior: 'smooth' });
       window.dispatchEvent(
         new CustomEvent("answerPressed", { detail: {
@@ -168,6 +151,7 @@
   }
   function proftestCompleted() {
     
+    // debugger;
     // подсчитаем общие баллы по каждой профессии
     for (const key in userAnswers) {
       let a = userAnswers[key]
@@ -280,12 +264,13 @@
 <svelte:window bind:innerWidth={screenWidth} />
 
 <div class="z-skypro-proftest-main-wrapper">
-  <!-- 
+  
   <div class="z-proftest-header">
-    <div class="z-proftest-header__logo" style={`background-image: url('https://static.tildacdn.com/tild3335-6662-4363-b965-326337623833/Group_1321316717_1.svg')`}></div>
+    <div class="z-proftest-header__logo" style={`background-image: url('https://static.tildacdn.com/tild3438-3830-4232-a335-386262333166/Group_18541.svg')`}></div>
     <div class="z-proftest-header__timer">{timer}</div>
   </div>
   
+  <!-- 
   <div class="z-proftest-second-header">
     <div class="z-proftest-second-header-h1">
       Пройдите тест и узнайте
@@ -424,8 +409,10 @@
             Пройдите тест и узнайте, получится ли у вас работать в IT
           </div>
           <div class="z-skypro-proftest-wrapper__giftBox">
-            В конце подарим бесплатную консультацию с карьерным экспертом и книгу «Первые шаги в IT» для начинающих
             <img alt='подарок' src="https://static.tildacdn.com/tild6636-3238-4332-b831-613138613336/Group_1597880045.png">
+            <div class="z-skypro-proftest-wrapper__giftBox-text">
+              В конце подарим бесплатную консультацию с карьерным экспертом и книгу «Первые шаги в IT» для начинающих
+            </div>
           </div>
       </div>
       {/if}
@@ -539,7 +526,7 @@
     font-size: 24px;
     padding: 10px;
     border-radius: 10px;
-    background: white;
+    background: var(--background-color);
     /* клёвый блюр */
     /* background: rgba(255, 255, 255, 0.6); */
     /* backdrop-filter: blur(80px); */
