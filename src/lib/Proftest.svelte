@@ -115,7 +115,6 @@
         overallAnswerIndex: (question.startAnswerIndex ? question.startAnswerIndex + index : null)
       }
 
-      console.log(userAnswers)
       answerBlock = false;
 
       let thisProftestOffset = cumulativeOffset(document.querySelector('.z-skypro-proftest-wrapper'))
@@ -181,7 +180,6 @@
 
     // Отсортируем
     data.RESULT_PROFESSION.sort((a, b) => b.userProggress - a.userProggress);
-    console.log(data.RESULT_PROFESSION);
     // Отчитываемся
     var evt = new CustomEvent("proftestCompleted", { detail: {
       answers: userAnswers,
@@ -338,53 +336,53 @@
       <div class={`rightSide opacity100 ${switching ? 'opacity0' : 'opacity100'}`}>
         <div class="z-skypro-proftest-main-wrap">
           {#if question}
-          <div class="z-skypro-proftest">
-              <h3 class="z-skypro-proftest__question">{question.rightTextBeforeAnswers}</h3>
-              <div class={`z-skypro-proftest__answers ${question.onlyImages ? 'imagesBlock' : ''}`}>
-                {#each question.answers as answer, index}
-                  <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions-->
-                  <div 
-                    style={
-                      (answer.imageUrl ? `background-image: url('${answer.imageUrl}') ` : '')
-                      +
-                      (answer.backgroundColor ? `background-color: ${answer.backgroundColor} ` : '')
-                    }
-                    class={
-                      (
-                        (userAnswers[currentQuestionIndex] && userAnswers[currentQuestionIndex].answerIndex !== null) 
-                        ? 
-                        `z-skypro-proftest__answer z-skypro-proftest__answer--${answer.trueAnswer}` 
-                        : 
-                        `z-skypro-proftest__answer`
-                      )
-                      +
-                      ' '
-                      +
-                      (
-                        (userAnswers[currentQuestionIndex] && userAnswers[currentQuestionIndex].answerIndex == index)
-                        ?
-                        `z-skypro-proftest__answer--selected`
-                        :
-                        ''
-                      )
-                    } 
-                    
-                    on:click={function(e) { writeAnswer(index) }}>
-                    <div class="z-skypro-proftest__answer-text">{answer.text}</div>
-                    <div class="z-skypro-proftest__answer-checkbox">
-                      {#if answer.imageUrl || answer.backgroundColor}
-                        <div class="z-skypro-proftest__answer-checkbox-background"></div>
-                      {/if}
+            <div class="z-skypro-proftest">
+                <h3 class="z-skypro-proftest__question">{question.rightTextBeforeAnswers}</h3>
+                <div class={`z-skypro-proftest__answers ${question.onlyImages ? 'imagesBlock' : ''}`}>
+                  {#each question.answers as answer, index}
+                    <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions-->
+                    <div 
+                      style={
+                        (answer.imageUrl ? `background-image: url('${answer.imageUrl}') ` : '')
+                        +
+                        (answer.backgroundColor ? `background-color: ${answer.backgroundColor} ` : '')
+                      }
+                      class={
+                        (
+                          (userAnswers[currentQuestionIndex] && userAnswers[currentQuestionIndex].answerIndex !== null) 
+                          ? 
+                          `z-skypro-proftest__answer z-skypro-proftest__answer--${answer.trueAnswer}` 
+                          : 
+                          `z-skypro-proftest__answer`
+                        )
+                        +
+                        ' '
+                        +
+                        (
+                          (userAnswers[currentQuestionIndex] && userAnswers[currentQuestionIndex].answerIndex == index)
+                          ?
+                          `z-skypro-proftest__answer--selected`
+                          :
+                          ''
+                        )
+                      } 
+                      
+                      on:click={function(e) { writeAnswer(index) }}>
+                      <div class="z-skypro-proftest__answer-text">{answer.text}</div>
+                      <div class="z-skypro-proftest__answer-checkbox">
+                        {#if answer.imageUrl || answer.backgroundColor}
+                          <div class="z-skypro-proftest__answer-checkbox-background"></div>
+                        {/if}
+                      </div>
                     </div>
-                  </div>
-                {/each}
-              </div>            
-          </div>
+                  {/each}
+                </div>            
+            </div>
           {:else}
 
-          <div class="professionalQuestions-finalTitle">
-            {@html data.SPECIALIZED_QUESTIONS[professionalQuestions].finalTitle}
-          </div>
+            <div class="professionalQuestions-finalTitle">
+              {@html data.SPECIALIZED_QUESTIONS[professionalQuestions].finalTitle}
+            </div>
           {#if data.SPECIALIZED_QUESTIONS[professionalQuestions].finalImage}
             <img alt='' class="professionalQuestions-finalImage" src={data.SPECIALIZED_QUESTIONS[professionalQuestions].finalImage} />
           {/if}
@@ -432,10 +430,10 @@
       {/if}
 
       {#if question.questionImageUrl}
-      <div style={`background-image: url(${question.questionImageUrl})`} class={`z-skypro-proftest-wrapper__question-image ${switching ? 'opacity0' : 'opacity100'}`}></div>
+      <div style={`background-image: url(${question.questionImageUrl})`} class={`z-skypro-proftest-wrapper__question-image ${switching ? 'opacity100' : 'opacity100'}`}></div>
       {/if}
       
-      <div class={`z-skypro-proftest-main-wrap classicQuestionsWrap ${switching ? 'opacity0' : 'opacity100'}`}>
+      <div class={`z-skypro-proftest-main-wrap classicQuestionsWrap ${switching ? 'opacity100' : 'opacity100'}`}>
           <div class="z-skypro-proftest">
               <div class="classicQuestionHeader">
                 <h3 class="z-skypro-proftest__question">{question.question}</h3>

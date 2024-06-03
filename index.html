@@ -1337,7 +1337,6 @@
     
     window.addEventListener("proftestCompleted", e => {
       let data = e.detail;
-
       safeDataLayer({
           'event' : 'GTMevent',
           'eventCategory' : 'viewing',
@@ -1364,7 +1363,7 @@
       setTimeout(() => {
         document.safeQuerySelector(ZERO_BLOCK_PROGRESSBAR).classList.add('rightHide')
             
-            // Показываем нужные финальные блоки
+        // Показываем нужные финальные блоки
         data.professions[0].finalBlocks.forEach(b => show(b))
         
         // Показываем две формы
@@ -1377,19 +1376,27 @@
           const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
           const SECOND_FORM = ZERO_BLOCK_RESULT_SECOND.replace('rec', 'form');
           let target_lead = true;
-          let televox_import_group_id = '9411' 
+          let televox_import_group_id = '9323' 
+          let funnel = 'televox'
+
+          // Есть ли айти-профессия, которая уже вам приглянулась?
+          // Да, уже есть такая
+          if (data.answers[25].answerIndex == 0)
+            funnel = '1_line'
 
           document.safeQuerySelector(`${FORM} input[name="thank-you-page"]`).value = "";
           document.safeQuerySelector(`${FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
           document.safeQuerySelector(`${FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
           document.safeQuerySelector(`${FORM} input[name="target_lead"]`).value = target_lead;
           document.safeQuerySelector(`${FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
+          document.safeQuerySelector(`${FORM} input[name="funnel"]`).value = funnel;
 
           document.safeQuerySelector(`${SECOND_FORM} input[name="thank-you-page"]`).value = "";
           document.safeQuerySelector(`${SECOND_FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
           document.safeQuerySelector(`${SECOND_FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
           document.safeQuerySelector(`${SECOND_FORM} input[name="target_lead"]`).value = target_lead;
           document.safeQuerySelector(`${SECOND_FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
+          document.safeQuerySelector(`${SECOND_FORM} input[name="funnel"]`).value = funnel;
           
           const updateFn = setInterval(function () {
               if (
