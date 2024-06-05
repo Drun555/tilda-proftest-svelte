@@ -7,7 +7,7 @@
   
   let blackTheme = true;
   $: if (blackTheme) {
-    document.documentElement.style.setProperty('--background-color', 'rgba(32, 34, 41, 0.6)');
+    document.documentElement.style.setProperty('--background-color', 'rgba(255, 255, 255, 0.05)');
     document.documentElement.style.setProperty('--text-color', 'white');
   } else {
     document.documentElement.style.setProperty('--background-color', '#e8ecfb');
@@ -246,7 +246,7 @@
     setTimeout(() => {
       switching = false;
       currentQuestionIndex--
-    }, 320)
+    }, 500)
   }
 
   function next() {
@@ -255,7 +255,7 @@
       switching = false;
       beforeSwitching = false;
       currentQuestionIndex++;
-    }, 320)
+    }, 500)
   }
 
 </script>
@@ -317,12 +317,12 @@
           {/if}
         {/if}
       </div>
-      <div class={`rightSide opacity100 ${switching ? 'opacity0' : 'opacity100'}`}>
+      <div class={`rightSide`}>
         <div class="z-skypro-proftest-main-wrap">
           {#if question}
-          <div class="z-skypro-proftest">
-              <h3 class="z-skypro-proftest__question">{question.rightTextBeforeAnswers}</h3>
-              <div class={`z-skypro-proftest__answers ${question.onlyImages ? 'imagesBlock' : ''}`}>
+          <div class={`z-skypro-proftest`}>
+              <h3 class={`z-skypro-proftest__question ${switching ? 'opacity0' : 'opacity100'}`}>{question.rightTextBeforeAnswers}</h3>
+              <div class={`z-skypro-proftest__answers ${switching ? 'opacity0' : 'opacity100'}${question.onlyImages ? 'imagesBlock' : ''}`}>
                 {#each question.answers as answer, index}
                   <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions-->
                   <div 
@@ -402,9 +402,16 @@
       <!-- Разметка для обычных вопросов -->
       {#if !question.questionImageUrl}
       <div class={`z-skypro-proftest-wrapper__header-wrap`}>
-          <p class="z-skypro-proftest-wrapper__header">
+          {#if screenWidth > 1260 && timer !== ''}
+            <div class="z-proftest-header__timer">{timer}</div>
+          {/if}
+          
+          <div class="z-skypro-proftest-wrapper__header">
             Подходит ли вам IT-сфера?
-          </p>
+            {#if screenWidth < 1260 && timer !== ''}
+              <div class="z-proftest-header__timer">{timer}</div>
+            {/if}
+          </div>
           <div class={`z-skypro-proftest-wrapper__subtitle`}>
             Пройдите тест и узнайте, получится ли у вас работать в IT
           </div>
@@ -422,14 +429,14 @@
       <div style={`background-image: url(${question.questionImageUrl})`} class={`z-skypro-proftest-wrapper__question-image ${switching ? 'opacity0' : 'opacity100'}`}></div>
       {/if}
       
-      <div class={`z-skypro-proftest-main-wrap classicQuestionsWrap ${switching ? 'opacity0' : 'opacity100'}`}>
+      <div class={`z-skypro-proftest-main-wrap classicQuestionsWrap`}>
           <div class="z-skypro-proftest">
-              <div class="classicQuestionHeader">
+              <div class={`classicQuestionHeader`}>
                 <h3 class="z-skypro-proftest__question">{question.question}</h3>
                 <span class="z-skypro-proftest__progress">{currentProgress}%</span>
               </div>
               
-              <div class="z-skypro-proftest__answers">
+              <div class={`z-skypro-proftest__answers`}>
                 {#key question}
                 {#each question.answers as answer, index}
                   <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions-->
@@ -453,7 +460,33 @@
                 {/each}
                 {/key}
               </div>
+
+              <div class="z-skypro-proftest__buttons">
+                {#if currentQuestionIndex > 0 && !beforeSwitching}
+                <button on:click={() => back() } class="z-skypro-proftest__button z-skypro-proftest__button--prev">
+                    Назад
+                </button>
+                {/if}
+                {#if userAnswers[currentQuestionIndex] && !switching && !beforeSwitching}
+                <button on:click={() => next() } class="z-skypro-proftest__button z-skypro-proftest__button--next">
+                    Далее
+                </button>
+                {:else if professionalCompleted && !beforeSwitching}
+                <button 
+                  on:click={() => {
+                    window.dispatchEvent(
+                      new CustomEvent("formFilled", { detail: professionalQuestions })
+                    );
+                  }} 
+                  class="z-skypro-proftest__button z-skypro-proftest__button--next"
+                >
+                  Пройти заново
+                </button>
+                {/if}
+              </div>
           </div>
+
+          
       </div>
     {/if}
   </div>
@@ -465,30 +498,6 @@
     </div>
   {/if}
   -->
-  <div class="z-skypro-proftest__buttons">
-    {#if currentQuestionIndex > 0 && !beforeSwitching}
-    <button on:click={() => back() } class="z-skypro-proftest__button z-skypro-proftest__button--prev">
-        Назад
-    </button>
-    {/if}
-    {#if userAnswers[currentQuestionIndex] && !switching && !beforeSwitching}
-    <button on:click={() => next() } class="z-skypro-proftest__button z-skypro-proftest__button--next">
-        Далее
-    </button>
-    {:else if professionalCompleted && !beforeSwitching}
-    <button 
-      on:click={() => {
-        window.dispatchEvent(
-          new CustomEvent("formFilled", { detail: professionalQuestions })
-        );
-      }} 
-      class="z-skypro-proftest__button z-skypro-proftest__button--next"
-    >
-      Пройти заново
-    </button>
-    {/if}
-    
-  </div>
 </div>
 
 <style>
@@ -523,10 +532,15 @@
   }
 
   .z-proftest-header__timer {
-    font-size: 24px;
-    padding: 10px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    width: 77px;
     border-radius: 10px;
-    background: var(--background-color);
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 40px;
     /* клёвый блюр */
     /* background: rgba(255, 255, 255, 0.6); */
     /* backdrop-filter: blur(80px); */
@@ -660,7 +674,12 @@
     }
 
     .z-proftest-header__timer {
-      font-size: 24px;
+      font-size: 14px;
+      padding: 0px;
+      width: 56px;
+      min-width: 56px;
+      margin-left: 30px;
+      margin-bottom: 0px;
     }
 
     .z-proftest-header__logo {
@@ -679,7 +698,7 @@
     
 
     .z-skypro-proftest-wrapper {
-      width: calc(100%);
+      width: calc(100% - 10px);
       height: unset;
       min-height: unset;
       padding: 20px;
@@ -691,8 +710,12 @@
     }
 
     .z-proftest-header__timer {
-      font-size: 16px;
-      display: none;
+      font-size: 14px;
+      padding: 0px;
+      width: 56px;
+      min-width: 56px;
+      margin-left: 30px;
+      margin-bottom: 0px;
     }
 
     .z-proftest-header {

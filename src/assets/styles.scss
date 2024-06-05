@@ -4,8 +4,8 @@
 }
 
 .z-skypro-proftest-main-wrap {
-    --color-grey: #C3C5E0;
-    --color-grey2: #b088b5;
+    --color-grey: #ebebeb;
+    --color-grey2: #bcbcbc;
     --color-white: #ffffff;
     --color-purple: #7334ea;
     --color-green: #bcec30;
@@ -24,12 +24,12 @@
 
 .opacity100 {
     opacity: 1 !important;
-    transition: 0.3s;
+    transition: 0.15s;
 }
 
 .opacity0 {
     opacity: 0 !important;
-    transition: 0.3s;
+    transition: 0.15s;
     pointer-events: none;
 }
 
@@ -42,7 +42,7 @@
 
 .z-skypro-proftest__question {
     margin: 0;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 500;
     line-height: 100%;
 }
@@ -377,8 +377,8 @@
     align-items: center;
     border-radius: 40px;
     backdrop-filter: var(--blur);
-    background: var(--background-color);
-    color: var(--text-color);
+    background: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.5);
     font-size: 14px;
     line-height: 100%;
     border: none;
@@ -499,6 +499,7 @@ display: inline-block;
     position: relative;
     border-radius: 20px;
     background: var(--background-color);
+    backdrop-filter: blur(50px);
     /* клёвый блюр */
     // background: rgba(255, 255, 255, 0.6);
     // backdrop-filter: blur(80px);
@@ -517,6 +518,9 @@ display: inline-block;
     font-weight: 500;
     line-height: 110%;
     color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .z-skypro-proftest-wrapper__header-wrap {
@@ -615,7 +619,7 @@ display: inline-block;
         margin-top: 0px;
         margin-bottom: 30px;
         padding-right: 2em;
-        font-size: 38px;
+        font-size: 46px;
     }
 
     .z-skypro-proftest-wrapper__subtitle {
@@ -642,7 +646,7 @@ display: inline-block;
 
     .z-skypro-proftest {
         padding: 30px;
-        border-radius: 20px;
+        border-radius: 30px;
         flex: 1 1 0;
         height: calc(100% - 90px);
         max-height: calc(100% - 90px);
@@ -692,8 +696,6 @@ display: inline-block;
         margin-top: 20px;
         width: -webkit-fill-available;
         width: -moz-available;
-        padding-left: 45px;
-        padding-right: 45px;
     }
 
     .z-skypro-proftest__button {
@@ -860,10 +862,11 @@ display: inline-block;
 
     .z-skypro-proftest-wrapper__giftBox {
         width: 90%;
-        font-size: 16px;
+        font-size: 17.5px;
+        line-height: 135%;
         position: relative;
         padding: 15px 20px;
-        height: 100px
+        height: 100px;
     }
 
     .z-skypro-proftest-wrapper__giftBox img {
