@@ -24,10 +24,10 @@
 
     
     // ID этой формы T123
-    const ZERO_BLOCK_PROFTEST = "#rec756019498";
-    const ZERO_BLOCK_RESULT = "#rec754515338";
-    const ZERO_BLOCK_INSERTBUTTON = "#rec754498819";
-    const ZERO_BLOCK_RESULT_SECOND = "#rec754560367";
+    const ZERO_BLOCK_PROFTEST = "#rec756010537";
+    const ZERO_BLOCK_RESULT = "#rec754631337";
+    const ZERO_BLOCK_INSERTBUTTON = "#rec754631335";
+    const ZERO_BLOCK_RESULT_SECOND = "#rec754631343";
 
     window.proftest.QUESTIONS = [
       {
@@ -234,6 +234,51 @@
             "От 35 до 45",
             "Больше 45",
         ] 
+      },
+      
+      {
+        question: "Во сколько раз зарплаты компании А выше, чем в компании Б?",
+        questionImageUrl:
+          "https://static.tildacdn.com/tild6634-6666-4634-a237-646664313538/Frame_2043683087.png",
+        progress: "96%",
+        answers: [
+          "В 4 раза",
+          "В 2,5 раза",
+          "В 2 раза",
+        ],
+      },
+      {
+        question: "Какое решение для роста прибыли бизнеса вы бы приняли на основе графика продаж соков?",
+        questionImageUrl:
+          "https://static.tildacdn.com/tild3335-3462-4630-b738-323263646165/Frame_2043683087_1.png",
+        progress: "97%",
+        answers: [
+          "Продавать только яблочный",
+          "Убрать из продажи апельсиновый",
+          "Дать скидку на апельсиновый",
+          "Ничего не делать",
+        ],
+      },
+      {
+        question: "Как вы считаете, какое оформление рекламного баннера считается правильным? На ваш вкус.",
+        questionImageUrl:
+          "https://static.tildacdn.com/tild6139-3864-4131-a436-333136613238/image_14.png",
+        progress: "98%",
+        answers: [
+          "Первое",
+          "Второе",
+        ],
+      },
+      {
+        question: "Как вы считаете, как нужно разложить вещи в шкафу, чтобы одеваться в два раза быстрее?",
+        questionImageUrl:
+          "https://static.tildacdn.com/tild3930-3432-4566-a465-353433663163/image_14_1.png",
+        progress: "99%",
+        answers: [
+          "По цветам",
+          "По типам (верх, низ)",
+          "По размерам",
+        ],
       }
     ];
 
@@ -253,21 +298,23 @@
       {
         title: "Вам подходит IT",
         finalBlocks: [
-          "#rec754515372",
-          "#rec754525707"
+          "#rec754631338",
+          "#rec754631340",
+          "#rec754637757",
         ],
         dataCheck: [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        superFinalBlock: "#rec754520671",
+        superFinalBlock: "#rec754631339",
         userProggress: 0
       },
       {
         title: "Вам не подходит IT",
         finalBlocks: [
-          "#rec754535307",
-          "#rec754498823"
+          "#rec754631341",
+          "#rec754631342",
+          "#rec754637757",
         ],
         dataCheck: [0,0,99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        superFinalBlock: "#rec754498823",
+        superFinalBlock: "#rec754631341",
         userProggress: 0
       }
     ];
@@ -355,7 +402,7 @@
         const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
         const SECOND_FORM = ZERO_BLOCK_RESULT_SECOND.replace('rec', 'form');
         let target_lead = true;
-        let televox_import_group_id = '9411' 
+        let televox_import_group_id = '9110' 
 
         document.safeQuerySelector(`${FORM} input[name="thank-you-page"]`).value = "";
         document.safeQuerySelector(`${FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
@@ -420,22 +467,25 @@
 
     function getResultForAmoCrm(professions, userAnswers) {
       let profStr = "";
-      professions.forEach((p,i) => profStr += `  Топ-${i+1}: ${p.title} (${p.userProggress}%)\n`);
+      professions.forEach((p,i) => profStr += `Топ-${i+1}: ${p.title} (${p.userProggress}%)\n`);
 
-  return `
-  Зарплата: ${professions[0].title}
+return `
+Результат:
+${profStr}
 
-  Ответы на вопросы:\n${getTextUserAnswers(userAnswers)}
-  `;
+Ответы на вопросы:
+${getTextUserAnswers(userAnswers)}
+`;
     }
 
     function getResultForAmoCrmOnlyProfs(professions, userAnswers) {
       let profStr = "";
-      professions.forEach((p,i) => profStr += `  Топ-${i+1}: ${p.title} (${p.userProggress}%)\n`);
+      professions.forEach((p,i) => profStr += `Топ-${i+1}: ${p.title} (${p.userProggress}%)\n`);
 
-  return `
-  Зарплата: ${professions[0].title}
-  `;
+return `
+Результат:
+${profStr}
+`;
     }
 
     function safeDataLayer(obj) {
@@ -445,9 +495,6 @@
         console.warn(`Ошибка добавления в dataLayer`, obj)
       }
     }
-    ////
-    // Дальше - код от бандлера
-    ////
 
     </script>
   </head>

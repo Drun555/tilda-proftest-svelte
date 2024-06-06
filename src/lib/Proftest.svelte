@@ -426,7 +426,7 @@
 
       
       {#if question.questionImageUrl}
-      <div style={`background-image: url(${question.questionImageUrl})`} class={`z-skypro-proftest-wrapper__question-image ${switching ? 'opacity0' : 'opacity100'}`}></div>
+      <div style={`background-image: url(${question.questionImageUrl})`} class={`z-skypro-proftest-wrapper__question-image`}></div>
       {/if}
       
       <div class={`z-skypro-proftest-main-wrap classicQuestionsWrap`}>
