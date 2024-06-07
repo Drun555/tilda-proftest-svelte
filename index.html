@@ -1346,86 +1346,77 @@
       
       // Убираем профтест
       hide(ZERO_BLOCK_PROFTEST);
-      show(ZERO_BLOCK_PROGRESSBAR)  
+      // show(ZERO_BLOCK_PROGRESSBAR)  
 
-      let currentTextIndex = 0;
-      $(`${CHANGING_TEXT_CLASS} .tn-atom`).html( CHANGING_TEXT_ARRAY[currentTextIndex] );
-      let changingTextInterval = setInterval(() => {
-          currentTextIndex++;
-          $(`${CHANGING_TEXT_CLASS} .tn-atom`).html( CHANGING_TEXT_ARRAY[currentTextIndex] );
-          if (currentTextIndex + 1 == CHANGING_TEXT_ARRAY.length) clearInterval(changingTextInterval)
-      }, (9 / CHANGING_TEXT_ARRAY.length / 2) * 1000)
-      
-
+      // let currentTextIndex = 0;
+      // $(`${CHANGING_TEXT_CLASS} .tn-atom`).html( CHANGING_TEXT_ARRAY[currentTextIndex] );
+      // let changingTextInterval = setInterval(() => {
+      //     currentTextIndex++;
+      //     $(`${CHANGING_TEXT_CLASS} .tn-atom`).html( CHANGING_TEXT_ARRAY[currentTextIndex] );
+      //     if (currentTextIndex + 1 == CHANGING_TEXT_ARRAY.length) clearInterval(changingTextInterval)
+      // }, (9 / CHANGING_TEXT_ARRAY.length / 2) * 1000)
       t_lazyload_update();
-      let progressBarWidth = Math.round(document.querySelector('.proftest-zeroBlock-progressBar').computedStyleMap().get('width').value);
-      document.querySelector('.proftest-zeroBlock-progressBar').style.setProperty('max-width', `${progressBarWidth}px`, 'important');
-      setTimeout(() => {
-        document.safeQuerySelector(ZERO_BLOCK_PROGRESSBAR).classList.add('rightHide')
+      // let progressBarWidth = Math.round(document.querySelector('.proftest-zeroBlock-progressBar').computedStyleMap().get('width').value);
+      // document.querySelector('.proftest-zeroBlock-progressBar').style.setProperty('max-width', `${progressBarWidth}px`, 'important');
+      // setTimeout(() => {
+      //   document.safeQuerySelector(ZERO_BLOCK_PROGRESSBAR).classList.add('rightHide')
             
-        // Показываем нужные финальные блоки
-        data.professions[0].finalBlocks.forEach(b => show(b))
+
+      // }, 9 * 1000)
+
+      // Показываем нужные финальные блоки
+      data.professions[0].finalBlocks.forEach(b => show(b))
+      
+      // Показываем две формы
+      show(ZERO_BLOCK_RESULT)
+      show(ZERO_BLOCK_RESULT_SECOND)
+      t_lazyload_update();
+      
+      // Дополняем инпуты форм
+      setTimeout(function () {
+        const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
+        const SECOND_FORM = ZERO_BLOCK_RESULT_SECOND.replace('rec', 'form');
+        let target_lead = true;
+        let televox_import_group_id = '9323' 
+        let funnel = 'televox'
+
+        // Есть ли айти-профессия, которая уже вам приглянулась?
+        // Да, уже есть такая
+
+        document.safeQuerySelector(`${FORM} input[name="thank-you-page"]`).value = "";
+        document.safeQuerySelector(`${FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
+        document.safeQuerySelector(`${FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
+        document.safeQuerySelector(`${FORM} input[name="target_lead"]`).value = target_lead;
+        document.safeQuerySelector(`${FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
+        document.safeQuerySelector(`${FORM} input[name="funnel"]`).value = funnel;
+
+        document.safeQuerySelector(`${SECOND_FORM} input[name="thank-you-page"]`).value = "";
+        document.safeQuerySelector(`${SECOND_FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
+        document.safeQuerySelector(`${SECOND_FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
+        document.safeQuerySelector(`${SECOND_FORM} input[name="target_lead"]`).value = target_lead;
+        document.safeQuerySelector(`${SECOND_FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
+        document.safeQuerySelector(`${SECOND_FORM} input[name="funnel"]`).value = funnel;
         
-        // Показываем две формы
-        show(ZERO_BLOCK_RESULT)
-        show(ZERO_BLOCK_RESULT_SECOND)
-        t_lazyload_update();
-        
-        // Дополняем инпуты форм
-        setTimeout(function () {
-          const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
-          const SECOND_FORM = ZERO_BLOCK_RESULT_SECOND.replace('rec', 'form');
-          let target_lead = true;
-          let televox_import_group_id = '9323' 
-          let funnel = 'televox'
-
-          // Есть ли айти-профессия, которая уже вам приглянулась?
-          // Да, уже есть такая
-          if (data.answers[25].answerIndex == 0)
-            funnel = '1_line'
-
-          document.safeQuerySelector(`${FORM} input[name="thank-you-page"]`).value = "";
-          document.safeQuerySelector(`${FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
-          document.safeQuerySelector(`${FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
-          document.safeQuerySelector(`${FORM} input[name="target_lead"]`).value = target_lead;
-          document.safeQuerySelector(`${FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
-          document.safeQuerySelector(`${FORM} input[name="funnel"]`).value = funnel;
-
-          document.safeQuerySelector(`${SECOND_FORM} input[name="thank-you-page"]`).value = "";
-          document.safeQuerySelector(`${SECOND_FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
-          document.safeQuerySelector(`${SECOND_FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
-          document.safeQuerySelector(`${SECOND_FORM} input[name="target_lead"]`).value = target_lead;
-          document.safeQuerySelector(`${SECOND_FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
-          document.safeQuerySelector(`${SECOND_FORM} input[name="funnel"]`).value = funnel;
-          
-          const updateFn = setInterval(function () {
-              if (
-                  document.safeQuerySelector(FORM).classList.contains("js-send-form-success")
-                  ||
-                  document.safeQuerySelector(SECOND_FORM).classList.contains("js-send-form-success")
-              ) {
-                  clearInterval(updateFn);
-                  
-                  document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
-
+        const updateFn = setInterval(function () {
+            if (
+                document.safeQuerySelector(FORM).classList.contains("js-send-form-success")
+                ||
+                document.safeQuerySelector(SECOND_FORM).classList.contains("js-send-form-success")
+            ) {
+                clearInterval(updateFn);
                 
-                  hide(ZERO_BLOCK_RESULT)
-                  hide(ZERO_BLOCK_RESULT_SECOND)
-                  
-                  var evt = new CustomEvent("formFilled", { detail: data.professions[0].title });
-                  window.dispatchEvent(evt);
-                  show(ZERO_BLOCK_PROFTEST);
-              }
-          }, 300);
-        }, 2000);
+                document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
 
-        // document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
-        // hide(ZERO_BLOCK_RESULT)
-        // hide(ZERO_BLOCK_RESULT_SECOND)
-        // var evt = new CustomEvent("formFilled", { detail: data.professions[0].title });
-        // window.dispatchEvent(evt);
-        // show(ZERO_BLOCK_PROFTEST);
-      }, 9 * 1000)
+              
+                hide(ZERO_BLOCK_RESULT)
+                hide(ZERO_BLOCK_RESULT_SECOND)
+                
+                var evt = new CustomEvent("formFilled", { detail: data.professions[0].title });
+                window.dispatchEvent(evt);
+                show(ZERO_BLOCK_PROFTEST);
+            }
+        }, 300);
+      }, 2000);
     })
     
     ////
