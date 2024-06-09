@@ -2,6 +2,7 @@
   // @ts-nocheck
 
   import '../assets/styles.scss'
+  import Countdown from './Countdown.svelte';
   import { cumulativeOffset } from './helpers'
   let data = window.proftest;
   
@@ -402,15 +403,9 @@
       <!-- Разметка для обычных вопросов -->
       {#if !question.questionImageUrl}
       <div class={`z-skypro-proftest-wrapper__header-wrap`}>
-          {#if screenWidth > 1260 && timer !== ''}
-            <div class="z-proftest-header__timer">{timer}</div>
-          {/if}
           
           <div class="z-skypro-proftest-wrapper__header">
-            Подходит ли вам IT-сфера?
-            {#if screenWidth < 1260 && timer !== ''}
-              <div class="z-proftest-header__timer">{timer}</div>
-            {/if}
+            Подходит ли вам IT-сфера
           </div>
           <div class={`z-skypro-proftest-wrapper__subtitle`}>
             Пройдите тест и узнайте, получится ли у вас работать в IT
@@ -421,6 +416,7 @@
             </div>
             <img alt='подарок' src="https://static.tildacdn.com/tild6636-3238-4332-b831-613138613336/Group_1597880045.png">
           </div>
+          
       </div>
       {/if}
 
@@ -432,8 +428,9 @@
       <div class={`z-skypro-proftest-main-wrap classicQuestionsWrap`}>
           <div class="z-skypro-proftest">
               <div class={`classicQuestionHeader`}>
-                <h3 class="z-skypro-proftest__question">{question.question}</h3>
-                <span class="z-skypro-proftest__progress">{currentProgress}%</span>
+                <div class="z-skypro-proftest__question">{question.question}</div>
+                <!-- <div class="z-skypro-proftest__progress">{currentProgress}%</div> -->
+                <Countdown />
               </div>
               
               <div class={`z-skypro-proftest__answers`}>
