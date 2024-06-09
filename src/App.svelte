@@ -10,14 +10,11 @@
 
     addStyle(`
     :root {
-      background-color: #10121a;
-      background-image: url('https://static.tildacdn.com/tild6263-6330-4165-a663-663864333765/2_81-2-2.png');
+      background-color: white;
       background-size: auto;
       background-position: center;
       background-repeat: repeat;
       overflow: visible;
-      padding-left: 10px;
-      margin-left: -10px;
     }
     `);
 
