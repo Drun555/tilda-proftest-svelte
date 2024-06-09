@@ -6,7 +6,7 @@
 .z-skypro-proftest-main-wrapper {
     background-color: #eaecef;
     width: calc(100% - 50px);
-    margin-top: 60px;
+    margin-top: 30px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 16px;
 }
@@ -144,6 +144,7 @@
     .z-skypro-proftest-main-wrapper {
         padding: 50px;
         width: 1200px;
+        margin-top: 60px;
     }
 
     .z-proftest-header__timer {
