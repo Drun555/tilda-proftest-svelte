@@ -429,7 +429,7 @@
           <div class="z-skypro-proftest">
               <div class={`classicQuestionHeader`}>
                 <div class="z-skypro-proftest__question">{question.question}</div>
-                <!-- <div class="z-skypro-proftest__progress">{currentProgress}%</div> -->
+                
                 <Countdown />
               </div>
               
@@ -457,7 +457,7 @@
                 {/each}
                 {/key}
               </div>
-
+              
               <div class="z-skypro-proftest__buttons">
                 {#if currentQuestionIndex > 0 && !beforeSwitching}
                 <button on:click={() => back() } class="z-skypro-proftest__button z-skypro-proftest__button--prev">
@@ -480,6 +480,7 @@
                   Пройти заново
                 </button>
                 {/if}
+              <div class="z-skypro-proftest__progress">{currentProgress}%</div>
               </div>
           </div>
 
