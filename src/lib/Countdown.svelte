@@ -6,7 +6,6 @@
     
 
     let halo: HTMLElement = document.createElement('circle');
-    let repeat = null;
 
     window.addEventListener("answerPressed", e => {
         startAnimation();
@@ -19,12 +18,11 @@
         clearInterval(countDown);
         let svgWrapper = document.querySelector('.svgWrapper')
         svgWrapper.parentElement.classList.remove('shaking')
-
+        
         baseSeconds = 10;
         halo = document.querySelector('circle')
         halo.classList.remove('circleAnimation')
         setTimeout(() => halo.classList.add('circleAnimation'), 50)
-        repeat = baseSeconds;
         
 
         countDown = setInterval(() => {
@@ -46,7 +44,6 @@
 </script>
 <svelte:window bind:innerWidth={screenWidth} />
 
-{#key repeat}
 <div class="timer">
     <div class="svgWrapper">
         <svg width="100%" style="overflow: visible;" height="100%" version="1.1" preserveAspectRatio="none" >
@@ -57,7 +54,6 @@
         </div>
     </div>
 </div>
-{/key}
 
 <style lang="scss">
 
@@ -71,6 +67,16 @@
         animation: shakeAnim 0.3s infinite;
         animation-timing-function: linear;
         transform-origin: center;
+    }
+
+    :global(.shaking .timer-number) {
+        color: #b76767 !important;
+        transition: 1s;
+    }
+
+    :global(.shaking circle) {
+        stroke-dasharray: 360,360;
+        transition: 1s;
     }
 
     @keyframes -global-circleCountdown {
