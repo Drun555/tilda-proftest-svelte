@@ -84,15 +84,17 @@
   let userAnswers = {};
   function writeAnswer(index) {
     
+    userAnswers[currentQuestionIndex] = {
+      questionLink: question,
+      questionIndex: currentQuestionIndex,
+      answerIndex: index,
+      // Ответы у нас в одном едином массиве. Например, третий ответ третьего вопроса будет под индексом 8
+      // Чтобы потом удобно по нему пробегаться, нам нужно записать общий индекс ответа
+      overallAnswerIndex: ( question.startAnswerIndex + index ?? null)
+    }
+
     setTimeout(() => { // Меняем вопрос с задержкой
-      userAnswers[currentQuestionIndex] = {
-        questionLink: question,
-        questionIndex: currentQuestionIndex,
-        answerIndex: index,
-        // Ответы у нас в одном едином массиве. Например, третий ответ третьего вопроса будет под индексом 8
-        // Чтобы потом удобно по нему пробегаться, нам нужно записать общий индекс ответа
-        overallAnswerIndex: ( question.startAnswerIndex + index ?? null)
-      }
+      
 
 
       let thisProftestOffset = cumulativeOffset(document.querySelector('.z-skypro-proftest-wrapper'))
@@ -110,13 +112,13 @@
       );
       
       if (currentQuestionIndex + 1 !== questions.length) {
-        // next()
+        next()
       }
       else {
         proftestCompleted()
       }
 
-    }, ((professionalQuestions) ? 0 : 0));
+    }, ((professionalQuestions) ? 500 : 500));
   }
 
   function proftestCompleted() {
@@ -293,11 +295,13 @@
                 {/each}
                 {/key}
               </div>
+              <!-- 
               {#if userAnswers[currentQuestionIndex] && !switching && !beforeSwitching}
               <button on:click={() => next() } class="z-skypro-proftest__button">
                 Ответить
               </button>
               {/if}
+               -->
           </div>
 
           

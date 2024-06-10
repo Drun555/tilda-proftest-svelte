@@ -23,6 +23,7 @@
     // ID этой формы T123
     const ZERO_BLOCK_PROFTEST = "#rec758854279";
     const ZERO_BLOCK_RESULT = "#rec758854283";
+    const ZERO_BLOCK_INSERTBUTTON = "#rec758854280";
     const ZERO_BLOCK_RESULT_SECOND = "#rec758854289";
 
     window.proftest.QUESTIONS = [
@@ -279,7 +280,8 @@
       // Как загрузится страничка - скрываем все  функциональные блоки
       [
         ZERO_BLOCK_RESULT,
-        ZERO_BLOCK_RESULT_SECOND
+        ZERO_BLOCK_RESULT_SECOND,
+        ZERO_BLOCK_INSERTBUTTON
       ].forEach(b => hide(b));
 
       // Скрываем все финальные блоки
@@ -342,6 +344,7 @@
       // Показываем две формы
       show(ZERO_BLOCK_RESULT)
       show(ZERO_BLOCK_RESULT_SECOND)
+      show(ZERO_BLOCK_INSERTBUTTON)
       // document.safeQuerySelector('.z-proftest-result__1 .tn-atom').innerHTML = data.professions[0].title
 
       t_lazyload_update();
