@@ -1332,11 +1332,27 @@
     ////
 
     window.addEventListener("answerPressed", e => {
-      // метрики будем слушать тут
+      let d = e.detail;
+      if (d.questionIndex == 25 && d.answerIndex == 0)
+      safeDataLayer({
+          'event' : 'GTMevent',
+          'eventCategory' : 'answer',
+          'eventAction' : 'success',
+          'eventLabel' : 'chose_a_profession'
+      })
+
+      if (d.questionIndex == 25 && d.answerIndex == 2)
+      safeDataLayer({
+          'event' : 'GTMevent',
+          'eventCategory' : 'answer',
+          'eventAction' : 'success',
+          'eventLabel' : 'undecided_on_profession'
+      })
     })
     
     window.addEventListener("proftestCompleted", e => {
       let data = e.detail;
+      
       safeDataLayer({
           'event' : 'GTMevent',
           'eventCategory' : 'viewing',
@@ -1344,26 +1360,9 @@
           'eventLabel' : 'contact_page'
       })
       
+      setupTelegramLinks(data.professions[0])
       // Убираем профтест
       hide(ZERO_BLOCK_PROFTEST);
-      // show(ZERO_BLOCK_PROGRESSBAR)  
-
-      // let currentTextIndex = 0;
-      // $(`${CHANGING_TEXT_CLASS} .tn-atom`).html( CHANGING_TEXT_ARRAY[currentTextIndex] );
-      // let changingTextInterval = setInterval(() => {
-      //     currentTextIndex++;
-      //     $(`${CHANGING_TEXT_CLASS} .tn-atom`).html( CHANGING_TEXT_ARRAY[currentTextIndex] );
-      //     if (currentTextIndex + 1 == CHANGING_TEXT_ARRAY.length) clearInterval(changingTextInterval)
-      // }, (9 / CHANGING_TEXT_ARRAY.length / 2) * 1000)
-      t_lazyload_update();
-      // let progressBarWidth = Math.round(document.querySelector('.proftest-zeroBlock-progressBar').computedStyleMap().get('width').value);
-      // document.querySelector('.proftest-zeroBlock-progressBar').style.setProperty('max-width', `${progressBarWidth}px`, 'important');
-      // setTimeout(() => {
-      //   document.safeQuerySelector(ZERO_BLOCK_PROGRESSBAR).classList.add('rightHide')
-            
-
-      // }, 9 * 1000)
-
       // Показываем нужные финальные блоки
       data.professions[0].finalBlocks.forEach(b => show(b))
       
@@ -1423,6 +1422,46 @@
     // Маленькие хэлперы
     ////
 
+    function setupTelegramLinks(profession) {
+      let baseTgUrl = '';
+      switch (profession) {
+          case "Аналитик": 
+              baseTgUrl = 'https://salebot.site/proftest-praktikum_data-analyst_1';
+              break;
+          case "Front-разработчик": 
+              baseTgUrl = 'https://salebot.site/proftest-praktikum_developer_1';
+              break;
+          case "Backend-разработчик": 
+              baseTgUrl = 'https://salebot.site/proftest-praktikum_developer_1';
+              break;
+          case "Тестировщик": 
+              baseTgUrl = 'https://salebot.site/proftest-praktikum_QA_1';
+              break;
+          case "Маркетолог": 
+              baseTgUrl = 'https://salebot.site/proftest-praktikum_marketolog_1';
+              break;
+          case "Дизайнер": 
+              baseTgUrl = 'https://salebot.site/proftest-praktikum_designer_1';
+              break;
+      }
+
+      document.querySelectorAll(".proftest-telegramLinkWithUUID .tn-atom").forEach(b => {
+        b.setAttribute("href", "#")
+        b.addEventListener("click", () => {
+          safeDataLayer({
+            'event' : 'GTMevent',
+            'eventCategory' : 'button',
+            'eventAction' : 'click',
+            'eventLabel' : 'after_the_test'
+          })
+
+          setTimeout(() => {
+            location.href = baseTgUrl
+          }, 100)
+        })
+      })
+
+    }
     function show(id) {
       try {
         document.querySelector(id).style.display = 'block'
