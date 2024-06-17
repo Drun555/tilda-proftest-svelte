@@ -1478,6 +1478,26 @@
       }
     }
 
+
+    // returnjQueryBlock и returnArrayBlocks позволяют не вводить каждый раз ID блоков, а использовать шейпы-крюки.
+    // Пример использования на https://sky.pro/promo/media/main-proftest_1
+    const currentScript = document.currentScript;
+    function returnjQueryBlock(hiddenShapeClass) {
+      if (hiddenShapeClass == '.ZERO_BLOCK_PROFTEST')
+        return $( currentScript.closest(".t-rec") )
+
+      else
+        return $( document.querySelector(hiddenShapeClass).closest(".t-rec") )
+    }
+
+    function returnArrayBlocks(selector) {
+      let blocks = []
+      document.querySelectorAll(selector).forEach(b => blocks.push( '#'+b.closest(".t-rec").id ))
+      document.querySelectorAll('.ZERO_BLOCK_UNIVERSAL').forEach(b => blocks.push( '#'+b.closest(".t-rec").id ))
+      
+      return blocks;
+    }
+
     function getTextUserAnswers(userAnswers) {
       let result = "";
       for (const key in userAnswers) {
