@@ -1,16 +1,14 @@
 <!-- 
-.%%%%%...%%%%%....%%%%...%%%%%%..%%%%%%..%%%%%%...%%%%...%%%%%%.
-.%%..%%..%%..%%..%%..%%..%%........%%....%%......%%........%%...
-.%%%%%...%%%%%...%%..%%..%%%%......%%....%%%%.....%%%%.....%%...
-.%%......%%..%%..%%..%%..%%........%%....%%..........%%....%%...
-.%%......%%..%%...%%%%...%%........%%....%%%%%%...%%%%.....%%...
-................................................................
-..%%%%....%%%%...%%..%%..........%%%%%%..%%%%%%.................                
-.%%..%%..%%..%%..%%%.%%............%%......%%...................                
-.%%......%%%%%%..%%.%%%..%%%%%%....%%......%%...................                
-.%%..%%..%%..%%..%%..%%............%%......%%...................                
-..%%%%...%%..%%..%%..%%..........%%%%%%....%%...................                
-................................................................                
+01001100 01101111 01110110 01100101       
+
+               /)_/_       _/_     
+   _   __  __ // /  _  _   /       
+  /_)_/ (_(_)//_<__</_/_)_<__      
+ /          />                     
+'          </                      
+
+01000101 01101110 01100100 01110011 
+
 -->
 
 <!doctype html>
@@ -359,17 +357,17 @@
       }
     ];
 
-    window.proftest.QUESTIONS = [
-        {
-          question: "Я предпочитаю ", 
-          answers: [
-            "Работать самостоятельно и не зависеть от других",
-            "Работать в команде и рассчитывать на помощь коллег",
-            "Организовывать и контролировать процесс работы",
-          ],
-          progress: "0%"
-        }
-    ];
+    // window.proftest.QUESTIONS = [
+    //     {
+    //       question: "Я предпочитаю ", 
+    //       answers: [
+    //         "Работать самостоятельно и не зависеть от других",
+    //         "Работать в команде и рассчитывать на помощь коллег",
+    //         "Организовывать и контролировать процесс работы",
+    //       ],
+    //       progress: "0%"
+    //     }
+    // ];
 
     window.proftest.RESULT_PROFESSION = [
       {
@@ -676,8 +674,16 @@
       
 
       t_lazyload_update();
-      let progressBarWidth = Math.round(document.querySelector('.proftest-zeroBlock-progressBar').computedStyleMap().get('width').value);
-      document.querySelector('.proftest-zeroBlock-progressBar').style.setProperty('max-width', `${progressBarWidth}px`, 'important');
+      
+      let pg = document.querySelector('.proftest-zeroBlock-progressBar');
+
+      pg.style.transition = 'none !important';
+      let progressBarWidth = pg.getBoundingClientRect().width
+      pg.style.setProperty('max-width', `0px`, 'important');
+      setTimeout(() => {
+          pg.style.transition = '';
+          pg.style.setProperty('max-width', `${progressBarWidth}px`, 'important');
+      }, 100)
       setTimeout(() => {
         document.safeQuerySelector(ZERO_BLOCK_PROGRESSBAR).classList.add('rightHide')
             

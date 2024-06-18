@@ -204,30 +204,25 @@
 <svelte:window bind:innerWidth={screenWidth} />
 
 <div class="z-skypro-proftest-main-wrapper">
-
+  <div class="z-proftest-header">
+    <div class="z-proftest-header__logo" style={`background-image: url('https://static.tildacdn.com/tild6635-6465-4766-a263-316539366231/Group_1321316717.svg')`}></div>
+    {#if timer !== ''}
+    <div class="z-proftest-header__timer">{timer}</div>
+    {/if}
+  </div>
   <div class="z-skypro-proftest-wrapper">
     {#if typeof question.subtitle === 'undefined' && (!question.type || question.type == 'classic')}
       <!-- Разметка для обычных вопросов -->
       {#if !question.questionImageUrl}
       <div class={`z-skypro-proftest-wrapper__header-wrap`}>
-          {#if screenWidth > 1260 && timer !== ''}
-            <div class="z-proftest-header__timer">{timer}</div>
-          {/if}
-          
           <div class="z-skypro-proftest-wrapper__header">
-            Подходит ли вам IT-сфера?
-            {#if screenWidth < 1260 && timer !== ''}
-              <div class="z-proftest-header__timer">{timer}</div>
-            {/if}
+            Пройдите научный профориентационный тест и узнайте, какой профессии подходите
           </div>
-          <div class={`z-skypro-proftest-wrapper__subtitle`}>
-            Пройдите тест и узнайте, получится ли у вас работать в IT
-          </div>
-          <div class="z-skypro-proftest-wrapper__giftBox">
-            <div class="z-skypro-proftest-wrapper__giftBox-text">
-              В конце подарим бесплатную консультацию с карьерным экспертом и книгу «Первые шаги в IT» для начинающих
+          <div class="z-skypro-proftest-wrapper__5material">
+            <div class="z-skypro-proftest-wrapper__5material-text">
+              В конце — 5 полезных материалов, которые помогут в работе уже сейчас: <span>советы по резюме, собеседованиям и росту зарплаты</span>
             </div>
-            <img alt='подарок' src="https://static.tildacdn.com/tild6636-3238-4332-b831-613138613336/Group_1597880045.png">
+            <img alt='подарок' src="https://static.tildacdn.com/tild3164-3237-4662-a163-333965636565/Group_1597880733_1.png">
           </div>
       </div>
       {/if}
