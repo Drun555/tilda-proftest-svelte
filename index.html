@@ -24,10 +24,10 @@
 
     
     // ID этой формы T123
-    const ZERO_BLOCK_PROFTEST = "#rec756010537";
-    const ZERO_BLOCK_RESULT = "#rec754631337";
-    const ZERO_BLOCK_INSERTBUTTON = "#rec754631335";
-    const ZERO_BLOCK_RESULT_SECOND = "#rec754631343";
+    const ZERO_BLOCK_PROFTEST = "#rec761943943";
+    const ZERO_BLOCK_RESULT = "#rec761943948";
+    const ZERO_BLOCK_INSERTBUTTON = "#rec761943944";
+    const ZERO_BLOCK_RESULT_SECOND = "#rec761943960";
 
     window.proftest.QUESTIONS = [
       {
@@ -235,86 +235,45 @@
             "Больше 45",
         ] 
       },
-      
-      {
-        question: "Во сколько раз зарплаты компании А выше, чем в компании Б?",
-        questionImageUrl:
-          "https://static.tildacdn.com/tild6634-6666-4634-a237-646664313538/Frame_2043683087.png",
-        progress: "96%",
-        answers: [
-          "В 4 раза",
-          "В 2,5 раза",
-          "В 2 раза",
-        ],
-      },
-      {
-        question: "Какое решение для роста прибыли бизнеса вы бы приняли на основе графика продаж соков?",
-        questionImageUrl:
-          "https://static.tildacdn.com/tild3335-3462-4630-b738-323263646165/Frame_2043683087_1.png",
-        progress: "97%",
-        answers: [
-          "Продавать только яблочный",
-          "Убрать из продажи апельсиновый",
-          "Дать скидку на апельсиновый",
-          "Ничего не делать",
-        ],
-      },
-      {
-        question: "Как вы считаете, какое оформление рекламного баннера считается правильным? На ваш вкус.",
-        questionImageUrl:
-          "https://static.tildacdn.com/tild6139-3864-4131-a436-333136613238/image_14.png",
-        progress: "98%",
-        answers: [
-          "Первое",
-          "Второе",
-        ],
-      },
-      {
-        question: "Как вы считаете, как нужно разложить вещи в шкафу, чтобы одеваться в два раза быстрее?",
-        questionImageUrl:
-          "https://static.tildacdn.com/tild3930-3432-4566-a465-353433663163/image_14_1.png",
-        progress: "99%",
-        answers: [
-          "По цветам",
-          "По типам (верх, низ)",
-          "По размерам",
-        ],
-      }
     ];
 
-    // window.proftest.QUESTIONS = [
-    //     {
-    //       question: "Я предпочитаю ", 
-    //       answers: [
-    //         "Работать самостоятельно и не зависеть от других",
-    //         "Работать в команде и рассчитывать на помощь коллег",
-    //         "Организовывать и контролировать процесс работы",
-    //       ],
-    //       progress: "0%"
-    //     }
-    // ];
+    window.proftest.QUESTIONS = [
+        {
+          question: "Я предпочитаю ", 
+          answers: [
+            "Работать самостоятельно и не зависеть от других",
+            "Работать в команде и рассчитывать на помощь коллег",
+            "Организовывать и контролировать процесс работы",
+          ],
+          progress: "0%"
+        }
+    ];
 
     window.proftest.RESULT_PROFESSION = [
       {
         title: "Вам подходит IT",
         finalBlocks: [
-          "#rec754631338",
-          "#rec754631340",
-          "#rec754637757",
+          "#rec761943950",
+          "#rec761943955",
+          "#rec761943957",
         ],
-        dataCheck: [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        superFinalBlock: "#rec754631339",
+        dataCheck: [1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        superFinalBlocks: [
+          "#rec761943951",
+          "#rec761943956"
+        ],
         userProggress: 0
       },
       {
         title: "Вам не подходит IT",
         finalBlocks: [
-          "#rec754631341",
-          "#rec754631342",
-          "#rec754637757",
+          "#rec761943958",
+          "#rec761943959"
         ],
-        dataCheck: [0,0,99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        superFinalBlock: "#rec754631341",
+        dataCheck: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        superFinalBlock: [
+          "#rec761943959",
+        ],
         userProggress: 0
       }
     ];
@@ -338,7 +297,7 @@
 
       // Скрываем все суперфинальные блоки
       window.proftest.RESULT_PROFESSION.forEach(p => {
-        hide(p.superFinalBlock);
+        p.superFinalBlocks.forEach(b => hide(b));
       })
     });
     
@@ -426,9 +385,20 @@
 
                 hide(ZERO_BLOCK_RESULT)
                 hide(ZERO_BLOCK_RESULT_SECOND)
-                show(data.professions[0].superFinalBlock)
-                // var evt = new CustomEvent("formFilled", { detail: data.professions[0].title });
-                // window.dispatchEvent(evt);
+
+                data.professions[0].superFinalBlocks.forEach(b => show(b));
+                t_lazyload_update();
+              
+                // Проталкиваем заявку
+                const pushIntervalFn = setInterval(function () {
+                if (
+                    document.safeQuerySelector("#form761943954").classList.contains("js-send-form-success")
+                ) {
+                    clearInterval(pushIntervalFn);
+                    console.log('push')
+                    fetch(`https://api.sky.pro/api/v1/lead/fast_import_group?leadUuid=${UUIDs['leadUUID']}`)
+                }
+            }, 300);
             }
         }, 300);
       }, 2000);
