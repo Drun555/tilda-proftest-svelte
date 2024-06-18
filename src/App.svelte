@@ -11,7 +11,7 @@
     addStyle(`
     :root {
       background-color: #10121a;
-      background-image: url('https://static.tildacdn.com/tild6263-6330-4165-a663-663864333765/2_81-2-2.png');
+      background-image: url('https://static.tildacdn.com/tild3333-3664-4137-a632-313431376332/2_81-2-2_1_3_2.png');
       background-size: auto;
       background-position: center;
       background-repeat: repeat;

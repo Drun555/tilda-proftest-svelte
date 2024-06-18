@@ -611,6 +611,10 @@ display: inline-block;
     color: var(--text-color);
 }
 
+.t-bgimg {
+    backdrop-filter: blur(20px);
+}
+
 @media screen and (min-width: 1260px) {
     .z-skypro-proftest-wrapper {
         display: flex;
@@ -640,7 +644,7 @@ display: inline-block;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        width: 1260px;
+        width: 1190px;
         justify-content: center;
         margin-left: 0;
     }

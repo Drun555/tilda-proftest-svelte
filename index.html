@@ -29,7 +29,10 @@
     const ZERO_BLOCK_INSERTBUTTON = "#rec754584208";
     const ZERO_BLOCK_RESULT_SECOND = "#rec754584241";
     
-    const ZERO_BLOCK_PROGRESSBAR = "#rec752270034";
+    const TICKET_BLOCK = "#rec756989351";
+    const DONT_FORGET_YOUR_TICKET = "#rec757045668";
+
+    const ZERO_BLOCK_PROGRESSBAR = "#rec756989476";
     const CHANGING_TEXT_CLASS = ".changingText"
     const CHANGING_TEXT_ARRAY = [
         "Наш научный алгоритм уже нашел вашу профессию",
@@ -37,7 +40,7 @@
         "Результат готов!"
     ]
 
-    window.proftest.QUESTIONS = PROFTEST_QUESTIONS = [
+    window.proftest.QUESTIONS = [
       {
         question: "Я предпочитаю ",
         answers: [
@@ -356,17 +359,17 @@
       }
     ];
 
-    // window.proftest.QUESTIONS = [
-    //     {
-    //       question: "Я предпочитаю ", 
-    //       answers: [
-    //         "Работать самостоятельно и не зависеть от других",
-    //         "Работать в команде и рассчитывать на помощь коллег",
-    //         "Организовывать и контролировать процесс работы",
-    //       ],
-    //       progress: "0%"
-    //     }
-    // ];
+    window.proftest.QUESTIONS = [
+        {
+          question: "Я предпочитаю ", 
+          answers: [
+            "Работать самостоятельно и не зависеть от других",
+            "Работать в команде и рассчитывать на помощь коллег",
+            "Организовывать и контролировать процесс работы",
+          ],
+          progress: "0%"
+        }
+    ];
 
     window.proftest.RESULT_PROFESSION = [
       {
@@ -415,13 +418,11 @@
         ],
         userProggress: 0,
         finalBlocks: [
-          "#rec724821957",
-          "#rec724822091",
-          "#rec724822276",
-          "#rec715541770",
-          "#rec736193138",
-          "#rec751945249"
-
+          "#rec754584212",
+          "#rec754584213",
+          "#rec754584215",
+          "#rec754584234",
+          "#rec754584236",
         ],
         superFinalBlock: "#rec743686251",
         salary: 95000,
@@ -459,12 +460,11 @@
         ],
         userProggress: 0,
         finalBlocks: [
-          "#rec724822379",
-          "#rec724822524",
-          "#rec724825161",
-          "#rec715541770",
-          "#rec736196036",
-          "#rec751945249"
+          "#rec754584216",
+          "#rec754584217",
+          "#rec754584221",
+          "#rec754584234",
+          "#rec754584237",
         ],
         superFinalBlock: "#rec744708716",
         salary: 90000,
@@ -502,12 +502,11 @@
         ],
         userProggress: 0,
         finalBlocks: [
-          "#rec724936811",
-          "#rec724936922",
-          "#rec724936990",
-          "#rec715541770",
-          "#rec736222572",
-          "#rec751945249"
+          "#rec754584222",
+          "#rec754584223",
+          "#rec754584225",
+          "#rec754584234",
+          "#rec754584238",
         ],
         superFinalBlock: "#rec744708789",
         salary: 70000,
@@ -545,12 +544,11 @@
         ],
         userProggress: 0,
         finalBlocks: [
-          "#rec724951899",
-          "#rec724951935",
-          "#rec724952068",
-          "#rec715541770",
-          "#rec736224707",
-          "#rec751945249"
+          "#rec754584226",
+          "#rec754584227",
+          "#rec754584229",
+          "#rec754584234",
+          "#rec754584239",
         ],
         superFinalBlock: "#rec744708899",
         salary: 65000,
@@ -588,12 +586,11 @@
         ],
         userProggress: 0,
         finalBlocks: [
-          "#rec724952194",
-          "#rec724952323",
-          "#rec724952572",
-          "#rec715541770",
-          "#rec724953585",
-          "#rec751945249"
+          "#rec754584230",
+          "#rec754584231",
+          "#rec754584233",
+          "#rec754584234",
+          "#rec754584240",
         ],
         superFinalBlock: "#rec744708962",
         salary: 80000,
@@ -610,7 +607,9 @@
       [
         ZERO_BLOCK_RESULT,
         ZERO_BLOCK_RESULT_SECOND,
-        ZERO_BLOCK_INSERTBUTTON
+        ZERO_BLOCK_INSERTBUTTON,
+        DONT_FORGET_YOUR_TICKET,
+        ZERO_BLOCK_PROGRESSBAR,
       ].forEach(b => hide(b));
 
       // Скрываем все финальные блоки
@@ -655,7 +654,6 @@
     
     window.addEventListener("proftestCompleted", e => {
       let data = e.detail;
-
       safeDataLayer({
           'event' : 'GTMevent',
           'eventCategory' : 'viewing',
@@ -665,55 +663,81 @@
       
       // Убираем профтест
       hide(ZERO_BLOCK_PROFTEST);
+      hide(TICKET_BLOCK);
+      show(ZERO_BLOCK_PROGRESSBAR)  
 
-            
-      // Показываем нужные финальные блоки
-      data.professions[0].finalBlocks.forEach(b => show(b))
+      let currentTextIndex = 0;
+      $(`${CHANGING_TEXT_CLASS} .tn-atom`).html( CHANGING_TEXT_ARRAY[currentTextIndex] );
+      let changingTextInterval = setInterval(() => {
+          currentTextIndex++;
+          $(`${CHANGING_TEXT_CLASS} .tn-atom`).html( CHANGING_TEXT_ARRAY[currentTextIndex] );
+          if (currentTextIndex + 1 == CHANGING_TEXT_ARRAY.length) clearInterval(changingTextInterval)
+      }, (9 / CHANGING_TEXT_ARRAY.length / 2) * 1000)
       
-      // Показываем две формы
-      show(ZERO_BLOCK_RESULT)
-      show(ZERO_BLOCK_RESULT_SECOND)
-      // document.safeQuerySelector('.z-proftest-result__1 .tn-atom').innerHTML = data.professions[0].title
 
       t_lazyload_update();
-      
-      // Дополняем инпуты форм
-      setTimeout(function () {
-        const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
-        const SECOND_FORM = ZERO_BLOCK_RESULT_SECOND.replace('rec', 'form');
-        let target_lead = true;
-        let televox_import_group_id = '9110' 
-
-        document.safeQuerySelector(`${FORM} input[name="thank-you-page"]`).value = "";
-        document.safeQuerySelector(`${FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
-        document.safeQuerySelector(`${FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
-        document.safeQuerySelector(`${FORM} input[name="target_lead"]`).value = target_lead;
-        document.safeQuerySelector(`${FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
-
-        document.safeQuerySelector(`${SECOND_FORM} input[name="thank-you-page"]`).value = "";
-        document.safeQuerySelector(`${SECOND_FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
-        document.safeQuerySelector(`${SECOND_FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
-        document.safeQuerySelector(`${SECOND_FORM} input[name="target_lead"]`).value = target_lead;
-        document.safeQuerySelector(`${SECOND_FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
+      let progressBarWidth = Math.round(document.querySelector('.proftest-zeroBlock-progressBar').computedStyleMap().get('width').value);
+      document.querySelector('.proftest-zeroBlock-progressBar').style.setProperty('max-width', `${progressBarWidth}px`, 'important');
+      setTimeout(() => {
+        document.safeQuerySelector(ZERO_BLOCK_PROGRESSBAR).classList.add('rightHide')
+            
+        // Показываем нужные финальные блоки
+        data.professions[0].finalBlocks.forEach(b => show(b))
         
-        const updateFn = setInterval(function () {
-            if (
-                document.safeQuerySelector(FORM).classList.contains("js-send-form-success")
-                ||
-                document.safeQuerySelector(SECOND_FORM).classList.contains("js-send-form-success")
-            ) {
-                clearInterval(updateFn);
-                
-                document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
+        // Показываем две формы
+        show(ZERO_BLOCK_RESULT)
+        show(ZERO_BLOCK_RESULT_SECOND)
+        t_lazyload_update();
+        
+        // Дополняем инпуты форм
+        setTimeout(function () {
+          const FORM = ZERO_BLOCK_RESULT.replace('rec', 'form');
+          const SECOND_FORM = ZERO_BLOCK_RESULT_SECOND.replace('rec', 'form');
+          let target_lead = true;
+          let televox_import_group_id = '9323' 
+          let funnel = 'televox'
 
-                hide(ZERO_BLOCK_RESULT)
-                hide(ZERO_BLOCK_RESULT_SECOND)
-                show(data.professions[0].superFinalBlock)
-                // var evt = new CustomEvent("formFilled", { detail: data.professions[0].title });
-                // window.dispatchEvent(evt);
-            }
-        }, 300);
-      }, 2000);
+          document.safeQuerySelector(`${FORM} input[name="thank-you-page"]`).value = "";
+          document.safeQuerySelector(`${FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
+          document.safeQuerySelector(`${FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
+          document.safeQuerySelector(`${FORM} input[name="target_lead"]`).value = target_lead;
+          document.safeQuerySelector(`${FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
+          document.safeQuerySelector(`${FORM} input[name="funnel"]`).value = funnel;
+
+          document.safeQuerySelector(`${SECOND_FORM} input[name="thank-you-page"]`).value = "";
+          document.safeQuerySelector(`${SECOND_FORM} input[name="comment_analytics"]`).value = getResultForAmoCrm(data.professions, data.answers);
+          document.safeQuerySelector(`${SECOND_FORM} input[name="comment"]`).value = getResultForAmoCrmOnlyProfs(data.professions, data.answers);
+          document.safeQuerySelector(`${SECOND_FORM} input[name="target_lead"]`).value = target_lead;
+          document.safeQuerySelector(`${SECOND_FORM} input[name="televox_import_group_id"]`).value = televox_import_group_id;
+          document.safeQuerySelector(`${SECOND_FORM} input[name="funnel"]`).value = funnel;
+          
+          const updateFn = setInterval(function () {
+              if (
+                  document.safeQuerySelector(FORM).classList.contains("js-send-form-success")
+                  ||
+                  document.safeQuerySelector(SECOND_FORM).classList.contains("js-send-form-success")
+              ) {
+                  clearInterval(updateFn);
+                  
+                  document.querySelectorAll('.blur').forEach(b => b.style.display = 'none');
+
+                  let ticket = document.safeQuerySelector(DONT_FORGET_YOUR_TICKET);
+                  let zarplataBlock = document.safeQuerySelector( data.professions[0].finalBlocks[2] );
+                  let blocksAllFather = ticket.parentNode;
+
+                  blocksAllFather.insertBefore(ticket, zarplataBlock);
+
+                  hide(ZERO_BLOCK_RESULT)
+                  hide(ZERO_BLOCK_RESULT_SECOND)
+                  show(DONT_FORGET_YOUR_TICKET);
+                  t_lazyload_update();
+                  
+                  var evt = new CustomEvent("formFilled", { detail: data.professions[0].title });
+                  window.dispatchEvent(evt);
+              }
+          }, 300);
+        }, 2000);
+      }, 9 * 1000)
     })
     ////
     // Маленькие хэлперы
